@@ -6,11 +6,11 @@ services:
 
 script:
   - docker build -t gldraphael/evlog -f ./src/Evlog.Web/Dockerfile .
+  - docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+  - docker push gldraphael/evlog
 
 deploy:
   provider: script
-  script: 
-    - docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
-    - docker push gldraphael/evlog
+  script: echo Done
   on:
     branch: master
