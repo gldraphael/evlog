@@ -4,3 +4,8 @@
 body {
     font-family: 'Open Sans', sans-serif;
 }
+
+.container {
+    @include outer-container;
+    max-width: 550px;
+}
