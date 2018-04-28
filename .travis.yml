@@ -1,0 +1,15 @@
+sudo: required
+
+services:
+  - docker
+
+script:
+  - docker build -t gldraphael/evlog -f ./src/Evlog.Web/Dockerfile .
+
+deploy:
+  provider: script
+  script: 
+    - docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+    - docker push gldraphael/evlog
+  on:
+    branch: master
