@@ -1,0 +1,9 @@
+{
+  "private": true,
+  "dependencies": {
+    "bourbon": "^5.0.0"
+  },
+  "devDependencies": {
+    "node-sass": "^4.9.0"
+  }
+}
