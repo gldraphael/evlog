@@ -1,11 +1,10 @@
 ﻿@page
 @inject IEventsService eventsService
 @{
-    ViewData["Title"] = "Home";
     var events = eventsService.Get();
 }
 
-<h1>Hello World!</h1>
+<h1>Events</h1>
 
 @foreach(var ev in events)
 {
