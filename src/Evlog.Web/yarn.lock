@@ -108,6 +108,12 @@ boom@5.x.x:
   dependencies:
     hoek "4.x.x"
 
+bourbon-neat@^1.9.0:
+  version "1.9.0"
+  resolved "https://registry.yarnpkg.com/bourbon-neat/-/bourbon-neat-1.9.0.tgz#fa38ea0ccbd857f0232030f5efd3b8a225b2a424"
+  dependencies:
+    node-sass "^4.1.1"
+
 bourbon@^5.0.0:
   version "5.0.0"
   resolved "https://registry.yarnpkg.com/bourbon/-/bourbon-5.0.0.tgz#030ba01893889cd77d964101e735d446fd50426a"
@@ -700,7 +706,7 @@ node-gyp@^3.3.1:
     tar "^2.0.0"
     which "1"
 
-node-sass@^4.9.0:
+node-sass@^4.1.1, node-sass@^4.9.0:
   version "4.9.0"
   resolved "https://registry.yarnpkg.com/node-sass/-/node-sass-4.9.0.tgz#d1b8aa855d98ed684d6848db929a20771cc2ae52"
   dependencies:
