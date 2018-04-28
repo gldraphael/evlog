@@ -14,6 +14,9 @@
             "cwd": "${workspaceFolder}/src/Evlog.Web",
             "console": "internalConsole",
             "stopAtEntry": false,
+            "env": {
+                "ASPNETCORE_ENVIRONMENT": "Development"
+            },
             "internalConsoleOptions": "openOnSessionStart"
         },
         {
