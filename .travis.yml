@@ -1,4 +1,5 @@
 sudo: required
+language: generic
 
 services:
   - docker
@@ -8,8 +9,6 @@ script:
 
 deploy:
   provider: script
-  script: 
-    - docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
-    - docker push gldraphael/evlog
+  script: docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD && docker push gldraphael/evlog
   on:
     branch: master
