@@ -1,12 +1,3 @@
-@import "../../node_modules/bourbon/core/_bourbon";
-@import "../../node_modules/bourbon-neat/app/assets/stylesheets/_neat";
-
-body {
-    font-family: 'Open Sans', sans-serif;
-}
-
-.container {
-    @include outer-container;
-    max-width: 550px;
-}
-
+@import "../../node_modules/bourbon/core/bourbon";
+@import "../../node_modules/bourbon-neat/app/assets/stylesheets/neat";
+@import "base/base";
