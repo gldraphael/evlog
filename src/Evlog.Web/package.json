@@ -2,7 +2,7 @@
   "private": true,
   "dependencies": {
     "bourbon": "^5.0.0",
-    "bourbon-neat": "^1.9.0"
+    "bourbon-neat": "^2.1.0"
   },
   "devDependencies": {
     "node-sass": "^4.9.0"

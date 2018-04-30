@@ -19,6 +19,7 @@ body {
 }
 
 .container {
-  @include outer-container;
-  max-width: 550px;
+  @include grid-container;
+  @include grid-column(3 of 6);
+  @include grid-push(1.5 of 6)
 }
