@@ -4,11 +4,9 @@
     var events = eventsService.Get();
 }
 
-<h1>Events</h1>
+<h1>Upcoming Events</h1>
 
 @foreach(var ev in events)
 {
-    <h2>@ev.Title</h2>
-    <p>@ev.Body</p>
-    <p></p>
+    @Html.Partial("Partials/_EventCard", ev)
 }
