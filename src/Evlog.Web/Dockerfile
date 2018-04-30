@@ -28,6 +28,7 @@ RUN dotnet restore -nowarn:msb3202,nu1503
 # Copy the package.json file & restore dependencies
 WORKDIR /src/src/Evlog.Web
 COPY src/Evlog.Web/package.json .
+COPY yarn.lock .
 RUN yarn
 
 # Copy the remaining files over
