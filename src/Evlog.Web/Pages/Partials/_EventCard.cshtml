@@ -2,5 +2,9 @@
 
 <article class="card event">
     <h2>@Model.Title</h2>
+    @if(Model.IsSingleDayEvent)
+    {
+        <span>On @Model.StartDateTime.ToString("dd MMM, yy") from @Model.StartDateTime.ToString("hh:mm tt") onwards</span>
+    }
     <p>@Model.Body</p>
 </article>
