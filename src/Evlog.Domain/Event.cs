@@ -9,7 +9,8 @@ namespace Evlog.Domain
         public string Title { get; set; }
         public string Body { get; set; }
         public DateTime StartDateTime { get; set; }
+        public DateTime? EndDate { get; set; }
         public DateTime? EndTime { get; set; }
-        public DateTime? EndDay { get; set; }
+        public bool IsSingleDayEvent => StartDateTime.Date == (EndDate?.Date ?? StartDateTime.Date);
     }
 }
