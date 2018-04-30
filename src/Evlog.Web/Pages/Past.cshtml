@@ -1,10 +1,10 @@
-﻿@page
+@page
 @inject IEventsService eventsService
 @{
-    var events = eventsService.GetUpcomingEvents();
+    var events = eventsService.GetPastEvents();
 }
 
-<h1>Upcoming Events</h1>
+<h1>Past Events</h1>
 
 @foreach(var ev in events)
 {
