@@ -23,6 +23,7 @@ COPY evlog.sln ./
 COPY src/Evlog.Web/Evlog.Web.csproj src/Evlog.Web/
 COPY src/Evlog.Domain/Evlog.Domain.csproj src/Evlog.Domain/
 COPY src/Evlog.Services/Evlog.Services.csproj src/Evlog.Services/
+COPY tests/Evlog.UnitTests/Evlog.UnitTests.csproj src/Evlog.UnitTests/
 RUN dotnet restore -nowarn:msb3202,nu1503
 
 # Copy the package.json file & restore dependencies
@@ -34,6 +35,9 @@ RUN yarn
 # Copy the remaining files over
 WORKDIR /src
 COPY . .
+
+# Run tests
+RUN dotnet test tests/tests.sln
 
 # Build
 WORKDIR /src/src/Evlog.Web
