@@ -41,7 +41,7 @@ RUN dotnet test tests/tests.sln
 
 # Build
 WORKDIR /src/src/Evlog.Web
-RUN parcel build assets/bundle.js --out-dir wwwroot/dist/
+RUN yarn build
 RUN dotnet build -c Release -o /app
 
 
