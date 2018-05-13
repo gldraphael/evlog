@@ -5,8 +5,8 @@ namespace Evlog.Services
 {
     public interface IEventsService
     {
-         List<Event> Get();
-        List<Event> GetUpcomingEvents();
-        List<Event> GetPastEvents();
+         List<EventPost> Get();
+        List<EventPost> GetUpcomingEvents();
+        List<EventPost> GetPastEvents();
     }
 }

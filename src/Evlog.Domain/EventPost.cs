@@ -2,7 +2,7 @@ using System;
 
 namespace Evlog.Domain
 {
-    public class Event
+    public class EventPost
     {
         public int Id { get; set; }
         public DateTime TimeStamp { get; set; } = DateTime.UtcNow;

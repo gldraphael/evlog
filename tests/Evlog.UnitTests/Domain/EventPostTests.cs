@@ -4,14 +4,14 @@ using Xunit;
 
 namespace Evlog.UnitTests.Domain
 {
-	public class EventTests
+	public class EventPostTests
 	{
 		public class IsSingleDayEvent_Should
 		{
 			[Fact]
 			public void ReturnTrueWhenOnlyStartDateIsSpecified()
 			{
-				Event ev = new Event
+				EventPost ev = new EventPost
 				{
 					StartDateTime = new DateTime(2018, 4, 30, 10, 10, 0)
 				};
@@ -21,7 +21,7 @@ namespace Evlog.UnitTests.Domain
 			[Fact]
 			public void ReturnTrueWhenStartAndEndDatesAreEqual()
 			{
-				Event ev = new Event
+				EventPost ev = new EventPost
 				{
 					StartDateTime = new DateTime(2018, 4, 30, 10, 10, 0),
 					EndDate = new DateTime(2018, 4, 30)
@@ -32,7 +32,7 @@ namespace Evlog.UnitTests.Domain
 			[Fact]
 			public void ReturnFalseWhenStartAndEndDatesAreDifferent()
 			{
-				Event ev = new Event
+				EventPost ev = new EventPost
 				{
 					StartDateTime = new DateTime(2018, 4, 30, 10, 10, 0),
 					EndDate = new DateTime(2018, 5, 1)
