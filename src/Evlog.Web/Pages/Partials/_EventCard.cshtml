@@ -6,5 +6,5 @@
     {
         <span>On @Model.StartDateTime.ToString("dd MMM, yy") from @Model.StartDateTime.ToString("hh:mm tt") onwards</span>
     }
-    <p>@Model.Body</p>
+    <p>@(Model.Excerpt ?? string.Join(" ", Model.Body.Split().Take(30)))</p>
 </article>
