@@ -1,0 +1,10 @@
+@page "{id:int}"
+@inject IEventsService eventsService
+@{
+    int id = int.Parse(@RouteData.Values["id"] as string);
+    var post = eventsService.Get(id);
+}
+
+<h1>@post.Title</h1>
+
+@post.Body
