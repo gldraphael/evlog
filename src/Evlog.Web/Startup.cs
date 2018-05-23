@@ -23,7 +23,10 @@ namespace Evlog.Web
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddRouting(options => options.LowercaseUrls = true)
-                    .AddMvc();
+                    .AddMvc()
+                    .AddRazorPagesOptions(options => {
+                        options.Conventions.AddPageRoute("/Events/View", "{slug}");
+                    });
 
             services.AddTransient<IEventsService, EventsService>();
         }

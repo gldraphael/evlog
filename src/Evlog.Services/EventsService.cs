@@ -17,6 +17,11 @@ namespace Evlog.Services
             return dataset.SingleOrDefault(e => e.Id == id);
         }
 
+        public EventPost Get(string slug)
+        {
+            return dataset.SingleOrDefault(e => e.Slug == slug);
+        }
+
         public List<EventPost> GetUpcomingEvents()
         {
             return dataset.Where(e => e.StartDateTime > DateTime.UtcNow)

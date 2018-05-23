@@ -7,6 +7,7 @@ namespace Evlog.Services
     {
         List<EventPost> Get();
         EventPost Get(int id);
+        EventPost Get(string slug);
         List<EventPost> GetUpcomingEvents();
         List<EventPost> GetPastEvents();
     }

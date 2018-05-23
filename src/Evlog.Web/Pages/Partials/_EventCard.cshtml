@@ -1,7 +1,7 @@
 @model EventPost
 
 <article class="card event">
-    <a asp-page="/Events/View" asp-route-id="@Model.Id"><h2>@Model.Title</h2></a>
+    <a asp-page="/Events/View" asp-route-slug="@Model.Slug"><h2>@Model.Title</h2></a>
     @if(Model.IsSingleDayEvent)
     {
         <span>On @Model.StartDateTime.ToString("dd MMM, yy") from @Model.StartDateTime.ToString("hh:mm tt") onwards</span>
