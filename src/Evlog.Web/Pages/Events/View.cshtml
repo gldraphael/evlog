@@ -6,5 +6,16 @@
 }
 
 <h1>@post.Title</h1>
+@if(post.IsSingleDayEvent)
+{
+    <p>
+    On @post.StartDateTime.ToString("dd MMM, yy") from @post.StartDateTime.ToString("hh:mm tt") onwards
+    </p>
+}
+else
+{
 
-@post.Body
+}
+
+<p>@post.Description</p>
+<p>@post.Body</p>
