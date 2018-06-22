@@ -1,30 +1,34 @@
 #
 # Stage 0
 # Base
-FROM microsoft/aspnetcore:2.0.6 AS base
+FROM microsoft/dotnet:2.1.1-aspnetcore-runtime-alpine AS base
 WORKDIR /app
 EXPOSE 80
 
 #
 # Stage 1
 # Build
-FROM microsoft/aspnetcore-build:2.0.5-2.1.4 AS build
+FROM microsoft/dotnet:2.1-sdk-alpine AS build
 
 # Install yarn
-RUN apt-get -qq update && apt-get --assume-yes install apt-transport-https
-RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
-RUN echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
-RUN apt-get -qq update && apt-get --assume-yes install yarn
+RUN echo -e 'http://dl-cdn.alpinelinux.org/alpine/edge/main\nhttp://dl-cdn.alpinelinux.org/alpine/edge/community\nhttp://dl-cdn.alpinelinux.org/alpine/edge/testing' > /etc/apk/repositories
+RUN apk add --no-cache yarn
 RUN yarn global add parcel-bundler
 
 # Copy the project files over & restore dependencies
 WORKDIR /src
+
 COPY evlog.sln ./
-COPY src/Evlog.Web/Evlog.Web.csproj src/Evlog.Web/
+COPY docker-compose.dcproj .
+
+COPY tests/Evlog.UnitTests/Evlog.UnitTests.csproj tests/Evlog.UnitTests/
+
 COPY src/Evlog.Domain/Evlog.Domain.csproj src/Evlog.Domain/
 COPY src/Evlog.Services/Evlog.Services.csproj src/Evlog.Services/
-COPY tests/Evlog.UnitTests/Evlog.UnitTests.csproj src/Evlog.UnitTests/
-RUN dotnet restore -nowarn:msb3202,nu1503
+COPY src/Evlog.Web/Evlog.Web.csproj src/Evlog.Web/
+
+# RUN dotnet sln evlog.sln remove docker-compose.dcproj
+RUN dotnet restore evlog.sln
 
 # Copy the package.json file & restore dependencies
 WORKDIR /src/src/Evlog.Web
