@@ -3,11 +3,12 @@
         "**/.git": true,
         "**/.svn": true,
         "**/.hg": true,
+        "**/.cache": true,
         "**/CVS": true,
         "**/.DS_Store": true,
         "**/bin": true,
         "**/obj": true,
         "*.userprefs": true,
-        ".vs": true,
+        ".vs": true
     }
 }
