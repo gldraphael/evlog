@@ -1,11 +1,15 @@
 ## Setting up MongoDB 
 
-Pull the latest mongo image:
+### Pull the latest mongo image:
+
 ```bash
 docker pull mongo
 ```
 
-Create a new container named `mongo`:
+### Create a new container
+
+(Adjust the local port and container name as needed.)
+
 ```bash
 docker run --name mongo \
     -e MONGO_INITDB_ROOT_USERNAME=root \

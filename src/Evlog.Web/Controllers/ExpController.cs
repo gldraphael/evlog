@@ -1,6 +1,7 @@
 using System.Threading.Tasks;
 using Evlog.Infrastructure;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
 
 namespace Evlog.Web.Controllers
 {
@@ -8,11 +9,11 @@ namespace Evlog.Web.Controllers
     public class ExpController : Controller
     {
         [HttpGet("")]
-        public async Task<IActionResult> Get()
+        public async Task<IActionResult> Get([FromServices]IOptions<MongoConfig> monoConfigOptions)
         {
             try
             {
-                await MongoExperiment.RunAsync();
+                await MongoExperiment.RunAsync(monoConfigOptions.Value);
                 return Ok("Success");
             }
             catch

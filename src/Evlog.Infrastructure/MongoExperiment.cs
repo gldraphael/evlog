@@ -7,10 +7,9 @@ namespace Evlog.Infrastructure
     public class MongoExperiment
     {
 
-        public async static Task RunAsync()
+        public async static Task RunAsync(MongoConfig config)
         {
-            var mongoClient = new MongoClient(connectionString: "mongodb://root:amDbDZ3v@localhost");
-            mongoClient.Settings.ConnectTimeout = TimeSpan.FromSeconds(1);
+            var mongoClient = new MongoClient(connectionString: config.ConnectionString);
             _ = await mongoClient.ListDatabasesAsync();
         }
 

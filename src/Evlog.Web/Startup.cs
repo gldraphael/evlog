@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Evlog.Infrastructure;
 using Evlog.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -29,6 +30,11 @@ namespace Evlog.Web
                     });
 
             services.AddTransient<IEventsService, EventsService>();
+            var appsettings = Configuration.GetSection("AppSettings").Get<AppSettings>();
+            if(appsettings.UseMongo)
+            {
+                services.Configure<MongoConfig>(Configuration.GetSection("Mongo"));
+            }
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
