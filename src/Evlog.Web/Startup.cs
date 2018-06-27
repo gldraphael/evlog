@@ -2,12 +2,14 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Evlog.Domain;
 using Evlog.Infrastructure;
 using Evlog.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using MongoDB.Driver;
 
 namespace Evlog.Web
 {
@@ -33,7 +35,16 @@ namespace Evlog.Web
             var appsettings = Configuration.GetSection("AppSettings").Get<AppSettings>();
             if(appsettings.UseMongo)
             {
-                services.Configure<MongoConfig>(Configuration.GetSection("Mongo"));
+                var configSection = Configuration.GetSection("Mongo");
+                var config = configSection.Get<MongoConfig>();
+                var mongoClient = new MongoClient(connectionString: config.ConnectionString);
+                var database = mongoClient.GetDatabase(config.Database);
+                var eventsCollection = database.GetCollection<EventPost>(config.Database);
+
+                services.Configure<MongoConfig>(configSection);
+                services.AddSingleton(mongoClient);
+                services.AddSingleton(database);
+                services.AddSingleton(eventsCollection);
             }
         }
 
