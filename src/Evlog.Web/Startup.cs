@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Evlog.Domain;
 using Evlog.Domain.Queries;
 using Evlog.Infrastructure;
+using Evlog.Infrastructure.Queries;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
