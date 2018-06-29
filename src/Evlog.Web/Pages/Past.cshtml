@@ -1,7 +1,8 @@
 @page
-@inject IEventsService eventsService
+
+@inject IPastEventsQuery pastEvents
 @{
-    var events = eventsService.GetPastEvents();
+    var events = await pastEvents.QueryAsync();
 }
 
 <h1>Past Events</h1>

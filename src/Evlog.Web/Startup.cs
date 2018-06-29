@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Evlog.Domain;
+using Evlog.Domain.Queries;
 using Evlog.Infrastructure;
-using Evlog.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -31,21 +31,25 @@ namespace Evlog.Web
                         options.Conventions.AddPageRoute("/Events/View", "{slug}");
                     });
 
-            services.AddTransient<IEventsService, EventsService>();
             var appsettings = Configuration.GetSection("AppSettings").Get<AppSettings>();
             if(appsettings.UseMongo)
             {
                 var configSection = Configuration.GetSection("Mongo");
                 var config = configSection.Get<MongoConfig>();
-                var mongoClient = new MongoClient(connectionString: config.ConnectionString);
+                var mongoClient = new MongoClient(connectionString: config.ConnectionString) as IMongoClient;
                 var database = mongoClient.GetDatabase(config.Database);
-                var eventsCollection = database.GetCollection<EventPost>(config.Database);
+                var eventsCollection = database.GetCollection<EventPost>("Events");
 
                 services.Configure<MongoConfig>(configSection);
                 services.AddSingleton(mongoClient);
                 services.AddSingleton(database);
                 services.AddSingleton(eventsCollection);
             }
+
+            services.AddTransient<IAllEventsQuery, AllEventsQuery>();
+            services.AddTransient<IPastEventsQuery, PastEventsQuery>();
+            services.AddTransient<IUpcomingEventsQuery, UpcomingEventsQuery>();
+            services.AddTransient<IEventQuery, EventQuery>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
