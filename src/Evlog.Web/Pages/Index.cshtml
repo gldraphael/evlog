@@ -1,7 +1,8 @@
 ﻿@page
-@inject IEventsService eventsService
+
+@inject IUpcomingEventsQuery upcomingEvents
 @{
-    var events = eventsService.GetUpcomingEvents();
+    var events = await upcomingEvents.QueryAsync();
 }
 
 <h1>Upcoming Events</h1>

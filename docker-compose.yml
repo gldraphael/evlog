@@ -1,8 +1,15 @@
 version: '3.4'
 
 services:
+
   evlog.web:
     image: gldraphael/evlog
     build:
       context: .
       dockerfile: src/Evlog.Web/Dockerfile
+    depends_on:
+      - db
+
+  db:
+    image: mongo
+    restart: unless-stopped
