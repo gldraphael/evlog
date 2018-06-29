@@ -27,13 +27,13 @@ const events = [
     Title: "Webinar: Azure DevOps and Containers",
     Slug: "webinar-azure-devops-and-containers",
     Body: "It's time to modernize and future proof your applications. Learn how new constructs such as PaaS, web and mobile app services, Serverless, microservices, containers and others can do this while ensuring continuous innovation through end to end DevOps.",
-    StartDateTime: new Date("2019-05-17T7:30:00Z")
+    StartDateTime: new Date("2019-05-17T07:30:00Z")
   },
   {
     Title: "Building Modern Websites using Microsoft Azure",
     Slug: "building-modern-websites-using-microsoft-azure",
     Body: "Learn how to quickly build modern, secure, scalable and highly available websites using the powerful web infrastructure provided by Microsoft Azure. Organisations across the planet are seeing great success deploying their websites on top of the Azure platform. See how you can join them using the new Azure Digital Marketing Solution sample implementations. In this session, learn how: - Understand the key services in Azure that will help you create great web experience - See how other companies are building successful web experiences with Azure - Learn how to get started creating your own modern website using the new Azure Sample Implementation.",
-    StartDateTime: new Date("2017-08-16T2:00:00Z")
+    StartDateTime: new Date("2017-08-16T02:00:00Z")
   }
 ];
 
