@@ -1,8 +1,9 @@
 @page "{slug}"
-@inject IEventsService eventsService
+
+@inject IEventQuery eventQuery
 @{
     string slug = RouteData.Values["slug"] as string;
-    var post = eventsService.Get(slug);
+    var post = await eventQuery.QueryAsync(slug);
 }
 
 <h1>@post.Title</h1>
