@@ -2,7 +2,7 @@ version: '3.4'
 
 services:
   evlog.web:
-    image: evlog
+    image: gldraphael/evlog
     build:
       context: .
       dockerfile: src/Evlog.Web/Dockerfile
