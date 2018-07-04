@@ -1,11 +1,14 @@
 .dockerignore
 .env
 *.env
+*.md
 .git
 .gitignore
 .vs
 .vscode
+.travis.yml
 docker-compose.yml
 docker-compose.*.yml
 */bin
 */obj
+docs/
