@@ -1,9 +1,18 @@
 #
-# Stage 0
+# Stage 0A
 # Base
 FROM microsoft/dotnet:2.1.1-aspnetcore-runtime-alpine AS base
 WORKDIR /app
 EXPOSE 80
+
+# Stage 0B
+# Self contained base
+FROM base As self-contained-base
+RUN apk add --no-cache mongodb
+VOLUME /data/db
+ENV Mongo__UseAuthentication false
+RUN apk add --no-cache supervisor
+RUN mkdir -p /var/log/supervisor
 
 #
 # Stage 1
@@ -55,6 +64,14 @@ RUN dotnet build -c Release -o /app
 # Publish
 FROM build AS publish
 RUN dotnet publish -c Release -o /app
+
+# Stage 4A
+# The self-contained container
+FROM self-contained-base AS self-contained
+WORKDIR /app
+COPY --from=publish /app .
+COPY supervisord.conf .
+ENTRYPOINT ["/usr/bin/supervisord", "-c", "/app/supervisord.conf"]
 
 #
 # Stage Final
