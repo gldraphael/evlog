@@ -1,28 +1,20 @@
 # Evlog
 
-## Running the project
+### Quickstart
 
-### Run using the image on DockerHub
+You can try evlog right now if you have docker installed by running:
 
 ```bash
-docker pull gldraphael/evlog
-docker run --rm -it -p 5200:80 gldraphael/evlog
+docker pull gldraphael/evlog-self-contained
+docker run -p 5200:80 -it --rm gldraphael/evlog-self-contained
 ```
 
 The app will be served at `localhost:5200`.
 
-### Build the image and run it
-
-```bash
-git clone https://github.com/gldraphael/evlog.git
-cd evlog
-docker-compose build
-docker-compose up
-```
-
-The app will be served at `localhost:5200`.
 
 ### Build from source and run
+
+**Prerequisites:** `.NET Core SDK 2.1.301`, `yarn`, `parcel`
 
 1. Clone the project and `cd` into the Web project's directory:
     ```bash
