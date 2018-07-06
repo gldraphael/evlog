@@ -6,3 +6,8 @@
 docker build \
     -t gldraphael/evlog \
     -f ./src/Evlog.Web/Dockerfile .
+
+docker build \
+    -t gldraphael/evlog-self-contained \
+    -f ./src/Evlog.Web/Dockerfile \
+    --target self-contained .

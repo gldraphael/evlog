@@ -13,3 +13,4 @@ if [ "$CI" = true ] ; then
 fi
 
 docker push gldraphael/evlog
+docker push gldraphael/evlog-self-contained
