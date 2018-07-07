@@ -65,7 +65,7 @@ RUN dotnet build -c Release -o /app
 FROM build AS publish
 RUN dotnet publish -c Release -o /app
 
-# Stage 4A
+# Stage 3
 # The self-contained container
 FROM self-contained-base AS self-contained
 WORKDIR /app
