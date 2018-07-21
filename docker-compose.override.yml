@@ -11,6 +11,10 @@ services:
     ports:
       - "5200:80"
 
+  evlog.admin:
+    ports:
+      - "8080:80"
+
   db:
     env_file: dev.env
     environment:
