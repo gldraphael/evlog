@@ -10,6 +10,12 @@ services:
     depends_on:
       - db
 
+  evlog.admin:
+    image: gldraphael/evlog-admin
+    build:
+      context: ./src/AdminClient
+      dockerfile: Dockerfile
+
   db:
     image: mongo
     restart: unless-stopped
