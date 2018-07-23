@@ -9,11 +9,11 @@ services:
       - Mongo__Username=${DB_USERNAME}
       - Mongo__Password=${DB_PASSWORD}
     ports:
-      - "5200:80"
+      - "8080:80"
 
   evlog.admin:
     ports:
-      - "8080:80"
+      - "8081:80"
 
   db:
     env_file: dev.env
