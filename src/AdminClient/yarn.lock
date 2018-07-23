@@ -870,6 +870,14 @@ boom@2.x.x:
   dependencies:
     hoek "2.x.x"
 
+bourbon-neat@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/bourbon-neat/-/bourbon-neat-2.1.0.tgz#b32ce101f447c35c57b6e833de74567f8b5f9082"
+
+bourbon@^5.0.0:
+  version "5.1.0"
+  resolved "https://registry.yarnpkg.com/bourbon/-/bourbon-5.1.0.tgz#84fa10de4c4e837602d8c2ec716d74bcb8915bad"
+
 brace-expansion@^1.1.7:
   version "1.1.11"
   resolved "https://registry.yarnpkg.com/brace-expansion/-/brace-expansion-1.1.11.tgz#3c7fcbf529d87226f3d2f52b966ff5271eb441dd"
