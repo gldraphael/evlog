@@ -870,9 +870,9 @@ boom@2.x.x:
   dependencies:
     hoek "2.x.x"
 
-bourbon-neat@^2.1.0:
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/bourbon-neat/-/bourbon-neat-2.1.0.tgz#b32ce101f447c35c57b6e833de74567f8b5f9082"
+bourbon-neat@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/bourbon-neat/-/bourbon-neat-3.0.0.tgz#5cc33b9951193f40b901a92aee82aa6b8066ff82"
 
 bourbon@^5.0.0:
   version "5.1.0"
