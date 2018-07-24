@@ -1,0 +1,9 @@
+@import "../../../assets/site.scss";
+
+nav {
+  @include grid-container;
+
+  #brand {
+    @include grid-column(3);
+  }
+}
