@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
@@ -19,5 +20,6 @@ namespace Evlog.Domain.EventAggregate
         public DateTime? EndDate { get; set; }
         public DateTime? EndTime { get; set; }
         public bool IsSingleDayEvent => StartDateTime.Date == (EndDate?.Date ?? StartDateTime.Date);
+        public IEnumerable<Announcement> Announcements { get; set; }
     }
 }
