@@ -1,5 +1,5 @@
 using System.Threading.Tasks;
-using Evlog.Domain;
+using Evlog.Domain.EventAggregate;
 using Evlog.Domain.Queries;
 using MongoDB.Bson;
 using MongoDB.Driver;

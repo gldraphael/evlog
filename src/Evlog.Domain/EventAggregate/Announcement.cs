@@ -3,7 +3,7 @@ using System.Linq;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 
-namespace Evlog.Domain
+namespace Evlog.Domain.EventAggregate
 {
     public class Announcement
     {
