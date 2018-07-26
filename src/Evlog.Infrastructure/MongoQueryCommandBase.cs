@@ -1,4 +1,5 @@
 using Evlog.Domain;
+using Evlog.Domain.EventAggregate;
 using MongoDB.Driver;
 
 namespace Evlog.Infrastructure

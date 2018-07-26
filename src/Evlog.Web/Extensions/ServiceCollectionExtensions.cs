@@ -1,4 +1,4 @@
-using Evlog.Domain;
+using Evlog.Domain.EventAggregate;
 using Evlog.Domain.Queries;
 using Evlog.Infrastructure;
 using Evlog.Infrastructure.Queries;
