@@ -20,3 +20,15 @@ else
 
 <p>@post.Description</p>
 <p>@post.Body</p>
+
+@if(post.Announcements?.Any() ?? false)
+{
+    <h3>Announcements</h3>
+    foreach(var announcement in post.Announcements)
+    {
+            <p>
+                <strong>@announcement.Text</strong><br />
+                @announcement.LongText
+            </p>
+    }
+}
