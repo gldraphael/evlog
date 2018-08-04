@@ -21,7 +21,13 @@ const events = [
     Title: "Learn Machine Learning using Azure ML",
     Slug: "learn-machine-learning-using-azure-ml",
     Body: "Machine learning is current buzz word in our industry and everyone wants to know what it is. Machine learning is in our industry for very long from the ages of Alan Turing. But it has gained momentum and mostly possible due to the cloud compute power that is available now. With Azure ML we can do wonders with data. Implementing any machine learning algorithm is bunch of drag and drops that you need to in Azure ML Studio. \n\nIn this webinar you will be learning what machine learning is and how to choose an algorithm for your problem. Five questions to ask on choosing ML algorithm. Below are the agenda for our webinar: \n\nArtificial Intelligence Vs Machine learning Vs Deep learning \nWhat is Naive Bayes? \nWhat is feature and label? \nDifference between R and Python?",
-    StartDateTime: new Date("2019-05-15T12:00:00Z")
+    StartDateTime: new Date("2019-05-15T12:00:00Z"),
+    Announcements: [
+      {
+        Text: "Here's an important announcement",
+        LongText: "Congratulations on reading this super important announcement. It was quite important for you to have read this important announcement."
+      }
+    ]
   },
   {
     Title: "Webinar: Azure DevOps and Containers",
