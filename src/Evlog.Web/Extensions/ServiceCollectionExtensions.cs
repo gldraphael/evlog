@@ -42,7 +42,7 @@ namespace Evlog.Web.Extensions
             services.AddRouting(options => options.LowercaseUrls = true)
                     .AddMvc()
                     .AddRazorPagesOptions(options => {
-                        options.Conventions.AddPageRoute("/Events/View", "{slug}");
+                        options.Conventions.AddPageRoute("/Events/View", "events/{slug}");
                     });
         }
 
