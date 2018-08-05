@@ -26,7 +26,6 @@ COPY tests/Evlog.UnitTests/Evlog.UnitTests.csproj tests/Evlog.UnitTests/
 
 COPY src/Evlog.Domain/Evlog.Domain.csproj src/Evlog.Domain/
 COPY src/Evlog.Infrastructure/Evlog.Infrastructure.csproj src/Evlog.Infrastructure/
-COPY src/Evlog.Services/Evlog.Services.csproj src/Evlog.Services/
 COPY src/Evlog.Web/Evlog.Web.csproj src/Evlog.Web/
 
 # RUN dotnet sln evlog.sln remove docker-compose.dcproj
