@@ -9,5 +9,5 @@
 
 @foreach(var ev in events)
 {
-    @Html.Partial("Partials/_EventCard", ev)
+    <partial name="Partials/_EventCard" model="ev" />
 }
