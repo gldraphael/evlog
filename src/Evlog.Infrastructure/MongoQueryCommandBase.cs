@@ -1,5 +1,4 @@
-using Evlog.Domain;
-using Evlog.Domain.EventAggregate;
+using Evlog.Infrastructure.DataModels;
 using MongoDB.Driver;
 
 namespace Evlog.Infrastructure
@@ -8,12 +7,12 @@ namespace Evlog.Infrastructure
     {
         protected IMongoClient _client { get; private set; }
         protected IMongoDatabase _database { get; private set; }
-        protected IMongoCollection<EventPost> _events { get; private set; }
+        protected IMongoCollection<EventPostDM> _events { get; private set; }
 
         public MongoQueryCommandBase(
             IMongoClient client,
             IMongoDatabase database,
-            IMongoCollection<EventPost> events)
+            IMongoCollection<EventPostDM> events)
         {
             _client = client;
             _database = database;
