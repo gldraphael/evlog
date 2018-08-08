@@ -1,6 +1,6 @@
-using Evlog.Domain.EventAggregate;
 using Evlog.Domain.Queries;
 using Evlog.Infrastructure;
+using Evlog.Infrastructure.DataModels;
 using Evlog.Infrastructure.Queries;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -28,7 +28,7 @@ namespace Evlog.Web.Extensions
                 var mongoConfig = configSection.Get<MongoConfig>();
                 var mongoClient = new MongoClient(connectionString: mongoConfig.ConnectionString) as IMongoClient;
                 var database = mongoClient.GetDatabase(mongoConfig.Database);
-                var eventsCollection = database.GetCollection<EventPost>("Events");
+                var eventsCollection = database.GetCollection<EventPostDM>("Events");
 
                 services.Configure<MongoConfig>(configSection);
                 services.AddSingleton(mongoClient);

@@ -1,9 +1,8 @@
 using System;
-using System.Linq;
 
-namespace Evlog.Domain.EventAggregate
+namespace Evlog.Infrastructure.DataModels
 {
-    public class Announcement
+    public class AnnouncementDM
     {
         public DateTime CreatedOn { get; set; }
         public DateTime LastEditedOn { get; set; }
