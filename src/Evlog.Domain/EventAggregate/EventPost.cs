@@ -1,15 +1,11 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using MongoDB.Bson;
-using MongoDB.Bson.Serialization.Attributes;
 
 namespace Evlog.Domain.EventAggregate
 {
     public class EventPost
     {
-        [BsonId]
-        public ObjectId Id { get; set; }
         public DateTime CreatedOn { get; set; } = DateTime.UtcNow;
         public string Title { get; set; }
         public string Description { get; set; }
