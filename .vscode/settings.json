@@ -11,5 +11,5 @@
         "*.userprefs": true,
         ".vs": true
     },
-    "dotnet-test-explorer.testArguments": "tests/tests.sln"
+    "dotnet-test-explorer.testArguments": "tests/evlog-tests.sln"
 }
