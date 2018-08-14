@@ -10,5 +10,6 @@
         "**/obj": true,
         "*.userprefs": true,
         ".vs": true
-    }
+    },
+    "dotnet-test-explorer.testArguments": "tests/evlog-tests.sln"
 }
