@@ -8,7 +8,7 @@
 @if(post.IsSingleDayEvent)
 {
     <p>
-        On @post.StartDateTime.ToString("dd MMM, yy") 
+        On @post.StartDateTime.ToString("dd MMM, yy")
         from @post.StartDateTime.ToString("hh:mm tt") onwards
     </p>
 }
@@ -32,4 +32,10 @@ else
     }
 }
 
-<button>Register</button>
+<div>
+    <form method="post">
+        <input asp-for="RegisterVM.Email"
+            type="email" placeholder="jane.doe@example.com" />
+        <button type="submit">Register</button>
+    </form>
+</div>
