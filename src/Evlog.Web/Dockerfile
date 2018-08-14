@@ -51,7 +51,7 @@ WORKDIR /src
 COPY . .
 
 # Run tests
-RUN dotnet test tests/tests.sln
+RUN dotnet test tests/evlog-tests.sln
 
 # Build
 WORKDIR /src/src/Evlog.Web
