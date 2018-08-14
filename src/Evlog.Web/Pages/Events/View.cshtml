@@ -1,16 +1,15 @@
-@page "{slug}"
-
-@inject IEventQuery eventQuery
+@page "/events/{slug}"
+@model ViewEventModel
 @{
-    string slug = RouteData.Values["slug"] as string;
-    var post = await eventQuery.QueryAsync(slug);
+    var post = Model.Post;
 }
 
 <h1>@post.Title</h1>
 @if(post.IsSingleDayEvent)
 {
     <p>
-    On @post.StartDateTime.ToString("dd MMM, yy") from @post.StartDateTime.ToString("hh:mm tt") onwards
+        On @post.StartDateTime.ToString("dd MMM, yy") 
+        from @post.StartDateTime.ToString("hh:mm tt") onwards
     </p>
 }
 else
