@@ -1,7 +1,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.Threading.Tasks;
 using Evlog.Domain.EventAggregate;
-using Evlog.Domain.Queries;
+using Evlog.Domain.EventAggregate.Queries;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
