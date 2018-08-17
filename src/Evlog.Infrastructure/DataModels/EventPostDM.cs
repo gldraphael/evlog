@@ -19,5 +19,6 @@ namespace Evlog.Infrastructure.DataModels
         public DateTime? EndDate { get; set; }
         public DateTime? EndTime { get; set; }
         public IEnumerable<AnnouncementDM> Announcements { get; set; }
+        public IEnumerable<RegistrationDM> Registrations { get; set; }
     }
 }
