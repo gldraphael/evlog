@@ -29,11 +29,13 @@ namespace Evlog.Web.Extensions
                 var mongoClient = new MongoClient(connectionString: mongoConfig.ConnectionString) as IMongoClient;
                 var database = mongoClient.GetDatabase(mongoConfig.Database);
                 var eventsCollection = database.GetCollection<EventPostDM>("Events");
+                var usersCollection = database.GetCollection<UserDM>("Users");
 
                 services.Configure<MongoConfig>(configSection);
                 services.AddSingleton(mongoClient);
                 services.AddSingleton(database);
                 services.AddSingleton(eventsCollection);
+                services.AddSingleton(usersCollection);
             }
         }
 
