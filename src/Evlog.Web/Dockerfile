@@ -1,7 +1,7 @@
 #
 # Stage 0A
 # Base
-FROM microsoft/dotnet:2.1.1-aspnetcore-runtime-alpine AS base
+FROM microsoft/dotnet:2.1.2-aspnetcore-runtime-alpine AS base
 WORKDIR /app
 EXPOSE 80
 
