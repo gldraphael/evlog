@@ -20,6 +20,7 @@ namespace Evlog.Web
             services.AddEvlogMvc();
             services.AddMongo(Configuration);
             services.AddEvlogQueries();
+            services.AddEvlogCommands();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
