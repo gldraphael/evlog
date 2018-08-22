@@ -1,6 +1,9 @@
+using Evlog.Domain.EventAggregate.Commands;
 using Evlog.Domain.EventAggregate.Queries;
+using Evlog.Domain.Events.Handlers;
 using Evlog.Domain.UserAggregate.Queries;
 using Evlog.Infrastructure;
+using Evlog.Infrastructure.Commands;
 using Evlog.Infrastructure.DataModels;
 using Evlog.Infrastructure.Queries;
 using Microsoft.Extensions.Configuration;
@@ -26,7 +29,12 @@ namespace Evlog.Web.Extensions
 
         public static void AddEvlogCommands(this IServiceCollection services)
         {
-            
+            services.AddTransient<IRegisterUserCommand, RegisterUserCommand>();
+        }
+
+        public static void AddEvlogEventHandlers(this IServiceCollection services)
+        {
+            services.AddTransient<IRegistrationInitiatedHandler, RegistrationInitiatedHandler>();
         }
 
 
