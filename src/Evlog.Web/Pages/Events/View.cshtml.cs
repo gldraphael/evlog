@@ -1,6 +1,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.Threading.Tasks;
 using Evlog.Domain.EventAggregate;
+using Evlog.Domain.EventAggregate.Commands;
 using Evlog.Domain.EventAggregate.Queries;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -10,15 +11,17 @@ namespace Evlog.Web.Pages.Events
     public class ViewEventModel : PageModel
     {
         private readonly IEventQuery _eventQuery;
+        private readonly IRegisterUserCommand _registerUser;
 
         public EventPost Post { get; set; }
 
         [BindProperty]
         public RegisterRequestVM RegisterVM { get; set; }
 
-        public ViewEventModel(IEventQuery eventQuery)
+        public ViewEventModel(IEventQuery eventQuery, IRegisterUserCommand registerUser)
         {
             _eventQuery = eventQuery;
+            _registerUser = registerUser;
         }
 
         public async Task<IActionResult> OnGetAsync(string slug)
@@ -29,7 +32,7 @@ namespace Evlog.Web.Pages.Events
 
         public async Task<IActionResult> OnPostAsync(string slug)
         {
-            // TODO: Register the user for the event here
+            await _registerUser.Execute(slug, RegisterVM.Email);
 
             Post = await _eventQuery.QueryAsync(slug);
             return Page();
