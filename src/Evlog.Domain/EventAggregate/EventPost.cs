@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace Evlog.Domain.EventAggregate
 {
-    public class EventPost
+    public class EventPost : IAggregateRoot
     {
         public DateTime CreatedOn { get; set; } = DateTime.UtcNow;
         public string Title { get; set; }
