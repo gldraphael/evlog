@@ -9,7 +9,7 @@ EXPOSE 80
 #
 # Stage 1
 # Build
-FROM microsoft/dotnet:2.1-sdk-alpine AS build
+FROM microsoft/dotnet:2.1.400-sdk-alpine AS build
 
 # Install yarn
 RUN echo -e 'http://dl-cdn.alpinelinux.org/alpine/edge/main\nhttp://dl-cdn.alpinelinux.org/alpine/edge/community\nhttp://dl-cdn.alpinelinux.org/alpine/edge/testing' > /etc/apk/repositories
