@@ -7,14 +7,17 @@ using MongoDB.Driver;
 
 namespace Evlog.Infrastructure.Queries
 {
-    public class UserQuery : MongoQueryCommandBase, IUserQuery
+    public class UserQuery : IUserQuery
     {
-        public UserQuery(IMongoClient client, IMongoDatabase database, IMongoCollection<UserDM> users)
-        : base(client, database, users)
-        { }
+        private readonly MongoDbContext _db;
+
+        public UserQuery(MongoDbContext db)
+        {
+            _db = db;
+        }
 
         public async Task<User> QueryAsync(string email) =>
-            (await _users.Find<UserDM>(u => u.Email == email)
+            (await _db.Users.Find<UserDM>(u => u.Email == email)
                 .SingleOrDefaultAsync())
                 .Adapt<User>();
     }

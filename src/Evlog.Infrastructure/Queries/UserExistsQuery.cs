@@ -5,12 +5,16 @@ using MongoDB.Driver;
 
 namespace Evlog.Infrastructure.Queries
 {
-    public class UserExistsQuery : MongoQueryCommandBase, IUserExistsQuery
+    public class UserExistsQuery : IUserExistsQuery
     {
-        public UserExistsQuery(IMongoClient client, IMongoDatabase database, IMongoCollection<UserDM> users) : base(client, database, users)
-        { }
+        private readonly MongoDbContext _db;
+
+        public UserExistsQuery(MongoDbContext db)
+        {
+            this._db = db;
+        }
 
         public async Task<bool> QueryAsync(string email) =>
-            await _users.Find(u => u.Email == email).AnyAsync();
+            await _db.Users.Find(u => u.Email == email).AnyAsync();
     }
 }
