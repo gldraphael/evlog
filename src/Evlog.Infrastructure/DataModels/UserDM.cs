@@ -10,6 +10,6 @@ namespace Evlog.Infrastructure.DataModels
         public ObjectId Id { get; set; }
         public string Email { get; set; }
         public bool IsVerified { get; set; }
-        public IEnumerable<EventPostDM> PendingRegistrations { get; set; }
+        public IList<EventPostDM> PendingRegistrations { get; set; } = new List<EventPostDM>();
     }
 }
