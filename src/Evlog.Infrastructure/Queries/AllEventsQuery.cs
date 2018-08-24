@@ -8,11 +8,17 @@ using MongoDB.Driver;
 
 namespace Evlog.Infrastructure.Queries
 {
-    public class AllEventsQuery : MongoQueryCommandBase, IAllEventsQuery
+    public class AllEventsQuery : IAllEventsQuery
     {
-        public AllEventsQuery(IMongoClient client, IMongoDatabase database, IMongoCollection<EventPostDM> events) : base(client, database, events) => _ = 0 ;
+        private readonly MongoDbContext _db;
+
+        public AllEventsQuery(MongoDbContext db)
+        {
+            this._db = db;
+        }
 
         public async Task<IList<EventPost>> QueryAsync() =>
-            (await (await _events.FindAsync(_ => true)).ToListAsync()).Adapt<List<EventPost>>();
+            (await _db.Events.Find(_ => true).ToListAsync())
+                .Adapt<List<EventPost>>();
     }
 }

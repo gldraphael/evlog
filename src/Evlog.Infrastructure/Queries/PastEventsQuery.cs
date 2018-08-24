@@ -9,11 +9,18 @@ using MongoDB.Driver;
 
 namespace Evlog.Infrastructure.Queries
 {
-    public class PastEventsQuery : MongoQueryCommandBase, IPastEventsQuery
+    public class PastEventsQuery : IPastEventsQuery
     {
-        public PastEventsQuery(IMongoClient client, IMongoDatabase database, IMongoCollection<EventPostDM> events) : base(client, database, events) => _ = 0;
+        private readonly MongoDbContext _db;
+
+        public PastEventsQuery(MongoDbContext db)
+        {
+            this._db = db;
+        }
 
         public async Task<IList<EventPost>> QueryAsync() =>
-            (await (await _events.FindAsync(x => x.StartDateTime < DateTime.UtcNow)).ToListAsync()).Adapt<List<EventPost>>();
+            (await _db.Events.Find(x => x.StartDateTime < DateTime.UtcNow)
+                .ToListAsync())
+                .Adapt<List<EventPost>>();
     }
 }
