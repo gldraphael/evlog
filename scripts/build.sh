@@ -15,10 +15,6 @@ docker build \
     -f ./src/Evlog.Web/Dockerfile .
 
 docker build \
-    -t gldraphael/evlog-admin \
-    ./src/AdminClient/Dockerfile
-
-docker build \
     -t gldraphael/evlog-self-contained \
     -f ./src/Evlog.Web/Dockerfile \
     --target self-contained .
