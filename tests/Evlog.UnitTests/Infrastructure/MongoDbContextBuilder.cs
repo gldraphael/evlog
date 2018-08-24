@@ -31,9 +31,6 @@ namespace Evlog.UnitTests.Infrastructure
             this.configuration = new MongoConfig {
                 Host = "localhost",
                 Port = "27017",
-                UseAuthentication = true,
-                Username = "root",
-                Password = "amDbDZ3v",
                 ConnectTimeout = 2000,
                 Database = Guid.NewGuid().ToString()
             };
