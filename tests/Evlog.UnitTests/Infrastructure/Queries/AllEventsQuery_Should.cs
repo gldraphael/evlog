@@ -40,7 +40,7 @@ namespace Evlog.UnitTests.Infrastructure.Queries
         public async Task Return_all_events()
         {
             // Arrange
-            var createdOn = DateTime.Now;
+            var createdOn = DateTime.UtcNow;
             var posts = new List<EventPostDM>(new EventPostDM[] {
                 new EventPostDM { CreatedOn = createdOn, Slug = "well-im-gonna-keep-on-waking" },
                 new EventPostDM { CreatedOn = createdOn, Slug = "and-rising-up-before-the-sun" },
@@ -54,7 +54,7 @@ namespace Evlog.UnitTests.Infrastructure.Queries
 
             // Assert
             Assert.Equal(posts.Count, result.Count);
-            Assert.Equal(posts.Adapt<IList<EventPost>>(), result);
+            Assert.Equal(posts.Adapt<IList<EventPost>>(), result); // Pass an IEqualityComparer for this to work
         }
     }
 }
