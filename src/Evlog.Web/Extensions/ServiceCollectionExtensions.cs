@@ -55,6 +55,7 @@ namespace Evlog.Web.Extensions
                 services.AddSingleton(database);
                 services.AddSingleton(eventsCollection);
                 services.AddSingleton(usersCollection);
+                services.AddTransient<MongoDbContext>();
             }
         }
 
