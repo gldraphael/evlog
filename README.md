@@ -10,7 +10,9 @@ You can try evlog right now if you have docker installed by running:
 
 ```bash
 docker pull gldraphael/evlog-self-contained
-docker run -p 5200:80 -it --rm gldraphael/evlog-self-contained
+docker run \
+    -p 5200:80 \
+    -it --rm gldraphael/evlog-self-contained
 ```
 
 The app will be served at `localhost:5200`.
