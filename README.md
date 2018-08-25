@@ -20,5 +20,5 @@ The app will be served at `localhost:5200`.
 
 ## Documentation Index
 
-1. [Local dev environment setup](./docs/development)
-1. [Application configuration](./docs/configuration)
+1. [Local dev environment setup](./docs/development.md)
+1. [Application configuration](./docs/configuration.md)
