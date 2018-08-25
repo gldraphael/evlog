@@ -4,7 +4,7 @@
 [![Travis (.org)](https://img.shields.io/travis/gldraphael/evlog.svg?style=popout-square)](https://travis-ci.org/gldraphael/evlog)
 
 
-### Quickstart
+## Quickstart
 
 You can try evlog right now if you have docker installed by running:
 
@@ -14,3 +14,8 @@ docker run -p 5200:80 -it --rm gldraphael/evlog-self-contained
 ```
 
 The app will be served at `localhost:5200`.
+
+## Documentation Index
+
+1. [Local dev environment setup](./docs/development)
+1. [Application configuration](./docs/configuration)
