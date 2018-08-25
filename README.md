@@ -6,8 +6,8 @@
 
 ## Quickstart
 
-1. Install Docker (Docker for Mac/Windows or Docker Toolbox or Docker CE)
-1. Run the container
+1. Install Docker (Docker for Mac/Windows or Docker Toolbox or Docker CE).
+1. Run the container:
 
     ```bash
     docker pull gldraphael/evlog-self-contained
