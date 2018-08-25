@@ -1,0 +1,30 @@
+version: '0.1.{build}'
+image: Visual Studio 2017
+services:
+  - mongodb
+skip_commits:
+  files:
+    - '**/*.md'
+environment:
+  DOTNET_SKIP_FIRST_TIME_EXPERIENCE: 1
+  DOTNET_CLI_TELEMETRY_OPTOUT: 1
+init:
+  - git config --global core.autocrlf input
+install:
+  - cmd: choco install dotnetcore-sdk --version 2.1.400
+before_build:
+  - cmd: dotnet restore -v q evlog.sln
+build_script:
+  - cmd: dotnet build evlog.sln
+clone_depth: 1
+test_script:
+  - cmd: dotnet test tests/evlog-tests.sln
+deploy: off
+dotnet_csproj:
+  patch: true
+  file: '**\*.csproj'
+  version: '{version}'
+  package_version: '{version}'
+  assembly_version: '{version}'
+  file_version: '{version}'
+  informational_version: '{version}'
