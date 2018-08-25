@@ -5,6 +5,8 @@ services:
 skip_commits:
   files:
     - '**/*.md'
+environment:
+  DOTNET_CLI_TELEMETRY_OPTOUT: true
 init:
   - git config --global core.autocrlf input
 install:
