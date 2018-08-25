@@ -6,14 +6,15 @@
 
 ## Quickstart
 
-You can try evlog right now if you have docker installed by running:
+1. Install Docker (Docker for Mac/Windows or Docker Toolbox or Docker CE)
+1. Run the container
 
-```bash
-docker pull gldraphael/evlog-self-contained
-docker run \
-    -p 5200:80 \
-    -it --rm gldraphael/evlog-self-contained
-```
+    ```bash
+    docker pull gldraphael/evlog-self-contained
+    docker run \
+        -p 5200:80 \
+        -it --rm gldraphael/evlog-self-contained
+    ```
 
 The app will be served at `localhost:5200`.
 
