@@ -8,6 +8,7 @@ skip_commits:
 init:
   - git config --global core.autocrlf input
 install:
+  - cmd: choco install dotnetcore-sdk --version 2.1.400
 before_build:
   - cmd: dotnet --version
   - cmd: dotnet restore ./src/src.csproj --verbosity m
