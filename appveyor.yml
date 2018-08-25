@@ -10,8 +10,7 @@ init:
 install:
   - cmd: choco install dotnetcore-sdk --version 2.1.400
 before_build:
-  - cmd: dotnet --version
-  - cmd: dotnet restore evlog.sln
+  - cmd: dotnet restore -v q evlog.sln
 build_script:
   - cmd: dotnet build evlog.sln
 clone_depth: 1
