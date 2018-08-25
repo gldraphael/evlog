@@ -1,0 +1,28 @@
+version: '0.1.{build}'
+image: Visual Studio 2017
+branches:
+services:
+  - mongodb
+skip_commits:
+  files:
+    - '**/*.md'
+init:
+  - git config --global core.autocrlf input
+install:
+before_build:
+  - cmd: dotnet --version
+  - cmd: dotnet restore ./src/src.csproj --verbosity m
+build_script:
+  - cmd: dotnet build evlog.sln
+clone_depth: 1
+test_script:
+  - cmd: dotnet test tests/evlog-tests.sln
+deploy: off
+dotnet_csproj:
+  patch: true
+  file: '**\*.csproj'
+  version: '{version}'
+  package_version: '{version}'
+  assembly_version: '{version}'
+  file_version: '{version}'
+  informational_version: '{version}'
