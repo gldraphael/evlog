@@ -13,7 +13,9 @@ FROM microsoft/dotnet:2.1.400-sdk-alpine AS build
 
 # Install yarn
 RUN echo -e 'http://dl-cdn.alpinelinux.org/alpine/edge/main\nhttp://dl-cdn.alpinelinux.org/alpine/edge/community\nhttp://dl-cdn.alpinelinux.org/alpine/edge/testing' > /etc/apk/repositories
-RUN apk add --no-cache yarn
+RUN apk add --no-cache \
+    yarn \
+    mongodb
 RUN yarn global add parcel-bundler
 
 # Copy the project files over & restore dependencies
@@ -43,7 +45,12 @@ WORKDIR /src
 COPY . .
 
 # Run tests
-RUN dotnet test tests/evlog-tests.sln
+RUN mkdir -p /data/db \
+    && chown -R mongodb:mongodb /data/db \
+    && mkdir -p /var/log \
+    && mongod --fork --logpath /var/log/mongodb.log --dbpath /data/db \
+    && dotnet test tests/evlog-tests.sln \
+    && mongod --dbpath /data/db --shutdown
 
 # Build
 WORKDIR /src/src/Evlog.Web
