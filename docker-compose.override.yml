@@ -2,22 +2,12 @@ version: '3.4'
 
 services:
   evlog.web:
-    env_file: dev.env
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - Mongo__Host=db
-      - Mongo__Username=${DB_USERNAME}
-      - Mongo__Password=${DB_PASSWORD}
     ports:
       - "8080:80"
 
   evlog.admin:
     ports:
       - "8081:80"
-
-  db:
-    env_file: dev.env
-    environment:
-      MONGO_INITDB_ROOT_USERNAME: ${DB_USERNAME}
-      MONGO_INITDB_ROOT_PASSWORD: ${DB_PASSWORD}
-
