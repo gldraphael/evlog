@@ -69,11 +69,9 @@ RUN dotnet publish -c Release -o /app
 # Self contained base
 FROM base As self-contained-base
 RUN apk add --no-cache \
-    mongodb \
-    supervisor
+    mongodb
 RUN mkdir -p /data/db && chown -R mongodb:mongodb /data/db
 ENV Mongo__UseAuthentication false
-RUN mkdir -p /var/log/supervisor
 
 #
 # Stage 3B Final (self-contained)
@@ -82,14 +80,21 @@ FROM self-contained-base AS self-contained
 WORKDIR /app
 COPY --from=publish /app .
 
-COPY supervisord.conf .
+# Setup the run script
+RUN echo "#!/bin/sh" >> run.sh \
+    && echo "mongod --fork --logpath /var/log/mongodb.log --dbpath /data/db" >> run.sh \
+    && echo "dotnet /app/Evlog.Web.dll" >> run.sh \
+    && chmod +x run.sh
+
+# Seed the mongodb
 COPY scripts/seed.js .
 RUN mkdir -p /var/log \
     && mongod --fork --logpath /var/log/mongodb.log --dbpath /data/db \
     && mongo seed.js \
-    && mongod --dbpath /data/db --shutdown
+    && mongod --dbpath /data/db --shutdown \
+    && rm -rf scripts
 VOLUME /data/db
-ENTRYPOINT ["/usr/bin/supervisord", "-c", "/app/supervisord.conf"]
+ENTRYPOINT ["./run.sh"]
 
 #
 # Stage 3 Final
