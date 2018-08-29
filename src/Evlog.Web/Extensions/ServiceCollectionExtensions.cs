@@ -34,7 +34,7 @@ namespace Evlog.Web.Extensions
 
         public static void AddEvlogEventHandlers(this IServiceCollection services)
         {
-            services.AddTransient<IRegistrationInitiatedHandler, RegistrationInitiatedHandler>();
+            services.AddTransient<IRegistrationCompletedHandler, RegistrationCompletedHandler>();
         }
 
 

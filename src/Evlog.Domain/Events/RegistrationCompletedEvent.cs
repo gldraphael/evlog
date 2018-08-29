@@ -2,7 +2,7 @@ using Evlog.Domain.EventAggregate;
 
 namespace Evlog.Domain.Events
 {
-    public class RegistrationInitiatedEvent : IEvent
+    public class RegistrationCompletedEvent : IEvent
     {
         /// <summary>
         /// The slug of the event the registration was initiated for
@@ -16,7 +16,7 @@ namespace Evlog.Domain.Events
         /// <value></value>
         public string Email { get; }
 
-        public RegistrationInitiatedEvent(string eventpostSlug, string email)
+        public RegistrationCompletedEvent(string eventpostSlug, string email)
         {
             EventPostSlug = eventpostSlug;
             Email = email;
