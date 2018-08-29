@@ -44,7 +44,7 @@ namespace Evlog.IntegrationTests
 
 		protected virtual void ConfigureServices(IServiceCollection services)
         {
-
+            
         }
 
     }
