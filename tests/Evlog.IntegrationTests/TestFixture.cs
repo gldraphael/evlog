@@ -1,7 +1,10 @@
 using System;
+using System.Collections.Generic;
 using System.Net.Http;
+using Evlog.Infrastructure;
+using Evlog.Infrastructure.DataModels;
 using Evlog.Web;
-
+using Mapster;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.TestHost;
 using Microsoft.Extensions.Configuration;
@@ -31,6 +34,14 @@ namespace Evlog.IntegrationTests
 
 			_server = new TestServer(builder);
 
+            using (var serviceScope = _server.Host.Services
+                        .GetRequiredService<IServiceScopeFactory>()
+                        .CreateScope())
+			{
+                var db = serviceScope.ServiceProvider.GetRequiredService<MongoDbContext>();
+                db.Events.InsertMany(SeedData.Events.Adapt<IEnumerable<EventPostDM>>());
+			}
+
 			Client = _server.CreateClient();
 			Client.BaseAddress = _server.BaseAddress;
         }
@@ -44,7 +55,7 @@ namespace Evlog.IntegrationTests
 
 		protected virtual void ConfigureServices(IServiceCollection services)
         {
-            
+            // services.get
         }
 
     }

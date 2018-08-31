@@ -18,7 +18,7 @@ namespace Evlog.IntegrationTests.Pages.Events
 		public async Task Return_OK()
 		{
 			// Act
-			var response = await _client.GetAsync("/events/event-xyz");
+			var response = await _client.GetAsync("/events/xyz-is-happening-again");
 
 			// Assert
 			Assert.Equal(HttpStatusCode.OK, response.StatusCode);
