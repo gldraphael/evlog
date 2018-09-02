@@ -40,7 +40,7 @@ namespace Evlog.Web.Extensions
         }
 
 
-        public static void AddMongo(this IServiceCollection services, IConfiguration config)
+        public static IServiceCollection AddMongo(this IServiceCollection services, IConfiguration config)
         {
             var appsettings = config.GetSection("AppSettings").Get<AppSettings>();
             if(appsettings.UseMongo)
@@ -59,6 +59,7 @@ namespace Evlog.Web.Extensions
                 services.AddSingleton(usersCollection);
                 services.AddTransient<MongoDbContext>();
             }
+            return services;
         }
 
         public static void AddEvlogMvc(this IServiceCollection services)
