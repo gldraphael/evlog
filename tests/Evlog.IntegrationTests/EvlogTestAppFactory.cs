@@ -39,7 +39,9 @@ namespace Evlog.IntegrationTests
        }
 
         protected override IWebHostBuilder CreateWebHostBuilder() =>
-            WebHost.CreateDefaultBuilder()
+            new WebHostBuilder()
+                .UseContentRoot(Directory.GetCurrentDirectory())
+                .UseEnvironment("Development")
                 .UseConfiguration(GetIConfigurationRoot())
                 .UseStartup<Startup>();
 
