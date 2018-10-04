@@ -9,9 +9,9 @@ namespace Evlog.IntegrationTests.Pages
 	{
 		private readonly HttpClient _client;
 
-		public IndexPage_Should(TestFixture fixture)
+		public IndexPage_Should(TestFixture factory)
 		{
-			_client = fixture.Client;
+			_client = factory.Client;
 		}
 
 		[Fact]

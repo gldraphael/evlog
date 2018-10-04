@@ -1,10 +1,8 @@
-using System.Collections.Generic;
 using System.IO;
 using Evlog.Infrastructure;
-using Evlog.Infrastructure.DataModels;
 using Evlog.Web;
 using Evlog.Web.Extensions;
-using Microsoft.AspNetCore;
+
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.Extensions.Configuration;
@@ -14,6 +12,8 @@ namespace Evlog.IntegrationTests
 {
    public class EvlogTestAppFactory : WebApplicationFactory<Startup>
    {
+        private MongoDbContext db;
+
        protected override void ConfigureWebHost(IWebHostBuilder builder)
        {
             builder.ConfigureServices(services =>
@@ -24,12 +24,11 @@ namespace Evlog.IntegrationTests
                 var sp = services.BuildServiceProvider();
                 using (var scope = sp.CreateScope())
                 {
-                    var db = scope.ServiceProvider.GetRequiredService<MongoDbContext>();
-                    db.Database.Client.DropDatabase(db.Database.DatabaseNamespace.DatabaseName);
-                    db.Events.InsertMany(SeedData.Events);
+                    db = scope.ServiceProvider.GetRequiredService<MongoDbContext>();
+                    seedDbIfNotSeeded(db);
                 }
             });
-        }
+       }
 
         protected override IWebHostBuilder CreateWebHostBuilder() =>
             new WebHostBuilder()
@@ -43,5 +42,29 @@ namespace Evlog.IntegrationTests
                 .AddJsonFile("appsettings.test.json")
                 .AddEnvironmentVariables()
                 .Build();
-   }
+
+        protected override void Dispose(bool disposing)
+        {
+            if(disposing && db != null)
+            {
+                db.Database.Client.DropDatabase(db.Database.DatabaseNamespace.DatabaseName);
+            }
+            base.Dispose(disposing);
+        }
+
+
+        private static bool isDbSeeded = false;
+        private static object lockForIsdbSeed = new object();
+        private static void seedDbIfNotSeeded(MongoDbContext db)
+        {
+            lock (lockForIsdbSeed)
+            {
+                if (!isDbSeeded)
+                {
+                    db.Events.InsertMany(SeedData.Events);
+                    isDbSeeded = true;
+                }
+            }
+        }
+    }
 }

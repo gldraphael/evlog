@@ -5,13 +5,13 @@ using Xunit;
 
 namespace Evlog.IntegrationTests.Pages.Events
 {
-    public class ViewPage_should : IClassFixture<EvlogTestAppFactory>
+    public class ViewPage_should : IClassFixture<TestFixture>
     {
         private readonly HttpClient _client;
 
-		public ViewPage_should(EvlogTestAppFactory factory)
+		public ViewPage_should(TestFixture factory)
 		{
-            _client = factory.CreateClient();
+            _client = factory.Client;
 		}
 
 		[Fact]
