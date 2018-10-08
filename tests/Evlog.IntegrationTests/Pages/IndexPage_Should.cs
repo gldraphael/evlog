@@ -1,5 +1,4 @@
 using System.Net;
-using System.Net.Http;
 using System.Threading.Tasks;
 using Xunit;
 
@@ -7,21 +6,24 @@ namespace Evlog.IntegrationTests.Pages
 {
     public class IndexPage_Should : IClassFixture<TestFixture>
 	{
-		private readonly HttpClient _client;
+        private readonly TestFixture _fixture;
 
-		public IndexPage_Should(TestFixture factory)
+		public IndexPage_Should(TestFixture fixture)
 		{
-			_client = factory.Client;
+            _fixture = fixture;
 		}
 
 		[Fact]
 		public async Task Request_ReturnsOK()
 		{
-			// Act
-			var response = await _client.GetAsync("/");
+            using(var client = _fixture.CreateClient())
+            {
+                // Act
+                var response = await client.GetAsync("/");
 
-			// Assert
-			Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+                // Assert
+                Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+            }
 		}
 	}
 }
