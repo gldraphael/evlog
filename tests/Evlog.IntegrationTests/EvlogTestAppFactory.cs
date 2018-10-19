@@ -35,7 +35,7 @@ namespace Evlog.IntegrationTests
                 .UseContentRoot(Directory.GetCurrentDirectory())
                 .UseEnvironment("Development")
                 .UseConfiguration(GetIConfigurationRoot())
-                .UseStartup<Startup>();
+                .UseStartup<TestStartup>();
 
         public static IConfigurationRoot GetIConfigurationRoot() =>
             new ConfigurationBuilder()
