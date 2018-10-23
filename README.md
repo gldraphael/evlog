@@ -1,7 +1,7 @@
 # Evlog
 > ⚡️A self-hosted platform for publishing events.
 
-[![Travis (.org)](https://img.shields.io/travis/gldraphael/evlog.svg?style=popout-square&logo=travis&logoWidth=12)](https://travis-ci.org/gldraphael/evlog)
+[![Travis (.org)](https://img.shields.io/travis/gldraphael/evlog/master.svg?style=popout-square&logo=travis&logoWidth=12)](https://travis-ci.org/gldraphael/evlog)
 [![Build](https://img.shields.io/appveyor/ci/Galdin/evlog/master.svg?logo=appveyor&logoWidth=12&style=popout-square)](https://ci.appveyor.com/project/Galdin/evlog/branch/master)
 [![Tests](https://img.shields.io/appveyor/tests/Galdin/evlog/master.svg?style=popout-square&logo=appveyor&logoWidth=12)](https://ci.appveyor.com/project/Galdin/evlog/branch/master/tests)
 
