@@ -9,9 +9,9 @@ namespace Evlog.IntegrationTests.Pages.Events
     {
         private readonly HttpClient _client;
 
-		public ViewPage_should(TestFixture fixture)
+		public ViewPage_should(TestFixture factory)
 		{
-			_client = fixture.Client;
+            _client = factory.Client;
 		}
 
 		[Fact]

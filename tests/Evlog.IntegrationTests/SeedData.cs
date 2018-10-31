@@ -1,14 +1,15 @@
 using System;
 using System.Collections.Generic;
 using Evlog.Domain.EventAggregate;
+using Evlog.Infrastructure.DataModels;
 
 namespace Evlog.IntegrationTests
 {
     public static class SeedData
     {
-        public static IList<EventPost> Events =>
-            new List<EventPost> {
-                new EventPost {
+        public static IList<EventPostDM> Events =>
+            new List<EventPostDM> {
+                new EventPostDM {
                     CreatedOn = new DateTime(2018, 5, 5),
                     StartDateTime = new DateTime(2020, 10, 10),
                     Title = "XYZ is happening again!",
