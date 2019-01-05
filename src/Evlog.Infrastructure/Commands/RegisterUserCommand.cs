@@ -11,22 +11,22 @@ namespace Evlog.Infrastructure.Commands
     public class RegisterUserCommand : IRegisterUserCommand
     {
         private readonly IMongoCollection<EventPostDM> _events;
-        private readonly IRegistrationInitiatedHandler _registrationInitiatedEventHandler;
+        private readonly IRegistrationCompletedHandler _registrationCompletedEventHandler;
 
         public RegisterUserCommand(IMongoCollection<EventPostDM> events,
-            IRegistrationInitiatedHandler registrationInitiatedEventHandler)
+            IRegistrationCompletedHandler registrationCompletedEventHandler)
         {
             _events = events;
-            _registrationInitiatedEventHandler = registrationInitiatedEventHandler;
+            _registrationCompletedEventHandler = registrationCompletedEventHandler;
         }
 
         public async Task Execute(string eventSlug, string userEmail)
         {
-            await _registrationInitiatedEventHandler.HandleAsync(
-                        new RegistrationInitiatedEvent(eventSlug, userEmail));
-
             var update = Builders<EventPostDM>.Update.AddToSet(x => x.Registrations, new RegistrationDM { Email = userEmail} );
             await _events.UpdateOneAsync(e => e.Slug == eventSlug, update);
+
+            await _registrationCompletedEventHandler.HandleAsync(
+                        new RegistrationCompletedEvent(eventSlug, userEmail));
         }
     }
 }

@@ -23,7 +23,7 @@ namespace Evlog.UnitTests.Infrastructure.Commands
             Db.Events.InsertOne(new EventPostDM {
                 Slug = slug
             });
-            var command = new RegisterUserCommand(Db.Events, handler);
+            var command = new RegisterUserCommand(Db.Events, mockHandler);
 
             // Act
             await command.Execute(eventSlug: slug, userEmail: email);
@@ -45,7 +45,7 @@ namespace Evlog.UnitTests.Infrastructure.Commands
             Db.Events.InsertOne(new EventPostDM {
                 Slug = slug
             });
-            var command = new RegisterUserCommand(Db.Events, handler);
+            var command = new RegisterUserCommand(Db.Events, mockHandler);
 
             // Act
             await command.Execute(eventSlug: slug, userEmail: email);
@@ -61,10 +61,10 @@ namespace Evlog.UnitTests.Infrastructure.Commands
 
 
 
-        private readonly IRegistrationInitiatedHandler handler;
+        private readonly IRegistrationCompletedHandler mockHandler;
         public RegisterUser_Should()
         {
-            handler = new Mock<IRegistrationInitiatedHandler>().Object;
+            mockHandler = new Mock<IRegistrationCompletedHandler>().Object;
         }
     }
 }

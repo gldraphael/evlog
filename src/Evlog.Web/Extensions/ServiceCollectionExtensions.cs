@@ -1,6 +1,7 @@
 using Evlog.Domain.EventAggregate.Commands;
 using Evlog.Domain.EventAggregate.Queries;
 using Evlog.Domain.Events.Handlers;
+using Evlog.Domain.UserAggregate.Commands;
 using Evlog.Domain.UserAggregate.Queries;
 using Evlog.Infrastructure;
 using Evlog.Infrastructure.Commands;
@@ -30,15 +31,16 @@ namespace Evlog.Web.Extensions
         public static void AddEvlogCommands(this IServiceCollection services)
         {
             services.AddTransient<IRegisterUserCommand, RegisterUserCommand>();
+            services.AddTransient<ICreateUserCommand, CreateUserCommand>();
         }
 
         public static void AddEvlogEventHandlers(this IServiceCollection services)
         {
-            services.AddTransient<IRegistrationInitiatedHandler, RegistrationInitiatedHandler>();
+            services.AddTransient<IRegistrationCompletedHandler, RegistrationCompletedHandler>();
         }
 
 
-        public static void AddMongo(this IServiceCollection services, IConfiguration config)
+        public static IServiceCollection AddMongo(this IServiceCollection services, IConfiguration config)
         {
             var appsettings = config.GetSection("AppSettings").Get<AppSettings>();
             if(appsettings.UseMongo)
@@ -57,6 +59,7 @@ namespace Evlog.Web.Extensions
                 services.AddSingleton(usersCollection);
                 services.AddTransient<MongoDbContext>();
             }
+            return services;
         }
 
         public static void AddEvlogMvc(this IServiceCollection services)
