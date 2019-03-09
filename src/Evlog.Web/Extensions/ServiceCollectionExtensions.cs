@@ -7,6 +7,7 @@ using Evlog.Infrastructure;
 using Evlog.Infrastructure.Commands;
 using Evlog.Infrastructure.DataModels;
 using Evlog.Infrastructure.Queries;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using MongoDB.Driver;
@@ -65,7 +66,7 @@ namespace Evlog.Web.Extensions
         public static void AddEvlogMvc(this IServiceCollection services)
         {
             services.AddRouting(options => options.LowercaseUrls = true)
-                    .AddMvc();
+                    .AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 
     }
