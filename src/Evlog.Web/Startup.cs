@@ -36,8 +36,8 @@ namespace Evlog.Web
                 app.UseExceptionHandler("/Error");
             }
 
+            app.UseHttpsRedirection();
             app.UseStaticFiles();
-
             app.UseMvc();
         }
     }
