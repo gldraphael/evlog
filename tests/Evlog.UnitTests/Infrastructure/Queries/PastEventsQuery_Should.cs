@@ -1,17 +1,13 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
-using Evlog.Domain.EventAggregate;
 using Evlog.Infrastructure.DataModels;
 using Evlog.Infrastructure.Queries;
-using Mapster;
-using Moq;
 using Xunit;
 
 namespace Evlog.UnitTests.Infrastructure.Queries
 {
-    public class PastEventsQuery_Should : MongoTestBed
+    public class PastEventsQuery_Should : MySqlTestBed
     {
         [Fact]
         public async Task Return_all_past_events()
@@ -25,7 +21,7 @@ namespace Evlog.UnitTests.Infrastructure.Queries
                 new EventPostDM { CreatedOn = newDate, StartDateTime = newDate, Slug = "and-lying-in-the-dark-wide-awake" },
                 new EventPostDM { CreatedOn = newDate, StartDateTime = newDate, Slug = "when-everybody-else-is-done" }
             });
-            await Db.Events.InsertManyAsync(posts);
+            await Db.Events.AddRangeAsync(posts);
 
             // Act
             var result = await new PastEventsQuery(Db).QueryAsync();
@@ -45,7 +41,7 @@ namespace Evlog.UnitTests.Infrastructure.Queries
                 new EventPostDM { CreatedOn = date, StartDateTime = date, Slug = "and-lying-in-the-dark-wide-awake" },
                 new EventPostDM { CreatedOn = date, StartDateTime = date, Slug = "when-everybody-else-is-done" }
             });
-            await Db.Events.InsertManyAsync(posts);
+            await Db.Events.AddRangeAsync(posts);
 
             // Act
             var result = await new PastEventsQuery(Db).QueryAsync();

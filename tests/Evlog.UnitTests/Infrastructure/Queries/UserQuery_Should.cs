@@ -5,7 +5,7 @@ using Xunit;
 
 namespace Evlog.UnitTests.Infrastructure.Queries
 {
-    public class UserQuery_Should : MongoTestBed
+    public class UserQuery_Should : MySqlTestBed
     {
         [Fact]
         public async Task Return_user()
@@ -15,7 +15,8 @@ namespace Evlog.UnitTests.Infrastructure.Queries
             UserDM user = new UserDM {
                 Email = email
             };
-            Db.Users.InsertOne(user);
+            await Db.Users.AddAsync(user);
+            await Db.SaveChangesAsync();
 
             // Act
             var result = await new UserQuery(Db).QueryAsync(email);

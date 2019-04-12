@@ -12,20 +12,19 @@ namespace Evlog.IntegrationTests
 {
    public class EvlogTestAppFactory : WebApplicationFactory<Startup>
    {
-        private MongoDbContext db;
 
        protected override void ConfigureWebHost(IWebHostBuilder builder)
        {
             builder.ConfigureServices(services =>
             {
                 var configuration = GetIConfigurationRoot();
-                services.AddMongo(configuration);
+                services.AddDb(configuration);
 
                 var sp = services.BuildServiceProvider();
                 using (var scope = sp.CreateScope())
                 {
-                    db = scope.ServiceProvider.GetRequiredService<MongoDbContext>();
-                    seedDbIfNotSeeded(db);
+                    var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+
                 }
             });
        }
@@ -42,29 +41,5 @@ namespace Evlog.IntegrationTests
                 .AddJsonFile("appsettings.test.json")
                 .AddEnvironmentVariables()
                 .Build();
-
-        protected override void Dispose(bool disposing)
-        {
-            if(disposing && db != null)
-            {
-                db.Database.Client.DropDatabase(db.Database.DatabaseNamespace.DatabaseName);
-            }
-            base.Dispose(disposing);
-        }
-
-
-        private static bool isDbSeeded = false;
-        private static object lockForIsdbSeed = new object();
-        private static void seedDbIfNotSeeded(MongoDbContext db)
-        {
-            lock (lockForIsdbSeed)
-            {
-                if (!isDbSeeded)
-                {
-                    db.Events.InsertMany(SeedData.Events);
-                    isDbSeeded = true;
-                }
-            }
-        }
     }
 }

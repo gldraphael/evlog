@@ -1,25 +1,25 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Evlog.Domain.EventAggregate;
 using Evlog.Domain.EventAggregate.Queries;
-using Evlog.Infrastructure.DataModels;
 using Mapster;
-using MongoDB.Driver;
+using Microsoft.EntityFrameworkCore;
 
 namespace Evlog.Infrastructure.Queries
 {
     public class PastEventsQuery : IPastEventsQuery
     {
-        private readonly MongoDbContext _db;
+        private readonly AppDbContext _db;
 
-        public PastEventsQuery(MongoDbContext db)
+        public PastEventsQuery(AppDbContext db)
         {
-            this._db = db;
+            _db = db;
         }
 
         public async Task<IList<EventPost>> QueryAsync() =>
-            (await _db.Events.Find(x => x.StartDateTime < DateTime.UtcNow)
+            (await _db.Events.Where(x => x.StartDateTime < DateTime.UtcNow)
                 .ToListAsync())
                 .Adapt<List<EventPost>>();
     }

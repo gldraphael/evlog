@@ -4,26 +4,27 @@ using Evlog.Domain.EventAggregate.Queries;
 using Evlog.Domain.Events;
 using Evlog.Domain.Events.Handlers;
 using Evlog.Infrastructure.DataModels;
-using MongoDB.Driver;
+using Microsoft.EntityFrameworkCore;
 
 namespace Evlog.Infrastructure.Commands
 {
     public class RegisterUserCommand : IRegisterUserCommand
     {
-        private readonly IMongoCollection<EventPostDM> _events;
+        private readonly AppDbContext _db;
         private readonly IRegistrationCompletedHandler _registrationCompletedEventHandler;
 
-        public RegisterUserCommand(IMongoCollection<EventPostDM> events,
+        public RegisterUserCommand(AppDbContext db,
             IRegistrationCompletedHandler registrationCompletedEventHandler)
         {
-            _events = events;
+            _db = db;
             _registrationCompletedEventHandler = registrationCompletedEventHandler;
         }
 
         public async Task Execute(string eventSlug, string userEmail)
         {
-            var update = Builders<EventPostDM>.Update.AddToSet(x => x.Registrations, new RegistrationDM { Email = userEmail} );
-            await _events.UpdateOneAsync(e => e.Slug == eventSlug, update);
+            var post = await _db.Events.SingleOrDefaultAsync(p => p.Slug == eventSlug);
+            post.Registrations.Add(new RegistrationDM { Email = userEmail });
+            await _db.SaveChangesAsync();
 
             await _registrationCompletedEventHandler.HandleAsync(
                         new RegistrationCompletedEvent(eventSlug, userEmail));

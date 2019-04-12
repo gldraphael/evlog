@@ -5,7 +5,7 @@ using Xunit;
 
 namespace Evlog.UnitTests.Infrastructure.Queries
 {
-    public class UserExistsQuery_should : MongoTestBed
+    public class UserExistsQuery_should : MySqlTestBed
     {
         [Fact]
         public async Task Return_true_if_user_exists()
@@ -15,7 +15,8 @@ namespace Evlog.UnitTests.Infrastructure.Queries
             UserDM user = new UserDM{
                 Email = email
             };
-            Db.Users.InsertOne(user);
+            await Db.Users.AddAsync(user);
+            await Db.SaveChangesAsync();
 
             // Act
             var result = await new UserExistsQuery(Db).QueryAsync(email);

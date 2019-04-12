@@ -1,18 +1,15 @@
-using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Evlog.Domain.Events.Handlers;
-using Evlog.Infrastructure;
 using Evlog.Infrastructure.Commands;
 using Evlog.Infrastructure.DataModels;
-using MongoDB.Driver;
+using Microsoft.EntityFrameworkCore;
 using Moq;
 using Xunit;
 
 namespace Evlog.UnitTests.Infrastructure.Commands
 {
-    public class RegisterUser_Should : MongoTestBed
+    public class RegisterUser_Should : MySqlTestBed
     {
         [Fact]
         public async Task Create_registration()
@@ -20,16 +17,17 @@ namespace Evlog.UnitTests.Infrastructure.Commands
             // Arrange
             const string slug = "hey-there";
             const string email = "jane@doe.com";
-            Db.Events.InsertOne(new EventPostDM {
+            await Db.Events.AddAsync(new EventPostDM {
                 Slug = slug
             });
-            var command = new RegisterUserCommand(Db.Events, mockHandler);
+            await Db.SaveChangesAsync();
+            var command = new RegisterUserCommand(Db, mockHandler);
 
             // Act
             await command.Execute(eventSlug: slug, userEmail: email);
 
             // Assert
-            var @event = Db.Events.Find(_ => _.Slug == slug).Single();
+            var @event = await Db.Events.SingleOrDefaultAsync(_ => _.Slug == slug);
             Assert.Single(@event.Registrations);
 
             var registration = @event.Registrations.First();
@@ -42,17 +40,18 @@ namespace Evlog.UnitTests.Infrastructure.Commands
             // Arrange
             const string slug = "hey-there";
             const string email = "jane@doe.com";
-            Db.Events.InsertOne(new EventPostDM {
+            await Db.Events.AddAsync(new EventPostDM {
                 Slug = slug
             });
-            var command = new RegisterUserCommand(Db.Events, mockHandler);
+            await Db.SaveChangesAsync();
+            var command = new RegisterUserCommand(Db, mockHandler);
 
             // Act
             await command.Execute(eventSlug: slug, userEmail: email);
             await command.Execute(eventSlug: slug, userEmail: email);
 
             // Assert
-            var @event = Db.Events.Find(_ => _.Slug == slug).Single();
+            var @event = await Db.Events.SingleOrDefaultAsync(_ => _.Slug == slug);
             Assert.Single(@event.Registrations);
 
             var registration = @event.Registrations.First();

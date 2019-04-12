@@ -18,7 +18,7 @@ namespace Evlog.Web
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddEvlogMvc();
-            services.AddMongo(Configuration);
+            services.AddDb(Configuration);
             services.AddEvlogQueries();
             services.AddEvlogCommands();
             services.AddEvlogEventHandlers();
