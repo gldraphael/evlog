@@ -15,7 +15,7 @@ using Xunit;
 namespace Evlog.UnitTests.Infrastructure.Queries
 {
 
-    public class AllEventsQuery_Should : MongoTestBed
+    public class AllEventsQuery_Should : MySqlTestBed
     {
         [Fact]
         public async Task Return_all_events_temp()
@@ -27,7 +27,8 @@ namespace Evlog.UnitTests.Infrastructure.Queries
                 new EventPostDM { Slug = "and-lying-in-the-dark-wide-awake" },
                 new EventPostDM { Slug = "when-everybody-else-is-done" }
             });
-            await Db.Events.InsertManyAsync(posts);
+            await Db.Events.AddRangeAsync(posts);
+            await Db.SaveChangesAsync();
 
             // Act
             var result = await new AllEventsQuery(Db).QueryAsync();
@@ -47,7 +48,8 @@ namespace Evlog.UnitTests.Infrastructure.Queries
                 new EventPostDM { CreatedOn = createdOn, Slug = "and-lying-in-the-dark-wide-awake" },
                 new EventPostDM { CreatedOn = createdOn, Slug = "when-everybody-else-is-done" }
             });
-            await Db.Events.InsertManyAsync(posts);
+            await Db.Events.AddRangeAsync(posts);
+            await Db.SaveChangesAsync();
 
             // Act
             var result = await new AllEventsQuery(Db).QueryAsync();

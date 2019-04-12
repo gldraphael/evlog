@@ -2,19 +2,18 @@ using System.Threading.Tasks;
 using Evlog.Domain.UserAggregate.Commands;
 using Evlog.Domain.UserAggregate.Queries;
 using Evlog.Infrastructure.DataModels;
-using MongoDB.Driver;
 
 namespace Evlog.Infrastructure.Commands
 {
     public class CreateUserCommand : ICreateUserCommand
     {
-        private readonly IMongoCollection<UserDM> _users;
+        private readonly AppDbContext _db;
         private readonly IUserExistsQuery _userExists;
 
-        public CreateUserCommand(IMongoCollection<UserDM> users, IUserExistsQuery userExists)
+        public CreateUserCommand(IUserExistsQuery userExists, AppDbContext db)
         {
-            this._users = users;
-            this._userExists = userExists;
+            _userExists = userExists;
+            _db = db;
         }
 
         public async Task ExecuteAsync(string email)
@@ -28,7 +27,8 @@ namespace Evlog.Infrastructure.Commands
             {
                 Email = email
             };
-            await _users.InsertOneAsync(user);
+            await _db.Users.AddAsync(user);
+            await _db.SaveChangesAsync();
         }
     }
 }

@@ -5,16 +5,17 @@ using Xunit;
 
 namespace Evlog.UnitTests.Infrastructure.Queries
 {
-    public class EventQuery_Should : MongoTestBed
+    public class EventQuery_Should : MySqlTestBed
     {
         [Fact]
         public async Task Return_the_correct_event_with_slug()
         {
             // Arrange
             const string slug = "hey-there";
-            Db.Events.InsertOne(new EventPostDM {
+            await Db.Events.AddAsync(new EventPostDM {
                 Slug = slug
             });
+            await Db.SaveChangesAsync();
             var query = new EventQuery(Db);
 
             // Act

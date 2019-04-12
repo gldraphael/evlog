@@ -1,12 +1,13 @@
+using System.Linq;
 using System.Threading.Tasks;
 using Evlog.Infrastructure.Commands;
 using Evlog.Infrastructure.Queries;
-using MongoDB.Driver;
+using Microsoft.EntityFrameworkCore;
 using Xunit;
 
 namespace Evlog.UnitTests.Infrastructure.Commands
 {
-    public class CreateUser_should : MongoTestBed
+    public class CreateUser_should : MySqlTestBed
     {
         [Fact]
         public async Task Create_user()
@@ -18,7 +19,7 @@ namespace Evlog.UnitTests.Infrastructure.Commands
             await sut.ExecuteAsync(email);
 
             // Assert
-            var count = await Db.Users.CountDocumentsAsync(_ => _.Email == email);
+            var count = await Db.Users.CountAsync(_ => _.Email == email);
             Assert.Equal(1, count);
         }
 
@@ -33,7 +34,7 @@ namespace Evlog.UnitTests.Infrastructure.Commands
             await sut.ExecuteAsync(email);
 
             // Assert
-            var count = await Db.Users.CountDocumentsAsync(_ => _.Email == email);
+            var count = await Db.Users.CountAsync(_ => _.Email == email);
             Assert.Equal(1, count);
         }
 
@@ -42,7 +43,7 @@ namespace Evlog.UnitTests.Infrastructure.Commands
         public CreateUser_should()
         {
             query = new UserExistsQuery(Db);
-            sut = new CreateUserCommand(Db.Users, query);
+            sut = new CreateUserCommand(query, Db);
         }
     }
 }

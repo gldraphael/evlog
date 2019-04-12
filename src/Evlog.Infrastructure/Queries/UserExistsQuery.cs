@@ -1,20 +1,22 @@
+using System;
+using System.Linq;
 using System.Threading.Tasks;
 using Evlog.Domain.UserAggregate.Queries;
 using Evlog.Infrastructure.DataModels;
-using MongoDB.Driver;
+using Microsoft.EntityFrameworkCore;
 
 namespace Evlog.Infrastructure.Queries
 {
     public class UserExistsQuery : IUserExistsQuery
     {
-        private readonly MongoDbContext _db;
+        private readonly AppDbContext _db;
 
-        public UserExistsQuery(MongoDbContext db)
+        public UserExistsQuery(AppDbContext db)
         {
-            this._db = db;
+            _db = db;
         }
 
         public async Task<bool> QueryAsync(string email) =>
-            await _db.Users.Find(u => u.Email == email).AnyAsync();
+            await _db.Users.AnyAsync(u => u.Email == email);
     }
 }

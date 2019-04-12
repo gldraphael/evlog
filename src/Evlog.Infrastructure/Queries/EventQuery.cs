@@ -1,24 +1,24 @@
+using System;
 using System.Threading.Tasks;
 using Evlog.Domain.EventAggregate;
 using Evlog.Domain.EventAggregate.Queries;
 using Evlog.Infrastructure.DataModels;
 using Mapster;
-using MongoDB.Bson;
-using MongoDB.Driver;
+using Microsoft.EntityFrameworkCore;
 
 namespace Evlog.Infrastructure.Queries
 {
     public class EventQuery : IEventQuery
     {
-        private readonly MongoDbContext _db;
+        private readonly AppDbContext _db;
 
-        public EventQuery(MongoDbContext db)
+        public EventQuery(AppDbContext db)
         {
-            this._db = db;
+            _db = db;
         }
 
         public async Task<EventPost> QueryAsync(string slug) =>
-            (await _db.Events.Find<EventPostDM>(k => k.Slug == slug)
-                .SingleOrDefaultAsync()).Adapt<EventPost>();
+            (await _db.Events.SingleOrDefaultAsync(k => k.Slug == slug))
+                .Adapt<EventPost>();
     }
 }
