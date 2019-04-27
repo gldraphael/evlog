@@ -19,11 +19,11 @@ namespace Evlog.IntegrationTests
         public override void ConfigureServices(IServiceCollection services)
         {
             var databaseName = $"evlog-utests-{Guid.NewGuid()}";
-            var connectionString = $"Server=localhost;Port=3307;Database={databaseName};User=root;Password=Pa5sw0rd;"; // TODO: DO NOT HARDCODE THIS!
+            var connectionString = config.GetConnectionString("MySql").Replace("evlogitestdb", databaseName);
             services.AddDbContext<AppDbContext>(options =>
             {
                 options.UseMySql(connectionString);
-                options.EnableSensitiveDataLogging(true);
+                options.EnableSensitiveDataLogging();
             });
 
             base.ConfigureServices(services);
