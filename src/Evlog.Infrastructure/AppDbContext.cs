@@ -8,6 +8,7 @@ namespace Evlog.Infrastructure
         public DbSet<EventPostDM> Events { get; set; }
         public DbSet<UserDM> Users { get; set; }
         public DbSet<RegistrationDM> Registrations { get; set; }
+        public DbSet<AnnouncementDM> Announcements { get; set; }
 
         public AppDbContext(DbContextOptions<AppDbContext> options)
             : base(options)
