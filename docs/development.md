@@ -42,11 +42,24 @@ TODO: fill this up
     cd evlog/src/Evlog.Web
     ```
 1. Build front end assets:    
-    ```
+    ```bash
     yarn build
     ```
 
 3. Run the application:
-    ```
+    ```bash
     dotnet run
     ```
+
+## EF Migrations
+
+* Migration commands must be run from the `./src/Evlog.Infrastructure` directory.
+* To create a new migration:
+    ```bash
+    dotnet ef migrations add InitCreate -s ../Evlog.Web/Evlog.Web.csproj
+    ```
+* Migrations are applied automatically application startup. You may do it manuall using:
+    ```bash
+    dotnet ef database update -s ../Evlog.Web/Evlog.Web.csproj
+    ```
+    
