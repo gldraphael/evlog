@@ -5,14 +5,14 @@ using Xunit;
 
 namespace Evlog.IntegrationTests.Pages
 {
-    public class PublicPages_that_should : IClassFixture<TestFixture>
+    public class PublicPages_that_should : IClassFixture<EvlogTestAppFactory>
     {
         private readonly HttpClient _client;
 
-        public PublicPages_that_should(TestFixture fixture)
-		{
-            _client = fixture.Client;
-		}
+        public PublicPages_that_should(EvlogTestAppFactory factory)
+        {
+            _client = factory.CreateClient();
+        }
 
         [Theory]
         [InlineData("/")]

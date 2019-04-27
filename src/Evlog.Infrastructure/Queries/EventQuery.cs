@@ -19,6 +19,6 @@ namespace Evlog.Infrastructure.Queries
 
         public async Task<EventPost> QueryAsync(string slug) =>
             (await _db.Events.SingleOrDefaultAsync(k => k.Slug == slug))
-                .Adapt<EventPost>();
+                ?.Adapt<EventPost>();
     }
 }

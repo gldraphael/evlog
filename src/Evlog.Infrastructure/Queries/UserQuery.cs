@@ -19,6 +19,6 @@ namespace Evlog.Infrastructure.Queries
 
         public async Task<User> QueryAsync(string email) =>
             (await _db.Users.SingleOrDefaultAsync(u => u.Email == email))
-                .Adapt<User>();
+                ?.Adapt<User>();
     }
 }
