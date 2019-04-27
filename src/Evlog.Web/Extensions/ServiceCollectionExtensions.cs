@@ -15,25 +15,6 @@ namespace Evlog.Web.Extensions
 {
     public static class ServiceCollectionExtensions
     {
-        public static void AddEvlogQueries(this IServiceCollection services)
-        {
-            // Add EventPost queries
-            services.AddTransient<IAllEventsQuery, AllEventsQuery>();
-            services.AddTransient<IPastEventsQuery, PastEventsQuery>();
-            services.AddTransient<IUpcomingEventsQuery, UpcomingEventsQuery>();
-            services.AddTransient<IEventQuery, EventQuery>();
-
-            // Add User queries
-            services.AddTransient<IUserQuery, UserQuery>();
-            services.AddTransient<IUserExistsQuery, UserExistsQuery>();
-        }
-
-        public static void AddEvlogCommands(this IServiceCollection services)
-        {
-            services.AddTransient<IRegisterUserCommand, RegisterUserCommand>();
-            services.AddTransient<ICreateUserCommand, CreateUserCommand>();
-        }
-
         public static void AddEvlogEventHandlers(this IServiceCollection services)
         {
             services.AddTransient<IRegistrationCompletedHandler, RegistrationCompletedHandler>();

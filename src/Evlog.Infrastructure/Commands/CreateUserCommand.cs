@@ -5,7 +5,7 @@ using Evlog.Infrastructure.DataModels;
 
 namespace Evlog.Infrastructure.Commands
 {
-    public class CreateUserCommand : ICreateUserCommand
+    internal class CreateUserCommand : ICreateUserCommand
     {
         private readonly AppDbContext _db;
         private readonly IUserExistsQuery _userExists;

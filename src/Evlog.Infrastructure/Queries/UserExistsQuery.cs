@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Evlog.Infrastructure.Queries
 {
-    public class UserExistsQuery : IUserExistsQuery
+    internal class UserExistsQuery : IUserExistsQuery
     {
         private readonly AppDbContext _db;
 

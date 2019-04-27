@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Evlog.Infrastructure.Commands
 {
-    public class RegisterUserCommand : IRegisterUserCommand
+    internal class RegisterUserCommand : IRegisterUserCommand
     {
         private readonly AppDbContext _db;
         private readonly IRegistrationCompletedHandler _registrationCompletedEventHandler;

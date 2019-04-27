@@ -7,7 +7,7 @@ namespace Evlog.IntegrationTests
 {
     public static class SeedData
     {
-        public static IList<EventPostDM> Events =>
+        internal static IList<EventPostDM> Events =>
             new List<EventPostDM> {
                 new EventPostDM {
                     CreatedOn = new DateTime(2018, 5, 5),
