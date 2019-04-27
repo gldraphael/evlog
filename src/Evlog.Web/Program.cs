@@ -11,7 +11,7 @@ namespace Evlog.Web
         {
             using (var host = CreateWebHostBuilder(args).Build())
             {
-                await host.EnsureDbCreated();
+                await host.ApplyPendingMigrationsAsync();
                 await host.RunAsync();
             }
         }
