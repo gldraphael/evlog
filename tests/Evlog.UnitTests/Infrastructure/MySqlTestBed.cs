@@ -1,6 +1,7 @@
 using System;
 using Evlog.Infrastructure;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 
 namespace Evlog.UnitTests.Infrastructure
 {
@@ -9,8 +10,16 @@ namespace Evlog.UnitTests.Infrastructure
         internal AppDbContext Db;
         public MySqlTestBed()
         {
+            // SqlServer options
+            var databaseName = $"evlog-utests-{Guid.NewGuid()}";
+            var connectionString = $"Server=localhost;Port=3307;Database={databaseName};User=root;Password=Pa5sw0rd;"; // TODO: DO NOT HARDCODE THIS!
+            var options = new DbContextOptionsBuilder<AppDbContext>()
+                .UseMySql(connectionString)
+                .Options;
 
-            // TODO: Add some init logic here
+            // The ApplicationDbContext
+            Db = new AppDbContext(options);
+            Db.Database.EnsureCreated();
         }
 
         #region IDisposable Support
@@ -22,7 +31,7 @@ namespace Evlog.UnitTests.Infrastructure
                 if (disposing)
                 {
                     Db.Database.EnsureDeleted();
-                    (Db as DbContext).Dispose();
+                    Db.Dispose();
                     Db = null;
                 }
 

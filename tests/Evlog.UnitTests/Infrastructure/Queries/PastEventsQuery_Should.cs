@@ -22,6 +22,7 @@ namespace Evlog.UnitTests.Infrastructure.Queries
                 new EventPostDM { CreatedOn = newDate, StartDateTime = newDate, Slug = "when-everybody-else-is-done" }
             });
             await Db.Events.AddRangeAsync(posts);
+            await Db.SaveChangesAsync();
 
             // Act
             var result = await new PastEventsQuery(Db).QueryAsync();
