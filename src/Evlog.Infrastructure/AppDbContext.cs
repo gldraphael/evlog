@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Evlog.Infrastructure
 {
-    public class AppDbContext : DbContext
+    internal class AppDbContext : DbContext
     {
         public DbSet<EventPostDM> Events { get; set; }
         public DbSet<UserDM> Users { get; set; }

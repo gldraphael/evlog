@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Evlog.Infrastructure.Queries
 {
-    public class UserQuery : IUserQuery
+    internal class UserQuery : IUserQuery
     {
         private readonly AppDbContext _db;
 

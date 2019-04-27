@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Evlog.Infrastructure.DataModels
 {
-    public class EventPostDM
+    internal class EventPostDM
     {
         public int Id { get; set; }
         public DateTime CreatedOn { get; set; } = DateTime.UtcNow;

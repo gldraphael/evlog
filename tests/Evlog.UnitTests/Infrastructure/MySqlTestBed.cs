@@ -6,7 +6,7 @@ namespace Evlog.UnitTests.Infrastructure
 {
     public abstract class MySqlTestBed : IDisposable
     {
-        protected AppDbContext Db;
+        internal AppDbContext Db;
         public MySqlTestBed()
         {
 

@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Evlog.Infrastructure.Queries
 {
-    public class UpcomingEventsQuery : IUpcomingEventsQuery
+    internal class UpcomingEventsQuery : IUpcomingEventsQuery
     {
         private readonly AppDbContext _db;
 

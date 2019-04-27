@@ -2,7 +2,7 @@ using System;
 
 namespace Evlog.Infrastructure.DataModels
 {
-    public class AnnouncementDM
+    internal class AnnouncementDM
     {
         public int Id { get; set; }
 

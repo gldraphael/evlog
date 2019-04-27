@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Evlog.Infrastructure.Queries
 {
-    public class AllEventsQuery : IAllEventsQuery
+    internal class AllEventsQuery : IAllEventsQuery
     {
         private readonly AppDbContext _db;
 

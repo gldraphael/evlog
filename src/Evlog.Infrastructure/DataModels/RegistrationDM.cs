@@ -1,6 +1,6 @@
 namespace Evlog.Infrastructure.DataModels
 {
-    public class RegistrationDM
+    internal class RegistrationDM
     {
         public int Id { get; set; }
 
