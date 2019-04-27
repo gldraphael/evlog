@@ -13,7 +13,7 @@ namespace Evlog.Infrastructure.Extensions
             {
                 o.UseMySql(connectionString, opts =>
                 {
-                    opts.MigrationsAssembly(typeof(AppDbContext).AssemblyQualifiedName);
+                    opts.MigrationsAssembly(typeof(AppDbContext).Assembly.FullName);
                 });
             });
 
