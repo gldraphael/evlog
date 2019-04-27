@@ -1,12 +1,12 @@
 # Local dev environment setup
 
 * [Software Requirements](#software-requirements)
-* [MongoDB Setup](#mongodb-setup)
+* [MySql Setup](#mysql-setup)
 * [Build from source](#build-from-source)
 
 ## Software Requirements
 
-**Requirements:** Docker, .NET Core SDK 2.1.400, yarn, parcel, VS Code, Visual Studio (Optional)   
+**Requirements:** Docker, .NET Core SDK 2.1.400, yarn, parcel, VS Code / Visual Studio / Rider   
 **Recommended VS Code Extensions:** 
 [C#](https://marketplace.visualstudio.com/items?itemName=ms-vscode.csharp), 
 [C# Extensions](https://marketplace.visualstudio.com/items?itemName=jchannon.csharpextensions), 
@@ -14,33 +14,25 @@
 [Docker](https://marketplace.visualstudio.com/items?itemName=PeterJausovec.vscode-docker), 
 [GitLens](https://marketplace.visualstudio.com/items?itemName=eamodio.gitlens)
 
-## MongoDB Setup
-
-### Pull the latest mongo image:
-
-```bash
-docker pull mongo
-```
+## MySql Setup
 
 ### Create a new container
 
 (Adjust the local port and container name as needed.)
 
 ```bash
-docker run --name mongo \
-    -p 27017:27017 \
-    -d mongo
+docker run \
+    -p 3307:3306 \
+    --name evlogdbserver \
+    -e MYSQL_ROOT_PASSWORD=Pa5sw0rd \
+    -d mysql:8.0.16
 ```
 
-The newly created `mongo` container should be running. You may verify it using `docker ps`. You may use `docker start mongo` start the container if it's not already running.
+The newly created `evlogdbserver` container should be running. You may verify it using `docker ps`.
 
 ### Seed some data
 
-Run the seed script from the project root using:
-
-```bash
-mongo localhost/admin ./scripts/seed.js
-```
+TODO: fill this up
 
 ## Build from source
 
