@@ -1,5 +1,6 @@
 using System.IO;
 using Evlog.Infrastructure;
+using Evlog.Infrastructure.Extensions;
 using Evlog.Web;
 using Evlog.Web.Extensions;
 
@@ -18,7 +19,7 @@ namespace Evlog.IntegrationTests
             builder.ConfigureServices(services =>
             {
                 var configuration = GetIConfigurationRoot();
-                services.AddDb(configuration);
+                services.AddEvlogDb(configuration);
 
                 var sp = services.BuildServiceProvider();
                 using (var scope = sp.CreateScope())

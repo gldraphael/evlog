@@ -1,3 +1,4 @@
+using Evlog.Infrastructure.Extensions;
 using Evlog.Web.Extensions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -18,7 +19,7 @@ namespace Evlog.Web
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddEvlogMvc();
-            services.AddDb(Configuration);
+            services.AddEvlogDb(Configuration);
             services.AddEvlogQueries();
             services.AddEvlogCommands();
             services.AddEvlogEventHandlers();
