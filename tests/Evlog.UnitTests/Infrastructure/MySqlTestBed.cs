@@ -10,7 +10,6 @@ namespace Evlog.UnitTests.Infrastructure
         internal AppDbContext Db;
         public MySqlTestBed()
         {
-            // SqlServer options
             var databaseName = $"evlog-utests-{Guid.NewGuid()}";
             var connectionString = $"Server=localhost;Port=3307;Database={databaseName};User=root;Password=Pa5sw0rd;"; // TODO: DO NOT HARDCODE THIS!
             var options = new DbContextOptionsBuilder<AppDbContext>()

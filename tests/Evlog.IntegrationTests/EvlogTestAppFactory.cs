@@ -1,43 +1,51 @@
 using System.IO;
+using System.Reflection;
 using Evlog.Infrastructure;
 using Evlog.Infrastructure.Extensions;
 using Evlog.Web;
-using Evlog.Web.Extensions;
-
+using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
+using Microsoft.AspNetCore.TestHost;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Evlog.IntegrationTests
 {
-   public class EvlogTestAppFactory : WebApplicationFactory<Startup>
+   public sealed class EvlogTestAppFactory : WebApplicationFactory<Startup>
    {
-
-       protected override void ConfigureWebHost(IWebHostBuilder builder)
+       protected override IWebHostBuilder CreateWebHostBuilder()
        {
-            builder.ConfigureServices(services =>
-            {
-                var configuration = GetIConfigurationRoot();
-                services.AddEvlogDb(configuration);
+           var builder = WebHost.CreateDefaultBuilder()
+               .UseContentRoot(Directory.GetCurrentDirectory())
+               .UseConfiguration(GetIConfigurationRoot())
+               .ConfigureAppConfiguration(c =>
+               {
+                   c.AddEnvironmentVariables();
+               })
+               .UseStartup<TestStartup>();
 
-                var sp = services.BuildServiceProvider();
-                using (var scope = sp.CreateScope())
-                {
-                    var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
-
-                }
-            });
+           return builder;
        }
 
-        protected override IWebHostBuilder CreateWebHostBuilder() =>
-            new WebHostBuilder()
-                .UseContentRoot(Directory.GetCurrentDirectory())
-                .UseEnvironment("Development")
-                .UseConfiguration(GetIConfigurationRoot())
-                .UseStartup<Startup>();
+       protected override TestServer CreateServer(IWebHostBuilder builder)
+       {
+           var server = base.CreateServer(builder);
+           var sp = server.Host.Services;
+           using (var scope = sp.CreateScope())
+           {
+               var scopedServices = scope.ServiceProvider;
 
-        public static IConfigurationRoot GetIConfigurationRoot() =>
+               var db = scopedServices.GetRequiredService<AppDbContext>();
+               db.Database.EnsureCreated();
+               db.Events.AddRange(SeedData.Events);
+               db.SaveChanges();
+           }
+           return server;
+       }
+
+        private static IConfigurationRoot GetIConfigurationRoot() =>
             new ConfigurationBuilder()
                 .AddJsonFile("appsettings.test.json")
                 .AddEnvironmentVariables()
