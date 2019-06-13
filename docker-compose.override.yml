@@ -7,7 +7,3 @@ services:
       - Mongo__Host=db
     ports:
       - "8080:80"
-
-  evlog.admin:
-    ports:
-      - "8081:80"
