@@ -2,8 +2,9 @@ version: '3.4'
 
 services:
 
-  evlog.web:
+  evlog:
     image: gldraphael/evlog
+    restart: on-failure
     build:
       context: .
       dockerfile: src/Evlog.Web/Dockerfile

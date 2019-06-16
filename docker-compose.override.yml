@@ -1,10 +1,10 @@
 version: '3.4'
 
 services:
-  evlog.web:
+  evlog:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
-      - ConnectionStrings__MySql=Server=db;Port=3307;Database=evlogdb;User=root;Password=jRcnDaTMd4QrwnmN6qstAKsj;
+      - ConnectionStrings__MySql=Server=db;Port=3306;Database=evlogdb;User=root;Password=jRcnDaTMd4QrwnmN6qstAKsj;
     ports:
       - "8080:80"
 
