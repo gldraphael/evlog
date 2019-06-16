@@ -1,7 +1,7 @@
 #
 # Stage 0A
 # Base
-FROM microsoft/dotnet:2.1.2-aspnetcore-runtime-alpine AS base
+FROM microsoft/dotnet:2.2.2-aspnetcore-runtime-alpine AS base
 WORKDIR /app
 EXPOSE 80
 
@@ -9,13 +9,14 @@ EXPOSE 80
 #
 # Stage 1
 # Build
-FROM microsoft/dotnet:2.1.400-sdk-alpine AS build
+FROM microsoft/dotnet:2.2.104-sdk-alpine AS build
 
 # Install yarn
-RUN echo -e 'http://dl-cdn.alpinelinux.org/alpine/edge/main\nhttp://dl-cdn.alpinelinux.org/alpine/edge/community\nhttp://dl-cdn.alpinelinux.org/alpine/edge/testing' > /etc/apk/repositories
 RUN apk add --no-cache \
     yarn \
-    mongodb
+    mariadb \
+    mariadb-client \
+    openrc
 RUN yarn global add parcel-bundler
 
 # Copy the project files over & restore dependencies
@@ -45,12 +46,15 @@ WORKDIR /src
 COPY . .
 
 # Run tests
-RUN mkdir -p /data/db \
-    && chown -R mongodb:mongodb /data/db \
-    && mkdir -p /var/log \
-    && mongod --fork --logpath /var/log/mongodb.log --dbpath /data/db \
-    && dotnet test tests/evlog-tests.sln \
-    && mongod --dbpath /data/db --shutdown
+ENV ConnectionStrings__MySql=Server=localhost;Port=3306;Database=evlogitestdb;User=root;Pwd=mypassword;
+RUN mysql_install_db --user=mysql --datadir=/var/db \
+    # && rc-service --quiet mariadb start \
+    && mysqld_safe --datadir='/var/db'  --console & \
+    ps aux | grep mysql \
+    && sleep 5 \
+    && mysqladmin -u root password "mypassword" \
+    && sleep 10 \
+    && dotnet test tests/evlog-tests.sln
 
 # Build
 WORKDIR /src/src/Evlog.Web
@@ -68,10 +72,7 @@ RUN dotnet publish -c Release -o /app
 # Stage 0B
 # Self contained base
 FROM base As self-contained-base
-RUN apk add --no-cache \
-    mongodb
-RUN mkdir -p /data/db && chown -R mongodb:mongodb /data/db
-ENV Mongo__UseAuthentication false
+RUN apk add --no-cache mariadb
 
 #
 # Stage 3B Final (self-contained)
@@ -82,17 +83,11 @@ COPY --from=publish /app .
 
 # Setup the run script
 RUN echo "#!/bin/sh" >> run.sh \
-    && echo "mongod --fork --logpath /var/log/mongodb.log --dbpath /data/db" >> run.sh \
+    && echo "rc-service mariadb start" \
     && echo "dotnet /app/Evlog.Web.dll" >> run.sh \
+    && echo "mysql.server stop" \
     && chmod +x run.sh
 
-# Seed the mongodb
-COPY scripts/seed.js .
-RUN mkdir -p /var/log \
-    && mongod --fork --logpath /var/log/mongodb.log --dbpath /data/db \
-    && mongo seed.js \
-    && mongod --dbpath /data/db --shutdown \
-    && rm -rf scripts
 VOLUME /data/db
 ENTRYPOINT ["./run.sh"]
 

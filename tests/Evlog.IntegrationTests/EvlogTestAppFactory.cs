@@ -1,13 +1,10 @@
 using System.IO;
-using System.Reflection;
 using Evlog.Infrastructure;
-using Evlog.Infrastructure.Extensions;
 using Evlog.Web;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.AspNetCore.TestHost;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
