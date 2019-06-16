@@ -15,3 +15,10 @@ pool:
 steps:
 - script: ./scripts/build.sh --target=azure-pipelines
   displayName: 'Build & run tests'
+
+- task: PublishTestResults@2
+  displayName: 'Publish Test Results'
+  condition: always()
+  inputs:
+    testResultsFormat: XUnit
+    testResultsFiles: tests/**/test_result.xml
