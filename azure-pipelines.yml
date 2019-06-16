@@ -20,5 +20,5 @@ steps:
   displayName: 'Publish Test Results'
   condition: always()
   inputs:
-    testResultsFormat: XUnit
+    testResultsFormat: VSTest
     testResultsFiles: tests/**/test_result.xml
