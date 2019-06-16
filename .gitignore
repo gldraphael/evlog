@@ -1,3 +1,6 @@
+tools/
+test_result.xml
+
 
 # Created by https://www.gitignore.io/api/node,macos,linux,windows,aspnetcore,visualstudio,visualstudiocode
 
