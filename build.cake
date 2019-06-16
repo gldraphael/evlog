@@ -97,7 +97,7 @@ Task("docker-build")
 Task("Default")
     .IsDependentOn("xunit");
 
-Task("azure-devops")
+Task("azure-pipelines")
     .IsDependentOn("xunit");
 
 Task("travis")

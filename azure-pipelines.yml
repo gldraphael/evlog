@@ -13,5 +13,5 @@ pool:
   vmImage: 'ubuntu-latest'
 
 steps:
-- script: ./scripts/build.sh
+- script: ./scripts/build.sh --target=azure-pipelines
   displayName: 'Build & run tests'
