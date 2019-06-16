@@ -1,4 +1,3 @@
-#tool "xunit.runner.console&version=2.2.0"
 #addin "Cake.Docker&version=0.10.0"
 
 //////////////////////////////////////////////////////////////////////
@@ -66,7 +65,7 @@ Task("xunit")
                 NoRestore = true,
                 NoBuild = true,
                 ResultsDirectory = project.GetDirectory(),
-                ArgumentCustomization = args => args.Append("--logger:trx;LogFileName=test_result.xml")
+                ArgumentCustomization = args => args.Append("--logger:xunit;LogFileName=test_result.xml")
             }
         );
     }
