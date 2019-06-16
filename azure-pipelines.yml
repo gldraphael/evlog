@@ -13,5 +13,5 @@ pool:
   vmImage: 'ubuntu-latest'
 
 steps:
-- script: ./build
+- script: ./scripts/build.sh
   displayName: 'Build & run tests'
