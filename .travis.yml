@@ -4,7 +4,7 @@ language: generic
 services:
   - docker
 
-script: ./scripts/build.sh
+script: ./scripts/build.sh --target=travis
 
 deploy:
   provider: script
