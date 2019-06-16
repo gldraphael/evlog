@@ -8,8 +8,8 @@ services:
   - docker
 
 script:
-  - dotnet tool install --global Cake.Tool
-  - dotnet cake --target=travis
+  - dotnet tool install --tool-path ./tools Cake.Tool
+  - ./tools/dotnet-cake --target=travis
 
 deploy:
   provider: script
