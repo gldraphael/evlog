@@ -17,7 +17,16 @@
         -it --rm gldraphael/evlog-self-contained
     ```
 
-The app will be served at `localhost:5200`.
+The app will be served at `http://localhost:5200`. If you're using Docker Toolbox, replace `localhost` with the IP used by docker.
+
+## Quickstart using docker-compose
+
+```bash
+docker-compose build
+docker-compose up
+```
+
+The app will be served at `http://localhost:8080`.
 
 ## Documentation Index
 
