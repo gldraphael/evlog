@@ -36,6 +36,7 @@ Task("startdb")
     DockerRun(settings: new DockerContainerRunSettings {
             Name = testDbContainerName,
             Env = new[] { "MYSQL_ROOT_PASSWORD=Pa5sw0rd" },
+            Publish = new[] { "3307:3306" },
             Detach = true,
             Rm = true
         },
