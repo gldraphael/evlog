@@ -69,8 +69,8 @@ Task("xunit")
             }
         );
     }
-})
-    .IsDependentOn("stopdb");
+    RunTarget("stopdb");
+});
 
 Task("docker-build")
     .Does(() =>
@@ -97,7 +97,7 @@ Task("docker-build")
 Task("Default")
     .IsDependentOn("xunit");
 
-Task("azure-pipelines")
+ Task("azure-pipelines")
     .IsDependentOn("xunit");
 
 Task("travis")
