@@ -1,10 +1,13 @@
 sudo: required
 language: csharp
+mono: none
 
 services:
   - docker
 
-script: ./scripts/build.sh --target=travis
+script:
+  - dotnet tool install --global Cake.Tool
+  - dotnet cake --target=travis
 
 deploy:
   provider: script
