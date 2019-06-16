@@ -4,6 +4,10 @@ services:
   evlog.web:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
-      - Mongo__Host=db
+      - ConnectionStrings__MySql=Server=db;Port=3307;Database=evlogdb;User=root;Password=jRcnDaTMd4QrwnmN6qstAKsj;
     ports:
       - "8080:80"
+
+  db:
+    environment:
+      - MYSQL_ROOT_PASSWORD=jRcnDaTMd4QrwnmN6qstAKsj

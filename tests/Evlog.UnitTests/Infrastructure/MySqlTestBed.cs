@@ -1,7 +1,7 @@
 using System;
+using System.Text.RegularExpressions;
 using Evlog.Infrastructure;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 
 namespace Evlog.UnitTests.Infrastructure
 {
@@ -10,8 +10,7 @@ namespace Evlog.UnitTests.Infrastructure
         internal AppDbContext Db;
         public MySqlTestBed()
         {
-            var databaseName = $"evlog-utests-{Guid.NewGuid()}";
-            var connectionString = $"Server=localhost;Port=3307;Database={databaseName};User=root;Password=Pa5sw0rd;"; // TODO: DO NOT HARDCODE THIS!
+            var connectionString = GetConnectionStringForRandomDatabase();
             var options = new DbContextOptionsBuilder<AppDbContext>()
                 .UseMySql(connectionString)
                 .Options;
@@ -19,6 +18,16 @@ namespace Evlog.UnitTests.Infrastructure
             // The ApplicationDbContext
             Db = new AppDbContext(options);
             Db.Database.EnsureCreated();
+        }
+
+        private static string GetConnectionStringForRandomDatabase()
+        {
+            var databaseName = $"evlog-utests-{Guid.NewGuid()}";
+            var conn = Environment.GetEnvironmentVariable("ConnectionStrings__MySql") ??
+                       $"Server=localhost;Port=3307;Database={databaseName};User=root;Password=Pa5sw0rd;";
+            var match = Regex.Match(conn, "(.*Database=).*(;User=.*)");
+
+            return $"{match.Groups[1]}{databaseName}{match.Groups[2]}";
         }
 
         #region IDisposable Support

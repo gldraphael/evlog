@@ -11,5 +11,5 @@ services:
       - db
 
   db:
-    image: mongo
+    image: mysql:8.0.16
     restart: unless-stopped
