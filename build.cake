@@ -84,7 +84,7 @@ Task("docker-build")
     }, ".");
     DockerBuild(new DockerImageBuildSettings{
         Tag = new string[] {
-            "gldraphael/evlog"
+            "gldraphael/evlog-self-contained"
         },
         Target = "self-contained",
         File = "src/Evlog.Web/Dockerfile"
