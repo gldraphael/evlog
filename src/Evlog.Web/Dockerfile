@@ -48,7 +48,6 @@ COPY . .
 # Run tests
 ENV ConnectionStrings__MySql=Server=localhost;Port=3306;Database=evlogitestdb;User=root;Pwd=mypassword;
 RUN mysql_install_db --user=mysql --datadir=/var/db \
-    # && rc-service --quiet mariadb start \
     && mysqld_safe --datadir='/var/db'  --console & \
     ps aux | grep mysql \
     && sleep 5 \
@@ -72,20 +71,28 @@ RUN dotnet publish -c Release -o /app
 # Stage 0B
 # Self contained base
 FROM base As self-contained-base
-RUN apk add --no-cache mariadb
+RUN apk add --no-cache \
+    mariadb \
+    mariadb-client
+RUN mysql_install_db --user=mysql --datadir=/var/db
 
 #
 # Stage 3B Final (self-contained)
 # The self-contained container
 FROM self-contained-base AS self-contained
 WORKDIR /app
+ENV ConnectionStrings__MySql=Server=localhost;Port=3306;Database=evlogitestdb;User=root;Pwd=mypassword;
 COPY --from=publish /app .
 
 # Setup the run script
 RUN echo "#!/bin/sh" >> run.sh \
-    && echo "rc-service mariadb start" \
+    && echo "mysqld_safe --datadir='/var/db'  --console &" >> run.sh \
+    && echo "ps aux | grep mysql" >> run.sh \
+    && echo "sleep 5" >> run.sh \
+    && echo "mysqladmin -u root password \"mypassword\"" >> run.sh \
+    && echo "sleep 10" >> run.sh \
     && echo "dotnet /app/Evlog.Web.dll" >> run.sh \
-    && echo "mysql.server stop" \
+    && echo "mysql.server stop"  >> run.sh \
     && chmod +x run.sh
 
 VOLUME /data/db
