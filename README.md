@@ -1,7 +1,7 @@
 # Evlog
 > ⚡️A self-hosted platform for publishing events.
 
-[![Travis (.org)](https://img.shields.io/travis/gldraphael/evlog/master.svg?style=popout-square&logo=travis&logoWidth=12)](https://travis-ci.org/gldraphael/evlog)
+[![Travis (.org)](https://img.shields.io/travis/gldraphael/evlog/master.svg?logo=travis&style=flat-square)](https://travis-ci.org/gldraphael/evlog)
 ![Azure DevOps tests](https://img.shields.io/azure-devops/tests/gldraphael/evlog/2/master.svg?style=flat-square)
 
 ## Quickstart
