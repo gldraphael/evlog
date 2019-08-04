@@ -26,9 +26,9 @@ namespace Evlog.Web
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            if (env.IsDevelopment())
+            if (env.EnvironmentName is "Development")
             {
                 app.UseDeveloperExceptionPage();
             }
@@ -39,7 +39,13 @@ namespace Evlog.Web
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-            app.UseMvc();
+
+            app.UseRouting();
+            app.UseAuthorization();
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapRazorPages();
+            });
         }
     }
 }

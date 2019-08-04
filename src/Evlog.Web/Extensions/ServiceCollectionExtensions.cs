@@ -23,8 +23,7 @@ namespace Evlog.Web.Extensions
         public static void AddEvlogMvc(this IServiceCollection services)
         {
             services.AddRouting(options => options.LowercaseUrls = true)
-                    .AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+                    .AddRazorPages();
         }
-
     }
 }
