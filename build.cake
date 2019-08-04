@@ -7,13 +7,13 @@
 
 var target = Argument("target", "Default");
 var configuration = Argument("configuration", "Release");
-var testDbContainerName = $"evlogtesdb-{Guid.NewGuid()}";
 
 //////////////////////////////////////////////////////////////////////
-// PREPARATION
+// GLOBALS
 //////////////////////////////////////////////////////////////////////
 
 const string sln = "./evlog.sln";
+readonly string testDbContainerName = $"evlogtesdb-{Guid.NewGuid()}";
 
 //////////////////////////////////////////////////////////////////////
 // TASKS
@@ -98,7 +98,7 @@ Task("docker-build")
 Task("Default")
     .IsDependentOn("xunit");
 
- Task("azure-pipelines")
+Task("azure-pipelines")
     .IsDependentOn("xunit");
 
 Task("travis")
