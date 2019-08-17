@@ -4,6 +4,7 @@ using Evlog.Domain.UserAggregate.Commands;
 using Evlog.Domain.UserAggregate.Queries;
 using Evlog.Infrastructure.Commands;
 using Evlog.Infrastructure.Queries;
+using Evlog.Infrastructure.SeedStrategies;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -22,6 +23,7 @@ namespace Evlog.Infrastructure.Extensions
                     opts.MigrationsAssembly(typeof(AppDbContext).Assembly.FullName);
                 });
             });
+            services.AddScoped<ISeedStrategy, DevSeedStrategy>();
 
             return services;
         }

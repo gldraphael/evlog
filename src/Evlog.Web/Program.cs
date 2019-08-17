@@ -1,4 +1,4 @@
-﻿using System.Threading.Tasks;
+using System.Threading.Tasks;
 using Evlog.Infrastructure.Extensions;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
@@ -11,7 +11,7 @@ namespace Evlog.Web
         {
             using (var host = CreateWebHostBuilder(args).Build())
             {
-                await host.ApplyPendingMigrationsAsync();
+                await host.SeedAndApplyPendingMigrationsAsync();
                 await host.RunAsync();
             }
         }
