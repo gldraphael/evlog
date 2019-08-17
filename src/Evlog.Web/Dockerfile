@@ -13,10 +13,7 @@ FROM mcr.microsoft.com/dotnet/core/sdk:3.0.100-preview8-alpine3.9 AS build
 
 # Install yarn
 RUN apk add --no-cache \
-    yarn \
-    mariadb \
-    mariadb-client \
-    openrc
+    yarn
 RUN yarn global add parcel-bundler
 
 # Copy the project files over & restore dependencies
@@ -45,15 +42,6 @@ RUN yarn
 WORKDIR /src
 COPY . .
 
-# Run tests
-ENV ConnectionStrings__MySql=Server=localhost;Port=3306;Database=evlogitestdb;User=root;Pwd=mypassword;
-RUN mysql_install_db --user=mysql --datadir=/var/db \
-    && mysqld_safe --datadir='/var/db'  --console & \
-    ps aux | grep mysql \
-    && sleep 20 \
-    && mysqladmin -u root password "mypassword" \
-    && sleep 20 \
-    && dotnet test tests/evlog-tests.sln
 
 # Build
 WORKDIR /src/src/Evlog.Web
