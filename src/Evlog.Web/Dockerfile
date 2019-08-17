@@ -50,7 +50,7 @@ ENV ConnectionStrings__MySql=Server=localhost;Port=3306;Database=evlogitestdb;Us
 RUN mysql_install_db --user=mysql --datadir=/var/db \
     && mysqld_safe --datadir='/var/db'  --console & \
     ps aux | grep mysql \
-    && sleep 5 \
+    && sleep 10 \
     && mysqladmin -u root password "mypassword" \
     && sleep 10 \
     && dotnet test tests/evlog-tests.sln
