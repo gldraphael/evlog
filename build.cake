@@ -31,7 +31,7 @@ Task("build")
 });
 
 Task("startdb")
-    .Does(() =>
+    .Does(async () =>
 {
     DockerRun(settings: new DockerContainerRunSettings {
             Name = testDbContainerName,
@@ -42,6 +42,7 @@ Task("startdb")
         },
         image: "mysql:8.0.16",
         command: null, args: null);
+    await System.Threading.Tasks.Task.Delay(5000); // wait for 5 seconds
 });
 
 Task("stopdb")
