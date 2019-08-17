@@ -9,6 +9,7 @@
     "bourbon-neat": "^2.1.0"
   },
   "devDependencies": {
+    "cssnano": "^4.1.10",
     "node-sass": "^4.9.0"
   }
 }
