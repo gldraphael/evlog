@@ -1,17 +1,12 @@
 sudo: required
 language: csharp
-mono: none
-dotnet: 2.2.104
 dist: xenial
 
 services:
   - docker
 
 script:
-  - cd ..
-  - dotnet tool install --tool-path /tools Cake.Tool
-  - cd -
-  - /tools/dotnet-cake --target=travis
+  - ./scripts/build.sh --target=travis
 
 deploy:
   provider: script
