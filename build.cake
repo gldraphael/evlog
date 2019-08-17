@@ -42,7 +42,7 @@ Task("startdb")
         },
         image: "mysql:8.0.16",
         command: null, args: null);
-    await System.Threading.Tasks.Task.Delay(5000); // wait for 5 seconds
+    await System.Threading.Tasks.Task.Delay(10_000); // wait for 10 seconds
 });
 
 Task("stopdb")
