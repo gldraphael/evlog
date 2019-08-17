@@ -13,6 +13,14 @@ pool:
   vmImage: 'ubuntu-latest'
 
 steps:
+
+- task: UseDotNet@2
+  displayName: 'Use .NET Core SDK 3.0.100-preview8-013656'
+  inputs:
+    packageType: sdk
+    version: 3.0.100-preview8-013656
+    installationPath: $(Agent.ToolsDirectory)/dotnet
+
 - script: ./scripts/build.sh --target=azure-pipelines
   displayName: 'Build & run tests'
 
