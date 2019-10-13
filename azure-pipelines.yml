@@ -21,7 +21,9 @@ steps:
     version: 3.0.100
     installationPath: $(Agent.ToolsDirectory)/dotnet
 
-- script: ./scripts/build.sh --target=azure-pipelines
+- script: |
+    dotnet tool restore
+    dotnet cake --target=azure-pipelines
   displayName: 'Build & run tests'
 
 - task: PublishTestResults@2

@@ -1,12 +1,15 @@
 sudo: required
 language: csharp
 dist: xenial
+mono: none
+dotnet: 3.0.100
 
 services:
   - docker
 
 script:
-  - ./scripts/build.sh --target=travis
+  - dotnet tool restore
+  - dotnet cake --target=travis
 
 deploy:
   provider: script
