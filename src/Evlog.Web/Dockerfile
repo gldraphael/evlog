@@ -1,7 +1,7 @@
 #
 # Stage 0A
 # Base
-FROM mcr.microsoft.com/dotnet/core/aspnet:3.1.1-alpine3.9 AS base
+FROM mcr.microsoft.com/dotnet/core/aspnet:3.1.1-alpine AS base
 WORKDIR /app
 EXPOSE 80
 
@@ -9,7 +9,7 @@ EXPOSE 80
 #
 # Stage 1
 # Build
-FROM mcr.microsoft.com/dotnet/core/sdk:3.1.101-alpine3.9 AS build
+FROM mcr.microsoft.com/dotnet/core/sdk:3.1.101-alpine AS build
 
 # Install yarn
 RUN apk add --no-cache \
