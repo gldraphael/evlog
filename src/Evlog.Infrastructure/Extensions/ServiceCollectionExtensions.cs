@@ -1,7 +1,5 @@
 using Evlog.Domain.EventAggregate.Commands;
 using Evlog.Domain.EventAggregate.Queries;
-using Evlog.Domain.UserAggregate.Commands;
-using Evlog.Domain.UserAggregate.Queries;
 using Evlog.Infrastructure.Commands;
 using Evlog.Infrastructure.Queries;
 using Evlog.Infrastructure.SeedStrategies;
@@ -35,16 +33,11 @@ namespace Evlog.Infrastructure.Extensions
             services.AddTransient<IPastEventsQuery, PastEventsQuery>();
             services.AddTransient<IUpcomingEventsQuery, UpcomingEventsQuery>();
             services.AddTransient<IEventQuery, EventQuery>();
-
-            // Add User queries
-            services.AddTransient<IUserQuery, UserQuery>();
-            services.AddTransient<IUserExistsQuery, UserExistsQuery>();
         }
 
         public static void AddEvlogCommands(this IServiceCollection services)
         {
             services.AddTransient<IRegisterUserCommand, RegisterUserCommand>();
-            services.AddTransient<ICreateUserCommand, CreateUserCommand>();
         }
     }
 }
