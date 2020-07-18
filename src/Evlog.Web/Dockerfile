@@ -25,7 +25,7 @@ COPY docker-compose.dcproj .
 COPY tests/Evlog.UnitTests/Evlog.UnitTests.csproj tests/Evlog.UnitTests/
 COPY tests/Evlog.IntegrationTests/Evlog.IntegrationTests.csproj tests/Evlog.IntegrationTests/
 
-COPY src/Evlog.Domain/Evlog.Domain.csproj src/Evlog.Domain/
+COPY src/Evlog.Core/Evlog.Core.csproj src/Evlog.Core/
 COPY src/Evlog.Infrastructure/Evlog.Infrastructure.csproj src/Evlog.Infrastructure/
 COPY src/Evlog.Web/Evlog.Web.csproj src/Evlog.Web/
 

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Evlog.Domain.SharedKernel
+namespace Evlog.Core.SharedKernel
 {
     // Adapted from: https://docs.microsoft.com/en-us/dotnet/architecture/microservices/microservice-ddd-cqrs-patterns/implement-value-objects
     public abstract class ValueObject

@@ -1,5 +1,5 @@
-﻿using System;
-using Evlog.Domain.EventAggregate;
+using Evlog.Core.Entities.EventAggregate;
+using System;
 using Xunit;
 
 namespace Evlog.UnitTests.Domain

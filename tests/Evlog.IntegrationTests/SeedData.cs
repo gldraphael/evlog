@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using Evlog.Domain.EventAggregate;
 using Evlog.Infrastructure.DataModels;
 
 namespace Evlog.IntegrationTests

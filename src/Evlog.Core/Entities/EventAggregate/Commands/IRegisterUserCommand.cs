@@ -1,6 +1,6 @@
 using System.Threading.Tasks;
 
-namespace Evlog.Domain.EventAggregate.Commands
+namespace Evlog.Core.Entities.EventAggregate.Commands
 {
     public interface IRegisterUserCommand
     {

@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Evlog.Domain.EventAggregate
+namespace Evlog.Core.Entities.EventAggregate
 {
     public class EventPost : IAggregateRoot
     {
