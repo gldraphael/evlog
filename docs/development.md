@@ -25,7 +25,7 @@ docker run \
     -p 3307:3306 \
     --name evlogdbserver \
     -e MYSQL_ROOT_PASSWORD=Pa5sw0rd \
-    -d mysql:8.0.16
+    -d mysql:8.0.21
 ```
 
 The newly created `evlogdbserver` container should be running. You may verify it using `docker ps`.
