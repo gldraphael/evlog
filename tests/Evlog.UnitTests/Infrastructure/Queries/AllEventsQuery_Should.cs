@@ -6,7 +6,7 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Evlog.Domain.EventAggregate;
+using Evlog.Core.Entities.EventAggregate;
 using Evlog.Infrastructure.DataModels;
 using Evlog.Infrastructure.Queries;
 using Mapster;

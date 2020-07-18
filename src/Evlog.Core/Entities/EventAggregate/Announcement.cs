@@ -1,7 +1,7 @@
 using System;
 using System.Linq;
 
-namespace Evlog.Domain.EventAggregate
+namespace Evlog.Core.Entities.EventAggregate
 {
     public class Announcement
     {

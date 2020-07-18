@@ -1,6 +1,6 @@
 using System.Threading.Tasks;
 
-namespace Evlog.Domain
+namespace Evlog.Core
 {
     public interface IEvlogQuery<T>
     {

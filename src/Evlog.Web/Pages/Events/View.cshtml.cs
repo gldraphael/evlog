@@ -1,8 +1,8 @@
 using System.ComponentModel.DataAnnotations;
 using System.Threading.Tasks;
-using Evlog.Domain.EventAggregate;
-using Evlog.Domain.EventAggregate.Commands;
-using Evlog.Domain.EventAggregate.Queries;
+using Evlog.Core.Entities.EventAggregate;
+using Evlog.Core.Entities.EventAggregate.Commands;
+using Evlog.Core.Entities.EventAggregate.Queries;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 

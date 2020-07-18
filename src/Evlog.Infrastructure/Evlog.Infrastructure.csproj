@@ -12,7 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Evlog.Domain\Evlog.Domain.csproj" />
+    <ProjectReference Include="..\Evlog.Core\Evlog.Core.csproj" />
   </ItemGroup>
 
 </Project>

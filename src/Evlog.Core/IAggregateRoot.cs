@@ -1,4 +1,4 @@
-namespace Evlog.Domain
+namespace Evlog.Core
 {
     public interface IAggregateRoot { }
 }

@@ -1,5 +1,5 @@
-using Evlog.Domain.EventAggregate.Commands;
-using Evlog.Domain.EventAggregate.Queries;
+using Evlog.Core.Entities.EventAggregate.Commands;
+using Evlog.Core.Entities.EventAggregate.Queries;
 using Evlog.Infrastructure.Commands;
 using Evlog.Infrastructure.Queries;
 using Evlog.Infrastructure.SeedStrategies;

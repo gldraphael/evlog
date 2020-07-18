@@ -2,9 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Evlog.Domain.EventAggregate;
-using Evlog.Domain.EventAggregate.Queries;
-using Evlog.Infrastructure.DataModels;
+using Evlog.Core.Entities.EventAggregate;
+using Evlog.Core.Entities.EventAggregate.Queries;
 using Mapster;
 using Microsoft.EntityFrameworkCore;
 

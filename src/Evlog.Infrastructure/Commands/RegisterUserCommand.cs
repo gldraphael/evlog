@@ -1,5 +1,5 @@
 using System.Threading.Tasks;
-using Evlog.Domain.EventAggregate.Commands;
+using Evlog.Core.Entities.EventAggregate.Commands;
 using Evlog.Infrastructure.DataModels;
 using Microsoft.EntityFrameworkCore;
 

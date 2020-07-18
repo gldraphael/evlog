@@ -1,8 +1,8 @@
 
 using System.Collections.Generic;
-using Evlog.Domain.EventAggregate;
+using Evlog.Core.Entities.EventAggregate;
 
-namespace Evlog.Domain.EventAggregate.Queries
+namespace Evlog.Core.Entities.EventAggregate.Queries
 {
     public interface IAllEventsQuery : IEvlogQuery<IList<EventPost>> { }
     public interface IUpcomingEventsQuery : IEvlogQuery<IList<EventPost>> { }
