@@ -1,6 +1,7 @@
 using Evlog.Core.Entities.EventAggregate.Commands;
 using Evlog.Core.Entities.EventAggregate.Queries;
 using Evlog.Infrastructure.Commands;
+using Evlog.Infrastructure.DataModels;
 using Evlog.Infrastructure.Queries;
 using Evlog.Infrastructure.SeedStrategies;
 using Microsoft.EntityFrameworkCore;
@@ -13,7 +14,8 @@ namespace Evlog.Infrastructure.Extensions
     {
         public static IServiceCollection AddEvlogDb(this IServiceCollection services, IConfiguration config)
         {
-            var connectionString = config.GetConnectionString("MySql");;
+            var connectionString = config.GetConnectionString("MySql");
+
             services.AddDbContext<AppDbContext>(o =>
             {
                 o.UseMySql(connectionString, opts =>

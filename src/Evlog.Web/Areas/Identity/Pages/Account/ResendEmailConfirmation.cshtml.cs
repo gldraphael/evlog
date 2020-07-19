@@ -1,11 +1,10 @@
-﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
 using System.Text.Encodings.Web;
 using System.Threading.Tasks;
+using Evlog.Infrastructure.DataModels;
 using Microsoft.AspNetCore.Authorization;
 
-using Evlog.Web.Areas.Identity.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
@@ -17,10 +16,10 @@ namespace Evlog.Web.Areas.Identity.Pages.Account
     [AllowAnonymous]
     public abstract class ResendEmailConfirmationModel : PageModel
     {
-        private readonly UserManager<EvlogWebUser> _userManager;
+        private readonly UserManager<EvlogWebUserDM> _userManager;
         private readonly IEmailSender _emailSender;
 
-        public ResendEmailConfirmationModel(UserManager<EvlogWebUser> userManager, IEmailSender emailSender)
+        public ResendEmailConfirmationModel(UserManager<EvlogWebUserDM> userManager, IEmailSender emailSender)
         {
             _userManager = userManager;
             _emailSender = emailSender;

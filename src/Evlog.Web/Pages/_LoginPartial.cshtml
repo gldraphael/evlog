@@ -1,8 +1,8 @@
-﻿@using Microsoft.AspNetCore.Identity
-@using Evlog.Web.Areas.Identity.Data
+@using Microsoft.AspNetCore.Identity
+@using Evlog.Infrastructure.DataModels
 
-@inject SignInManager<EvlogWebUser> SignInManager
-@inject UserManager<EvlogWebUser> UserManager
+@inject SignInManager<EvlogWebUserDM> SignInManager
+@inject UserManager<EvlogWebUserDM> UserManager
 
 <ul class="navbar-nav">
 @if (SignInManager.IsSignedIn(User))
