@@ -1,4 +1,4 @@
-﻿@inject SignInManager<EvlogWebUser> SignInManager
+@inject SignInManager<Evlog.Infrastructure.DataModels.EvlogWebUserDM> SignInManager
 @{
     var hasExternalLogins = (await SignInManager.GetExternalAuthenticationSchemesAsync()).Any();
 }

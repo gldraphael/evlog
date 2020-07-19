@@ -1,9 +1,10 @@
 using Evlog.Infrastructure.DataModels;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace Evlog.Infrastructure
 {
-    internal class AppDbContext : DbContext
+    public class AppDbContext : IdentityDbContext<EvlogWebUserDM>
     {
         public DbSet<EventPostDM> Events { get; set; }
         public DbSet<UserDM> Users { get; set; }
