@@ -77,19 +77,22 @@ Task("xunit")
 Task("docker-build")
     .Does(() =>
 {
-    DockerBuild(new DockerImageBuildSettings{
+    const string DOCKERFILE = "Dockerfile";
+    const string CONTEXT    = ".";
+
+    DockerBuild(new DockerImageBuildSettings {
         Tag = new string[] {
             "gldraphael/evlog"
         },
-        File = "src/Evlog.Web/Dockerfile"
-    }, ".");
-    DockerBuild(new DockerImageBuildSettings{
+        File = DOCKERFILE
+    }, CONTEXT);
+    DockerBuild(new DockerImageBuildSettings {
         Tag = new string[] {
             "gldraphael/evlog-self-contained"
         },
         Target = "self-contained",
-        File = "src/Evlog.Web/Dockerfile"
-    }, ".");
+        File = DOCKERFILE
+    }, CONTEXT);
 });
 
 //////////////////////////////////////////////////////////////////////
