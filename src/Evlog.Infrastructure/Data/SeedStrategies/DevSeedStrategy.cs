@@ -31,11 +31,10 @@ namespace Evlog.Infrastructure.Data.SeedStrategies
                 {
                     Title = "XYZ 2020",
                     Description = "This is going to be fuuuunnnnn.",
-                    Body = "",
+                    Body = null,
                     CreatedOn = DateTime.UtcNow,
-                    StartDateTime = DateTime.UtcNow + TimeSpan.FromDays(7),
-                    EndDate = DateTime.UtcNow + TimeSpan.FromDays(7.5),
-                    EndTime = DateTime.UtcNow + TimeSpan.FromDays(7.5),
+                    StartTimeUtc = DateTime.UtcNow + TimeSpan.FromDays(7),
+                    EndTimeUtc = DateTime.UtcNow + TimeSpan.FromDays(7.5),
                     Slug = "xyz-2019",
                     Registrations = new []
                     {
