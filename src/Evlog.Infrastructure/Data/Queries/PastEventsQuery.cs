@@ -19,7 +19,7 @@ namespace Evlog.Infrastructure.Data.Queries
         }
 
         public async Task<IList<EventPost>> QueryAsync() =>
-            (await _db.EventPosts.Where(x => x.StartDateTime < DateTime.UtcNow)
+            (await _db.EventPosts.Where(x => x.StartTimeUtc < DateTime.UtcNow)
                 .ToListAsync())
                 .Adapt<List<EventPost>>();
     }
