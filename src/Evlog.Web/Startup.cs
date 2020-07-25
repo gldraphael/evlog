@@ -18,11 +18,12 @@ namespace Evlog.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public virtual void ConfigureServices(IServiceCollection services)
         {
-            services.AddEvlogMvc();
             services.AddEvlogDb(Configuration);
             services.AddEvlogQueries();
             services.AddEvlogCommands();
             services.AddEvlogEventHandlers();
+
+            services.AddEvlogMvc();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

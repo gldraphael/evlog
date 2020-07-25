@@ -12,7 +12,10 @@ namespace Evlog.Web.Extensions
         public static void AddEvlogMvc(this IServiceCollection services)
         {
             services.AddRouting(options => options.LowercaseUrls = true)
-                    .AddRazorPages();
+                    .AddRazorPages(o =>
+                    {
+                        o.Conventions.AuthorizeAreaFolder("Evlog", "/");
+                    });
         }
     }
 }
