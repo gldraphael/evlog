@@ -13,6 +13,7 @@ namespace Evlog.UnitTests.Infrastructure.Queries
             // Arrange
             const string slug = "hey-there";
             await Db.EventPosts.AddAsync(new EventPostDM {
+                Title = "hey there",
                 Slug = slug
             });
             await Db.SaveChangesAsync();

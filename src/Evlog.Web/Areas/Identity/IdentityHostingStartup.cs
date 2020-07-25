@@ -1,4 +1,5 @@
 using Evlog.Infrastructure;
+using Evlog.Infrastructure.Data;
 using Evlog.Infrastructure.Data.DataModels;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;

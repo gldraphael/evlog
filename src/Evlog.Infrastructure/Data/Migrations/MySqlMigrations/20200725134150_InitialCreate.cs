@@ -1,8 +1,8 @@
-﻿using System;
+using System;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace Evlog.Infrastructure.Migrations
+namespace Evlog.Infrastructure.Data.Migrations.MySqlMigrations
 {
     public partial class InitialCreate : Migration
     {
@@ -55,7 +55,6 @@ namespace Evlog.Infrastructure.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    CreatedOn = table.Column<DateTime>(nullable: false),
                     Title = table.Column<string>(maxLength: 128, nullable: false),
                     Description = table.Column<string>(maxLength: 256, nullable: true),
                     Slug = table.Column<string>(maxLength: 256, nullable: false),

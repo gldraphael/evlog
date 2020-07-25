@@ -1,4 +1,5 @@
 using System.Threading.Tasks;
+using Evlog.Infrastructure.Data;
 using Evlog.Infrastructure.Data.SeedStrategies;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;

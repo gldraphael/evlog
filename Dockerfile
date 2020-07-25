@@ -68,7 +68,7 @@ RUN mysql_install_db --user=mysql --datadir=/var/db
 # The self-contained container
 FROM self-contained-base AS self-contained
 WORKDIR /app
-ENV ConnectionStrings__MySql=Server=localhost;Port=3306;Database=evlogitestdb;User=root;Pwd=mypassword;
+ENV MySql__ConnectionString=Server=localhost;Port=3306;Database=evlogitestdb;User=root;Pwd=mypassword;
 COPY --from=publish /app .
 
 # Setup the run script

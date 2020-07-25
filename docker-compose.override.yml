@@ -4,7 +4,7 @@ services:
   evlog:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
-      - ConnectionStrings__MySql=Server=db;Port=3306;Database=evlogdb;User=root;Password=jRcnDaTMd4QrwnmN6qstAKsj;
+      - MySql__ConnectionString=Server=db;Port=3306;Database=evlogdb;User=root;Password=jRcnDaTMd4QrwnmN6qstAKsj;
     ports:
       - "8080:80"
 

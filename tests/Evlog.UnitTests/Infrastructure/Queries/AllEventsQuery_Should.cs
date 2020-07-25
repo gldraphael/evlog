@@ -22,10 +22,10 @@ namespace Evlog.UnitTests.Infrastructure.Queries
         {
             // Arrange
             var posts = new List<EventPostDM>(new EventPostDM[] {
-                new EventPostDM { Slug = "well-im-gonna-keep-on-waking" },
-                new EventPostDM { Slug = "and-rising-up-before-the-sun" },
-                new EventPostDM { Slug = "and-lying-in-the-dark-wide-awake" },
-                new EventPostDM { Slug = "when-everybody-else-is-done" }
+                new EventPostDM { Slug = "well-im-gonna-keep-on-waking", Title = "look" },
+                new EventPostDM { Slug = "and-rising-up-before-the-sun", Title = "at" },
+                new EventPostDM { Slug = "and-lying-in-the-dark-wide-awake", Title = "me" },
+                new EventPostDM { Slug = "when-everybody-else-is-done", Title = "I'm not helpless" }
             });
             await Db.EventPosts.AddRangeAsync(posts);
             await Db.SaveChangesAsync();
@@ -37,16 +37,15 @@ namespace Evlog.UnitTests.Infrastructure.Queries
             Assert.Equal(posts.Count, result.Count);
         }
 
-        [Fact(Skip = "DateTime fails")]
+        [Fact(Skip = "Doesn't work, gotta debug")]
         public async Task Return_all_events()
         {
             // Arrange
-            var createdOn = DateTime.UtcNow;
             var posts = new List<EventPostDM>(new EventPostDM[] {
-                new EventPostDM { CreatedOn = createdOn, Slug = "well-im-gonna-keep-on-waking" },
-                new EventPostDM { CreatedOn = createdOn, Slug = "and-rising-up-before-the-sun" },
-                new EventPostDM { CreatedOn = createdOn, Slug = "and-lying-in-the-dark-wide-awake" },
-                new EventPostDM { CreatedOn = createdOn, Slug = "when-everybody-else-is-done" }
+                new EventPostDM { Slug = "well-im-gonna-keep-on-waking", Title = "look" },
+                new EventPostDM { Slug = "and-rising-up-before-the-sun", Title = "at" },
+                new EventPostDM { Slug = "and-lying-in-the-dark-wide-awake", Title = "me" },
+                new EventPostDM { Slug = "when-everybody-else-is-done", Title = "I'm not helpless" }
             });
             await Db.EventPosts.AddRangeAsync(posts);
             await Db.SaveChangesAsync();
@@ -56,7 +55,11 @@ namespace Evlog.UnitTests.Infrastructure.Queries
 
             // Assert
             Assert.Equal(posts.Count, result.Count);
-            Assert.Equal(posts.Adapt<IList<EventPost>>(), result); // Pass an IEqualityComparer for this to work
+            for(int i = 0; i < posts.Count; i++)
+            {
+                var post = posts[i].Adapt<EventPost>();
+                Assert.Equal(expected: post, actual: result[i]);
+            }
         }
     }
 }

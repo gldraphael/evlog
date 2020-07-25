@@ -7,7 +7,6 @@ namespace Evlog.Infrastructure.Data.DataModels
     public class EventPostDM
     {
         public int Id { get; set; }
-        public DateTime CreatedOn { get; set; } = DateTime.UtcNow;
 
         [Required, StringLength(maximumLength: 128)]
         public string Title { get; set; } = null!;
