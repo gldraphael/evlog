@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Evlog.Infrastructure.DataModels
+namespace Evlog.Infrastructure.Data.DataModels
 {
     public class EventPostDM
     {
@@ -14,7 +14,6 @@ namespace Evlog.Infrastructure.DataModels
         public DateTime StartDateTime { get; set; }
         public DateTime? EndDate { get; set; }
         public DateTime? EndTime { get; set; }
-        public IList<AnnouncementDM> Announcements { get; set; } = new List<AnnouncementDM>();
-        public IList<RegistrationDM> Registrations { get; set; } = new List<RegistrationDM>();
+        public IList<RegistrationDM> Registrations { get; set; } = null!;
     }
 }

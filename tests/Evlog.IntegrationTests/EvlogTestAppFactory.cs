@@ -36,7 +36,7 @@ namespace Evlog.IntegrationTests
 
                var db = scopedServices.GetRequiredService<AppDbContext>();
                db.Database.EnsureCreated();
-               db.Events.AddRange(SeedData.Events);
+               db.EventPosts.AddRange(SeedData.Events);
                db.SaveChanges();
            }
            return server;

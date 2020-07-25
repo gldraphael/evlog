@@ -1,26 +1,24 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Evlog.Core.Entities.EventAggregate;
 using Evlog.Core.Entities.EventAggregate.Queries;
 using Mapster;
 using Microsoft.EntityFrameworkCore;
 
-namespace Evlog.Infrastructure.Queries
+namespace Evlog.Infrastructure.Data.Queries
 {
-    internal class PastEventsQuery : IPastEventsQuery
+    internal class AllEventsQuery : IAllEventsQuery
     {
         private readonly AppDbContext _db;
 
-        public PastEventsQuery(AppDbContext db)
+        public AllEventsQuery(AppDbContext db)
         {
             _db = db;
         }
 
         public async Task<IList<EventPost>> QueryAsync() =>
-            (await _db.Events.Where(x => x.StartDateTime < DateTime.UtcNow)
-                .ToListAsync())
+            (await _db.EventPosts.ToListAsync())
                 .Adapt<List<EventPost>>();
     }
 }

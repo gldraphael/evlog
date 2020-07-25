@@ -7,19 +7,19 @@ using Evlog.Core.Entities.EventAggregate.Queries;
 using Mapster;
 using Microsoft.EntityFrameworkCore;
 
-namespace Evlog.Infrastructure.Queries
+namespace Evlog.Infrastructure.Data.Queries
 {
-    internal class UpcomingEventsQuery : IUpcomingEventsQuery
+    internal class PastEventsQuery : IPastEventsQuery
     {
         private readonly AppDbContext _db;
 
-        public UpcomingEventsQuery(AppDbContext db)
+        public PastEventsQuery(AppDbContext db)
         {
             _db = db;
         }
 
         public async Task<IList<EventPost>> QueryAsync() =>
-            (await _db.Events.Where(x => x.StartDateTime >= DateTime.UtcNow)
+            (await _db.EventPosts.Where(x => x.StartDateTime < DateTime.UtcNow)
                 .ToListAsync())
                 .Adapt<List<EventPost>>();
     }

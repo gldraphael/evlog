@@ -1,8 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Evlog.Infrastructure.DataModels;
-using Evlog.Infrastructure.Queries;
+using Evlog.Infrastructure.Data.DataModels;
+using Evlog.Infrastructure.Data.Queries;
 using Xunit;
 
 namespace Evlog.UnitTests.Infrastructure.Queries
@@ -21,7 +21,7 @@ namespace Evlog.UnitTests.Infrastructure.Queries
                 new EventPostDM { CreatedOn = newDate, StartDateTime = newDate, Slug = "and-lying-in-the-dark-wide-awake" },
                 new EventPostDM { CreatedOn = newDate, StartDateTime = newDate, Slug = "when-everybody-else-is-done" }
             });
-            await Db.Events.AddRangeAsync(posts);
+            await Db.EventPosts.AddRangeAsync(posts);
             await Db.SaveChangesAsync();
 
             // Act
@@ -42,7 +42,7 @@ namespace Evlog.UnitTests.Infrastructure.Queries
                 new EventPostDM { CreatedOn = date, StartDateTime = date, Slug = "and-lying-in-the-dark-wide-awake" },
                 new EventPostDM { CreatedOn = date, StartDateTime = date, Slug = "when-everybody-else-is-done" }
             });
-            await Db.Events.AddRangeAsync(posts);
+            await Db.EventPosts.AddRangeAsync(posts);
 
             // Act
             var result = await new PastEventsQuery(Db).QueryAsync();

@@ -1,9 +1,8 @@
 using Evlog.Core.Entities.EventAggregate.Commands;
 using Evlog.Core.Entities.EventAggregate.Queries;
 using Evlog.Infrastructure.Commands;
-using Evlog.Infrastructure.DataModels;
-using Evlog.Infrastructure.Queries;
-using Evlog.Infrastructure.SeedStrategies;
+using Evlog.Infrastructure.Data.Queries;
+using Evlog.Infrastructure.Data.SeedStrategies;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;

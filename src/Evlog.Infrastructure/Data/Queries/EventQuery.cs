@@ -4,7 +4,7 @@ using Evlog.Core.Entities.EventAggregate.Queries;
 using Mapster;
 using Microsoft.EntityFrameworkCore;
 
-namespace Evlog.Infrastructure.Queries
+namespace Evlog.Infrastructure.Data.Queries
 {
     internal class EventQuery : IEventQuery
     {
@@ -16,7 +16,7 @@ namespace Evlog.Infrastructure.Queries
         }
 
         public async Task<EventPost> QueryAsync(string slug) =>
-            (await _db.Events.SingleOrDefaultAsync(k => k.Slug == slug))
+            (await _db.EventPosts.SingleOrDefaultAsync(k => k.Slug == slug))
                 ?.Adapt<EventPost>();
     }
 }
