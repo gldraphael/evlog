@@ -20,7 +20,6 @@ RUN yarn global add parcel-bundler
 WORKDIR /src
 
 COPY evlog.sln ./
-COPY docker-compose.dcproj .
 
 COPY tests/Evlog.UnitTests/Evlog.UnitTests.csproj tests/Evlog.UnitTests/
 COPY tests/Evlog.IntegrationTests/Evlog.IntegrationTests.csproj tests/Evlog.IntegrationTests/
