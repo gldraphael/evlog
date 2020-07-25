@@ -16,10 +16,10 @@ namespace Evlog.UnitTests.Infrastructure.Queries
             var oldDate = DateTime.Today.AddDays(-10).ToUniversalTime();
             var newDate = DateTime.Today.AddDays(10).ToUniversalTime();
             var posts = new List<EventPostDM>(new EventPostDM[] {
-                new EventPostDM { CreatedOn = oldDate, StartTimeUtc = oldDate, Slug = "well-im-gonna-keep-on-waking" },
-                new EventPostDM { CreatedOn = oldDate, StartTimeUtc = oldDate, Slug = "and-rising-up-before-the-sun" },
-                new EventPostDM { CreatedOn = newDate, StartTimeUtc = newDate, Slug = "and-lying-in-the-dark-wide-awake" },
-                new EventPostDM { CreatedOn = newDate, StartTimeUtc = newDate, Slug = "when-everybody-else-is-done" }
+                new EventPostDM { StartTimeUtc = oldDate, Slug = "well-im-gonna-keep-on-waking", Title = "look" },
+                new EventPostDM { StartTimeUtc = oldDate, Slug = "and-rising-up-before-the-sun", Title = "at" },
+                new EventPostDM { StartTimeUtc = newDate, Slug = "and-lying-in-the-dark-wide-awake", Title = "me" },
+                new EventPostDM { StartTimeUtc = newDate, Slug = "when-everybody-else-is-done", Title = "I'm not helpless" },
             });
             await Db.EventPosts.AddRangeAsync(posts);
             await Db.SaveChangesAsync();
@@ -37,10 +37,10 @@ namespace Evlog.UnitTests.Infrastructure.Queries
             // Arrange
             var date = DateTime.Today.AddDays(10).ToUniversalTime();
             var posts = new List<EventPostDM>(new EventPostDM[] {
-                new EventPostDM { CreatedOn = date, StartTimeUtc = date, Slug = "well-im-gonna-keep-on-waking" },
-                new EventPostDM { CreatedOn = date, StartTimeUtc = date, Slug = "and-rising-up-before-the-sun" },
-                new EventPostDM { CreatedOn = date, StartTimeUtc = date, Slug = "and-lying-in-the-dark-wide-awake" },
-                new EventPostDM { CreatedOn = date, StartTimeUtc = date, Slug = "when-everybody-else-is-done" }
+                new EventPostDM { StartTimeUtc = date, Slug = "well-im-gonna-keep-on-waking", Title = "look" },
+                new EventPostDM { StartTimeUtc = date, Slug = "and-rising-up-before-the-sun", Title = "at" },
+                new EventPostDM { StartTimeUtc = date, Slug = "and-lying-in-the-dark-wide-awake", Title = "me" },
+                new EventPostDM { StartTimeUtc = date, Slug = "when-everybody-else-is-done", Title = "is'm not helpless" },
             });
             await Db.EventPosts.AddRangeAsync(posts);
 

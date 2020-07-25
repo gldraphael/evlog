@@ -1,5 +1,6 @@
 using System;
 using Evlog.Infrastructure;
+using Evlog.Infrastructure.Data;
 using Evlog.Web;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;

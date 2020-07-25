@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
-namespace Evlog.Infrastructure
+namespace Evlog.Infrastructure.Data
 {
     public class AppDbContext : IdentityDbContext<EvlogWebUserDM, IdentityRole<int>, int>
     {
