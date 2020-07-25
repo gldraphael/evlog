@@ -1,10 +1,10 @@
-using Evlog.Infrastructure.DataModels;
+using Evlog.Infrastructure.Data.DataModels;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Threading.Tasks;
 
-namespace Evlog.Infrastructure.SeedStrategies
+namespace Evlog.Infrastructure.Data.SeedStrategies
 {
     class DevSeedStrategy : ISeedStrategy
     {
@@ -19,7 +19,7 @@ namespace Evlog.Infrastructure.SeedStrategies
         public async Task SeedAsync()
         {
             // Don't seed if there's any data in the events table
-            if (await this.db.Events.AnyAsync())
+            if (await this.db.EventPosts.AnyAsync())
             {
                 logger.LogInformation("Not seeding the DB because it has data in the events table.");
                 return;
@@ -29,7 +29,7 @@ namespace Evlog.Infrastructure.SeedStrategies
             {
                 new EventPostDM
                 {
-                    Title = "XYZ 2019",
+                    Title = "XYZ 2020",
                     Description = "This is going to be fuuuunnnnn.",
                     Body = "",
                     CreatedOn = DateTime.UtcNow,
@@ -37,32 +37,23 @@ namespace Evlog.Infrastructure.SeedStrategies
                     EndDate = DateTime.UtcNow + TimeSpan.FromDays(7.5),
                     EndTime = DateTime.UtcNow + TimeSpan.FromDays(7.5),
                     Slug = "xyz-2019",
-                    Announcements = new []
-                    {
-                        new AnnouncementDM
-                        {
-                            Text = "Reminder that the event is 16+ only.",
-                            LongText = null,
-
-                            CreatedOn = DateTime.Now,
-                            LastEditedOn = DateTime.Now,
-                        }
-                    },
                     Registrations = new []
                     {
                         new RegistrationDM
                         {
+                            Name = "Jane Doe",
                             Email = "janedoe@email.com"
                         },
                         new RegistrationDM
                         {
+                            Name = "John Doe",
                             Email = "johndoe@email.com"
                         }
                     }
                 }
             };
 
-            await this.db.Events.AddRangeAsync(seedEvents);
+            await this.db.EventPosts.AddRangeAsync(seedEvents);
             await this.db.SaveChangesAsync();
             logger.LogInformation("Seeded the database with default values.");
         }

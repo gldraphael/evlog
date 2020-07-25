@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-using Evlog.Infrastructure.DataModels;
+using Evlog.Infrastructure.Data.DataModels;
 
 namespace Evlog.IntegrationTests
 {

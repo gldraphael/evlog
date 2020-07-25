@@ -1,15 +1,14 @@
-using Evlog.Infrastructure.DataModels;
+using Evlog.Infrastructure.Data.DataModels;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace Evlog.Infrastructure
 {
-    public class AppDbContext : IdentityDbContext<EvlogWebUserDM>
+    public class AppDbContext : IdentityDbContext<EvlogWebUserDM, IdentityRole<int>, int>
     {
-        public DbSet<EventPostDM> Events { get; set; }
-        public DbSet<UserDM> Users { get; set; }
-        public DbSet<RegistrationDM> Registrations { get; set; }
-        public DbSet<AnnouncementDM> Announcements { get; set; }
+        public DbSet<EventPostDM>    EventPosts     => Set<EventPostDM>();
+        public DbSet<RegistrationDM> Registrations  => Set<RegistrationDM>();
 
         public AppDbContext(DbContextOptions<AppDbContext> options)
             : base(options)

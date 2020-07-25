@@ -1,6 +1,6 @@
 using System.Threading.Tasks;
 using Evlog.Core.Entities.EventAggregate.Commands;
-using Evlog.Infrastructure.DataModels;
+using Evlog.Infrastructure.Data.DataModels;
 using Microsoft.EntityFrameworkCore;
 
 namespace Evlog.Infrastructure.Commands
@@ -16,7 +16,7 @@ namespace Evlog.Infrastructure.Commands
 
         public async Task Execute(string eventSlug, string userEmail)
         {
-            var post = await db.Events.SingleOrDefaultAsync(p => p.Slug == eventSlug);
+            var post = await db.EventPosts.SingleOrDefaultAsync(p => p.Slug == eventSlug);
             post.Registrations.Add(new RegistrationDM { Email = userEmail });
             await db.SaveChangesAsync();
         }

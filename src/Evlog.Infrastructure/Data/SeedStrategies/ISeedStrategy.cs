@@ -1,6 +1,6 @@
 using System.Threading.Tasks;
 
-namespace Evlog.Infrastructure.SeedStrategies
+namespace Evlog.Infrastructure.Data.SeedStrategies
 {
     interface ISeedStrategy
     {

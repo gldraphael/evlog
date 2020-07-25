@@ -1,6 +1,6 @@
 using System.Threading.Tasks;
-using Evlog.Infrastructure.DataModels;
-using Evlog.Infrastructure.Queries;
+using Evlog.Infrastructure.Data.DataModels;
+using Evlog.Infrastructure.Data.Queries;
 using Xunit;
 
 namespace Evlog.UnitTests.Infrastructure.Queries
@@ -12,7 +12,7 @@ namespace Evlog.UnitTests.Infrastructure.Queries
         {
             // Arrange
             const string slug = "hey-there";
-            await Db.Events.AddAsync(new EventPostDM {
+            await Db.EventPosts.AddAsync(new EventPostDM {
                 Slug = slug
             });
             await Db.SaveChangesAsync();
