@@ -1,9 +1,11 @@
+using Evlog.Core.Abstractions.Repositories;
 using Evlog.Core.Entities.EventAggregate.Commands;
 using Evlog.Core.Entities.EventAggregate.Queries;
 using Evlog.Infrastructure.Commands;
 using Evlog.Infrastructure.Data;
 using Evlog.Infrastructure.Data.Configuration;
 using Evlog.Infrastructure.Data.Queries;
+using Evlog.Infrastructure.Data.Repositories;
 using Evlog.Infrastructure.Data.SeedStrategies;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -28,18 +30,30 @@ namespace Evlog.Infrastructure.Extensions
             return services;
         }
 
-        public static void AddEvlogQueries(this IServiceCollection services)
+        public static IServiceCollection AddEvlogRepositories(this IServiceCollection services)
+        {
+            // Add EventPost queries
+            services.AddTransient<IEventPostRepository, EventPostRepository>();
+
+            return services;
+        }
+
+        public static IServiceCollection AddEvlogQueries(this IServiceCollection services)
         {
             // Add EventPost queries
             services.AddTransient<IAllEventsQuery, AllEventsQuery>();
             services.AddTransient<IPastEventsQuery, PastEventsQuery>();
             services.AddTransient<IUpcomingEventsQuery, UpcomingEventsQuery>();
             services.AddTransient<IEventQuery, EventQuery>();
+
+            return services;
         }
 
-        public static void AddEvlogCommands(this IServiceCollection services)
+        public static IServiceCollection AddEvlogCommands(this IServiceCollection services)
         {
             services.AddTransient<IRegisterUserCommand, RegisterUserCommand>();
+
+            return services;
         }
     }
 }
