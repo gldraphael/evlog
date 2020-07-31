@@ -18,9 +18,10 @@ namespace Evlog.Web
         
         public virtual void ConfigureServices(IServiceCollection services)
         {
-            services.AddEvlogDb(Configuration);
-            services.AddEvlogQueries();
-            services.AddEvlogCommands();
+            services.AddEvlogDb(Configuration)
+                    .AddEvlogRepositories()
+                    .AddEvlogQueries()
+                    .AddEvlogCommands();
 
             services.AddRouting(options => options.LowercaseUrls = true)
                 .AddRazorPages(o =>
