@@ -1,10 +1,11 @@
+using Evlog.Core.SharedKernel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace Evlog.Core.Entities.EventAggregate
 {
-    public class EventPost : IAggregateRoot
+    public class EventPost : Entity, IAggregateRoot
     {
         public DateTime CreatedOn { get; set; } = DateTime.UtcNow;
         public string Title { get; set; }
