@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Evlog.Infrastructure.Data.SeedStrategies
 {
+    // Seed data taken from: https://azure.microsoft.com/en-in/community/events/
     class DevSeedStrategy : ISeedStrategy
     {
         private readonly AppDbContext db;
@@ -29,12 +30,12 @@ namespace Evlog.Infrastructure.Data.SeedStrategies
             {
                 new EventPostDM
                 {
-                    Title = "XYZ 2020",
-                    Description = "This is going to be fuuuunnnnn.",
-                    Body = null,
-                    StartTimeUtc = DateTime.UtcNow + TimeSpan.FromDays(7),
-                    EndTimeUtc = DateTime.UtcNow + TimeSpan.FromDays(7.5),
-                    Slug = "xyz-2019",
+                    Title = "Building an Innovation Culture to enable the success of your Digital Transformation",
+                    Description = "Lee Hickin and Veli-Matti will discuss how Australian businesses are building an innovation culture to enable the success of their digital transformation journeys.",
+                    Body = "Businesses across all industries are talking about digital transformation. However, we need to be mindful that this transformation isn't just about the technology – it’s also about the people and the culture of an organisation that will enable this transformation to deliver value for your customers.   \n\nLee Hickin and Veli-Matti will discuss how Australian businesses are building an innovation culture to enable the success of their digital transformation journeys.   \n\nIn this free webinar, you'll learn about:   \n\n* The four pillars of transformation - vision & strategy, culture, unique potential and capabilities.\n* Creating a culture to increase your data maturity and deliver return on your transformation investments.\n* The rise of the citizen data scientist and the democratisation of AI",
+                    StartTimeUtc = new DateTimeOffset(year: 2020, month: 8, day: 4, hour: 11, minute:  0, second: 0, offset: TimeSpan.FromHours(10)).UtcDateTime,
+                    EndTimeUtc   = new DateTimeOffset(year: 2020, month: 8, day: 4, hour: 11, minute: 50, second: 0, offset: TimeSpan.FromHours(10)).UtcDateTime,
+                    Slug = "building-an-innovation-culture-to-enable-the-success-of-your-digital-transformation",
                     Registrations = new []
                     {
                         new RegistrationDM
@@ -48,7 +49,30 @@ namespace Evlog.Infrastructure.Data.SeedStrategies
                             Email = "johndoe@email.com"
                         }
                     }
-                }
+                },
+
+                new EventPostDM
+                {
+                    Title = "Get Kubernetes Up and Running",
+                    Description = "Join this free webinar to learn how to get started with Kubernetes open-source container orchestration software and get a sneak peek of the second edition of Kubernetes from co-founder Brendan Burns.",
+                    Body = "Join this free webinar to learn how to get started with Kubernetes open-source container orchestration software and get a sneak peek of the second edition of Kubernetes from co-founder Brendan Burns.   \n\nYou’ll also learn about: \n* Answers to frequently asked questions such as “What should I put in a pod?”\n* Using different Kubernetes objects in tandem to achieve reliable software rollout. \n* Using a managed Kubernetes service to simplify day-to-day operations such as upgrading, patching, and scaling.",
+                    StartTimeUtc = new DateTimeOffset(year: 2020, month: 8, day: 13, hour: 11, minute: 0, second: 0, offset: TimeSpan.FromHours(10)).UtcDateTime,
+                    EndTimeUtc   = new DateTimeOffset(year: 2020, month: 8, day: 13, hour: 12, minute: 0, second: 0, offset: TimeSpan.FromHours(10)).UtcDateTime,
+                    Slug = "get-kubernetes-up-and-running",
+                    Registrations = new []
+                    {
+                        new RegistrationDM
+                        {
+                            Name = "Jane Doe",
+                            Email = "janedoe@email.com"
+                        },
+                        new RegistrationDM
+                        {
+                            Name = "John Doe",
+                            Email = "johndoe@email.com"
+                        }
+                    }
+                },
             };
 
             await this.db.EventPosts.AddRangeAsync(seedEvents);
