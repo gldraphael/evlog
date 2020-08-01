@@ -1,6 +1,29 @@
 @page
-@model Evlog.Web.Areas.Evlog.Pages.IndexModel
+@model IndexModel
 @{
 }
 
-<p>Protected</p>
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Date</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.EventPosts != null && Model.EventPosts.Any())
+        {
+            foreach (var post in Model.EventPosts)
+            {
+        <tr>
+            <td>@post.Title</td>
+            <td>@post.StartTimeUtc</td>
+        </tr>
+            }
+        }
+        else
+        {
+            <tr>You have no events. Create your first event.</tr>
+        }
+    </tbody>
+</table>

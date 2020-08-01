@@ -4,7 +4,7 @@
     <a asp-page="/Events/View" asp-route-slug="@Model.Slug"><h2>@Model.Title</h2></a>
     @if(Model.IsSingleDayEvent)
     {
-        <span>On @Model.StartDateTime.ToString("dd MMM, yy") from @Model.StartDateTime.ToString("hh:mm tt") onwards</span>
+        <span>On @Model.StartTimeUtc.ToString("dd MMM, yy") from @Model.StartTimeUtc.ToString("hh:mm tt") onwards</span>
     }
     <p>@Model.Excerpt&hellip;</p>
 </article>

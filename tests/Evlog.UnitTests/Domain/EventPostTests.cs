@@ -13,7 +13,7 @@ namespace Evlog.UnitTests.Domain
 			{
 				EventPost ev = new EventPost
 				{
-					StartDateTime = new DateTime(2018, 4, 30, 10, 10, 0)
+					StartTimeUtc = new DateTime(2018, 4, 30, 10, 10, 0)
 				};
 				Assert.True(ev.IsSingleDayEvent);
 			}
@@ -23,8 +23,8 @@ namespace Evlog.UnitTests.Domain
 			{
 				EventPost ev = new EventPost
 				{
-					StartDateTime = new DateTime(2018, 4, 30, 10, 10, 0),
-					EndDate = new DateTime(2018, 4, 30)
+					StartTimeUtc = new DateTime(2018, 4, 30, 10, 10, 0),
+					EndTimeUtc = new DateTime(2018, 4, 30)
 				};
 				Assert.True(ev.IsSingleDayEvent);
 			}
@@ -34,8 +34,8 @@ namespace Evlog.UnitTests.Domain
 			{
 				EventPost ev = new EventPost
 				{
-					StartDateTime = new DateTime(2018, 4, 30, 10, 10, 0),
-					EndDate = new DateTime(2018, 5, 1)
+					StartTimeUtc = new DateTime(2018, 4, 30, 10, 10, 0),
+					EndTimeUtc = new DateTime(2018, 5, 1)
 				};
 				Assert.False(ev.IsSingleDayEvent);
 			}
