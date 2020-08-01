@@ -3,6 +3,7 @@ using Ardalis.Specification.EntityFrameworkCore;
 using Evlog.Core;
 using Evlog.Core.Abstractions;
 using Evlog.Core.SharedKernel;
+using Mapster;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +12,9 @@ using System.Threading.Tasks;
 namespace Evlog.Infrastructure.Data.Repositories
 {
     // See: https://github.com/dotnet-architecture/eShopOnWeb/blob/master/src/Infrastructure/Data/EfRepository.cs
-    public class EfRepository<T> : IAsyncRepository<T> where T : Entity, IAggregateRoot
+    public class EfRepository<T, M> : IAsyncRepository<T>
+        where T : Entity, IAggregateRoot
+        where M : class
     {
         protected AppDbContext Db { get; }
 
@@ -22,12 +25,12 @@ namespace Evlog.Infrastructure.Data.Repositories
 
         public virtual async Task<T> GetByIdAsync(int id)
         {
-            return await Db.Set<T>().FindAsync(id);
+            return (await Db.Set<M>().FindAsync(id)).Adapt<T>();
         }
 
         public async Task<IReadOnlyList<T>> ListAllAsync()
         {
-            return await Db.Set<T>().ToListAsync();
+            return await Db.Set<M>().ProjectToType<T>().ToListAsync();
         }
 
         public async Task<IReadOnlyList<T>> ListAsync(ISpecification<T> spec)
