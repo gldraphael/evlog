@@ -55,6 +55,7 @@ namespace Evlog.Infrastructure.Data.SeedStrategies
 
             foreach (var eventPost in seedEvents)
             {
+                eventPost.RenderMarkdown();
                 await events.AddAsync(eventPost);
             }
 
