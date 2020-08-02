@@ -8,7 +8,18 @@ namespace Evlog.Core.Entities.EventAggregate
     {
         public string Title { get; set; } = null!;
         public string? Description { get; set; }
-        public string Slug { get; set; } = null!;
+
+        private string? slug;
+        public string Slug { get
+            {
+                if(slug is null)
+                {
+                    slug = new Slugify.SlugHelper().GenerateSlug(Title ?? $"untitled-{Guid.NewGuid()}");
+                }
+                return slug;
+            }
+            set => slug = value;
+        }
         public string? BodyMarkdown { get; set; }
         public string? BodyHtml { get; set; }
 
