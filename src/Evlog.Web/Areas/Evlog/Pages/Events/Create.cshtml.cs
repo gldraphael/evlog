@@ -30,7 +30,7 @@ namespace Evlog.Web.Areas.Evlog.Pages.Events
             var post = new EventPost
             {
                 Title = VM.Title ?? "Untitled",
-                Slug = new Slugify.SlugHelper().GenerateSlug(VM.Slug ?? VM.Title ?? $"untitled-{Guid.NewGuid()}"),
+                Slug = VM.Slug!,
                 Description = VM.Description,
                 BodyMarkdown = VM.Markdown
             };
