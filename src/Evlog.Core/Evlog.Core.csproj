@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <PackageReference Include="Ardalis.Specification" Version="4.0.0" />
+    <PackageReference Include="Markdig" Version="0.20.0" />
     <PackageReference Include="MediatR" Version="8.1.0" />
     <PackageReference Include="Slugify.Core" Version="2.3.0" />
   </ItemGroup>

@@ -29,5 +29,10 @@ namespace Evlog.Core.Entities.EventAggregate
 
         public string Excerpt => Description ?? string.Empty;
         public bool IsSingleDayEvent => StartTimeUtc.Date == (EndTimeUtc?.Date ?? StartTimeUtc.Date);
+
+        public void RenderMarkdown()
+        {
+            BodyHtml = BodyMarkdown?.RenderMarkdownAsHtml();
+        }
     }
 }

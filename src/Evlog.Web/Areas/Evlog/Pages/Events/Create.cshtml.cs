@@ -34,6 +34,7 @@ namespace Evlog.Web.Areas.Evlog.Pages.Events
                 Description = VM.Description,
                 BodyMarkdown = VM.Markdown
             };
+            post.RenderMarkdown();
             await eventPosts.AddAsync(post);
 
             return RedirectToPage("/Index", new { area = "Evlog" });
