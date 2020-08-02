@@ -47,7 +47,7 @@ namespace Evlog.Infrastructure.Data.Repositories
 
         public async Task<T> AddAsync(T entity)
         {
-            await Db.Set<T>().AddAsync(entity);
+            await Db.Set<M>().AddAsync(entity.Adapt<M>());
             await Db.SaveChangesAsync();
 
             return entity;
@@ -55,7 +55,7 @@ namespace Evlog.Infrastructure.Data.Repositories
 
         public async Task UpdateAsync(T entity)
         {
-            Db.Entry(entity).State = EntityState.Modified;
+            Db.Entry(entity.Adapt<M>()).State = EntityState.Modified;
             await Db.SaveChangesAsync();
         }
 
