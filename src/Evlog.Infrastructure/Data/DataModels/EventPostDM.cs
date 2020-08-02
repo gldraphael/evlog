@@ -17,7 +17,8 @@ namespace Evlog.Infrastructure.Data.DataModels
         [Required, StringLength(maximumLength: 256)]
         public string Slug { get; set; } = null!;
 
-        public string? Body { get; set; }
+        public string? BodyMarkdown { get; set; }
+        public string? BodyHtml { get; set; }
 
         public DateTime StartTimeUtc { get; set; }
         public DateTime? EndTimeUtc { get; set; }
