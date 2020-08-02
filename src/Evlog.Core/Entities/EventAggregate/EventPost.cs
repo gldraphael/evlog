@@ -1,6 +1,6 @@
+using Evlog.Core.Internal.Extensions;
 using Evlog.Core.SharedKernel;
 using System;
-using System.Linq;
 
 namespace Evlog.Core.Entities.EventAggregate
 {
@@ -14,7 +14,7 @@ namespace Evlog.Core.Entities.EventAggregate
             {
                 if(slug is null)
                 {
-                    slug = new Slugify.SlugHelper().GenerateSlug(Title ?? $"untitled-{Guid.NewGuid()}");
+                    slug = Title.Slugify();
                 }
                 return slug;
             }
