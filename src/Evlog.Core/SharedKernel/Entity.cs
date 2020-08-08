@@ -31,7 +31,7 @@ namespace Evlog.Core.SharedKernel
             domainEvents.Remove(eventItem);
         }
 
-        public override bool Equals(object obj)
+        public override bool Equals(object? obj)
         {
             if (obj == null || !(obj is Entity)) return false;
             if (Object.ReferenceEquals(this, obj)) return true;
@@ -53,12 +53,12 @@ namespace Evlog.Core.SharedKernel
             return requestedHashCode.Value;
         }
 
-        public static bool operator ==(Entity left, Entity right)
+        public static bool operator ==(Entity? left, Entity? right)
         {
             if (Object.Equals(left, null)) return (Object.Equals(right, null));
             else return left.Equals(right);
         }
 
-        public static bool operator !=(Entity left, Entity right) => !(left == right);
+        public static bool operator !=(Entity? left, Entity? right) => !(left == right);
     }
 }
