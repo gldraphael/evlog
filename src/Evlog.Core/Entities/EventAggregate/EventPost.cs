@@ -1,6 +1,7 @@
 using Evlog.Core.Internal.Extensions;
 using Evlog.Core.SharedKernel;
 using System;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Evlog.Core.Entities.EventAggregate
 {
@@ -10,7 +11,10 @@ namespace Evlog.Core.Entities.EventAggregate
         public string? Description { get; set; }
 
         private string? slug;
-        public string Slug { get
+        [AllowNull]
+        public string Slug
+        {
+            get
             {
                 if(slug is null)
                 {
@@ -18,7 +22,7 @@ namespace Evlog.Core.Entities.EventAggregate
                 }
                 return slug;
             }
-            set => slug = value;
+            set => slug = value?.Slugify();
         }
         public string? BodyMarkdown { get; set; }
         public string? BodyHtml { get; set; }
