@@ -4,27 +4,34 @@
     var post = Model.Post;
 }
 
-<h1>@post.Title</h1>
-@if(post.IsSingleDayEvent)
+@if (post is null)
 {
-    <p>
-        On @post.StartTimeUtc.ToString("dd MMM, yy")
-        from @post.StartTimeUtc.ToString("hh:mm tt") onwards
-    </p>
+    <p>That post could not be found.</p>
 }
 else
 {
-    @: TODO: Handle multi-day events :)
+    <h1>@post.Title</h1>
+    @if (post.IsSingleDayEvent)
+    {
+        <p>
+            On @post.StartTimeUtc.ToString("dd MMM, yy")
+            from @post.StartTimeUtc.ToString("hh:mm tt") onwards
+        </p>
+    }
+    else
+    {
+        @: TODO: Handle multi-day events :)
+    }
+
+    <p>@post.Description</p>
+    <div>@Html.Raw(post.BodyHtml)</div>
+
+
+    <div>
+        <form method="post">
+            <input asp-for="RegisterVM.Email"
+                   type="email" placeholder="jane.doe@example.com" />
+            <button type="submit">Register</button>
+        </form>
+    </div>
 }
-
-<p>@post.Description</p>
-<div>@Html.Raw(post.BodyHtml)</div>
-
-
-<div>
-    <form method="post">
-        <input asp-for="RegisterVM.Email"
-            type="email" placeholder="jane.doe@example.com" />
-        <button type="submit">Register</button>
-    </form>
-</div>
