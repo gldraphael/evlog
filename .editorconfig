@@ -198,3 +198,8 @@ csharp_space_between_square_brackets = false:warning
 # Wrapping Options
 csharp_preserve_single_line_blocks = true:warning
 csharp_preserve_single_line_statements = false:warning
+
+# Ruels
+
+# CA1034: Nested types should not be visible
+dotnet_diagnostic.CA1034.severity = none
