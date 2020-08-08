@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using System.Threading.Tasks;
 using Evlog.Infrastructure.Data.DataModels;
 using Evlog.Infrastructure.Data.Queries;
@@ -23,6 +24,7 @@ namespace Evlog.UnitTests.Infrastructure.Queries
             var result = await query.QueryAsync(slug: slug);
 
             // Assert
+            Debug.Assert(result != null);
             Assert.Equal(slug, result.Slug);
         }
 
