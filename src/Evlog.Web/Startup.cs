@@ -21,7 +21,8 @@ namespace Evlog.Web
             services.AddEvlogDb(Configuration)
                     .AddEvlogRepositories()
                     .AddEvlogQueries()
-                    .AddEvlogCommands();
+                    .AddEvlogCommands()
+                    .AddEmailService(Configuration);
 
             services.AddRouting(options => options.LowercaseUrls = true)
                 .AddRazorPages(o =>

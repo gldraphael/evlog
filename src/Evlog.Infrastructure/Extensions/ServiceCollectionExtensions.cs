@@ -1,15 +1,19 @@
 using Evlog.Core.Abstractions.Repositories;
 using Evlog.Core.Entities.EventAggregate.Commands;
 using Evlog.Core.Entities.EventAggregate.Queries;
+using Evlog.Core.Services;
 using Evlog.Infrastructure.Commands;
 using Evlog.Infrastructure.Data;
 using Evlog.Infrastructure.Data.Configuration;
 using Evlog.Infrastructure.Data.Queries;
 using Evlog.Infrastructure.Data.Repositories;
 using Evlog.Infrastructure.Data.SeedStrategies;
+using Evlog.Infrastructure.Email.Configuration;
+using Evlog.Infrastructure.Email.EmailProviders;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using System;
 
 namespace Evlog.Infrastructure.Extensions
 {
@@ -53,6 +57,25 @@ namespace Evlog.Infrastructure.Extensions
         {
             services.AddTransient<IRegisterUserCommand, RegisterUserCommand>();
 
+            return services;
+        }
+
+        public static IServiceCollection AddEmailService(this IServiceCollection services, IConfiguration config)
+        {
+            var emailConfig = config.GetSection("Email").Get<EmailConfig>();
+
+            switch (emailConfig.Provider)
+            {
+                case EmailProvider.SMTP:
+                    throw new NotImplementedException();
+
+                default:
+                case EmailProvider.Log:
+                    services.AddSingleton<IEmailService, LogEmailService>();
+                    break;
+            }
+
+            
             return services;
         }
     }
