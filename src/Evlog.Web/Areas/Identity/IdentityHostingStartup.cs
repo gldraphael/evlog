@@ -13,7 +13,17 @@ namespace Evlog.Web.Areas.Identity
         {
             builder.ConfigureServices((context, services) => {
                 services.AddSingleton<IEmailSender, IdentityUIEmailSender>();
-                services.AddDefaultIdentity<EvlogWebUserDM>(options => options.SignIn.RequireConfirmedAccount = true)
+                services.AddDefaultIdentity<EvlogWebUserDM>(options => 
+                { 
+                    options.SignIn.RequireConfirmedAccount = true;
+                    options.Password.RequireDigit = false;
+                    options.Password.RequireLowercase = false;
+                    options.Password.RequireUppercase = false;
+                    options.Password.RequireNonAlphanumeric = false;
+
+                    options.Password.RequiredUniqueChars = 5;
+                    options.Password.RequiredLength = 12; // TODO: make this configurable
+                })
                     .AddEntityFrameworkStores<AppDbContext>();
             });
         }
