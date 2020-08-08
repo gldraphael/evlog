@@ -10,10 +10,11 @@ using Evlog.Infrastructure.Data.Repositories;
 using Evlog.Infrastructure.Data.SeedStrategies;
 using Evlog.Infrastructure.Email.Configuration;
 using Evlog.Infrastructure.Email.EmailProviders;
+
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using System;
+
 
 namespace Evlog.Infrastructure.Extensions
 {
@@ -62,12 +63,16 @@ namespace Evlog.Infrastructure.Extensions
 
         public static IServiceCollection AddEmailService(this IServiceCollection services, IConfiguration config)
         {
-            var emailConfig = config.GetSection("Email").Get<EmailConfig>();
+            var emailConfigurationSection = config.GetSection("Email");
+            var emailConfig = emailConfigurationSection.Get<EmailConfig>();
+            services.Configure<EmailConfig>(emailConfigurationSection);
 
             switch (emailConfig.Provider)
             {
                 case EmailProvider.SMTP:
-                    throw new NotImplementedException();
+                    services.Configure<SmtpConfig>(config.GetSection("SMTP"));
+                    services.AddTransient<IEmailService, SmtpEmailService>();
+                    break;
 
                 default:
                 case EmailProvider.Log:
@@ -75,7 +80,6 @@ namespace Evlog.Infrastructure.Extensions
                     break;
             }
 
-            
             return services;
         }
     }
