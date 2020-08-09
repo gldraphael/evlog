@@ -5,7 +5,7 @@ nav.main-nav {
 
     ul,
     ul li,
-    .brand-logo, {
+    .brand-logo {
         display: inline-block;
     }
 
@@ -13,6 +13,11 @@ nav.main-nav {
         @include grid-column(1 of 5);
         font-weight:  bold;
         text-transform: uppercase;
+
+        a {
+          text-decoration: none;
+          color: $base-font-color;
+        }
     }
 
     ul {
@@ -29,5 +34,5 @@ nav.main-nav {
         }
     }
 
-    
+
 }
