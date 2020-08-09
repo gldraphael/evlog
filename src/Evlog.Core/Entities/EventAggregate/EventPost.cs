@@ -1,3 +1,4 @@
+using Evlog.Core.Abstractions;
 using Evlog.Core.Internal.Extensions;
 using Evlog.Core.SharedKernel;
 using System;
