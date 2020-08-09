@@ -79,18 +79,10 @@ Task("docker-build")
 {
     const string DOCKERFILE = "Dockerfile";
     const string CONTEXT    = ".";
+    const string REPOSITORY = "gldraphael/evlog"
 
     DockerBuild(new DockerImageBuildSettings {
-        Tag = new string[] {
-            "gldraphael/evlog"
-        },
-        File = DOCKERFILE
-    }, CONTEXT);
-    DockerBuild(new DockerImageBuildSettings {
-        Tag = new string[] {
-            "gldraphael/evlog-self-contained"
-        },
-        Target = "self-contained",
+        Tag  = new string[] { REPOSITORY },
         File = DOCKERFILE
     }, CONTEXT);
 });
