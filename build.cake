@@ -79,7 +79,7 @@ Task("docker-build")
 {
     const string DOCKERFILE = "Dockerfile";
     const string CONTEXT    = ".";
-    const string REPOSITORY = "gldraphael/evlog"
+    const string REPOSITORY = "gldraphael/evlog";
 
     DockerBuild(new DockerImageBuildSettings {
         Tag  = new string[] { REPOSITORY },
