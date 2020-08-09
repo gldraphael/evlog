@@ -1,6 +1,6 @@
 using System.Threading.Tasks;
 
-namespace Evlog.Core
+namespace Evlog.Core.Abstractions
 {
     public interface IEvlogQuery<T>
     {
