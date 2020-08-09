@@ -27,7 +27,7 @@ namespace Evlog.Web
             services.AddRouting(options => options.LowercaseUrls = true)
                 .AddRazorPages(o =>
                 {
-                    // o.Conventions.AuthorizeAreaFolder("Evlog", "/");
+                    o.Conventions.AuthorizeAreaFolder("Evlog", "/");
                 });
         }
 
