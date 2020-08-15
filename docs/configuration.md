@@ -1,17 +1,17 @@
 ## Configuration
 
-The full configuration is at [appsettings.json](./src/Evlog.Web/appsettings.json). The application can be configured by setting environment variables. Use `__` to access child properties. So a config like:
-
-```js
-{
-  "AppSettings":
-  {
-    "DatabaseProvider": "MySql"
-  }
-}
-```
-
-can be set using `AppSettings__DatabaseProvider=MySql".
+> The full configuration is at [appsettings.json](./src/Evlog.Web/appsettings.json). The application can be configured by setting environment variables. Use `__` to access child properties. So a config like:
+> 
+> ```js
+> {
+>  "AppSettings":
+>  {
+>    "DatabaseProvider": "MySql"
+>  }
+>}
+>```
+>
+> can be set using `AppSettings__DatabaseProvider=MySql".
 
 ### Database configuration
 
