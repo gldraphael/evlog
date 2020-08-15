@@ -16,8 +16,6 @@
 
 ## MySql Setup
 
-### Create a new container
-
 (Adjust the local port and container name as needed.)
 
 ```bash
@@ -28,11 +26,12 @@ docker run \
     -d mysql:8.0.21
 ```
 
-The newly created `evlogdbserver` container should be running. You may verify it using `docker ps`.
+The newly created `evlogdbserver` container should be running, and accessible on the host at port `3307`. You may verify it using `docker ps`. You can start and stop this as needed using:
 
-### Seed some data
-
-TODO: fill this up
+```
+docker start evlogdbserver
+docker stop evlogdbserver
+```
 
 ## Build from source
 
