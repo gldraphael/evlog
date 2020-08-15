@@ -1,4 +1,4 @@
-using MediatR;
+using Evlog.Core.Abstractions;
 using System;
 using System.Collections.Generic;
 
@@ -17,15 +17,15 @@ namespace Evlog.Core.SharedKernel
         }
         public bool IsTransient => Id is default(int);
 
-        private List<INotification>? domainEvents;
-        public List<INotification>? DomainEvents => domainEvents;
-        public void AddDomainEvent(INotification eventItem)
+        private List<IDomainEvent>? domainEvents;
+        public List<IDomainEvent>? DomainEvents => domainEvents;
+        public void AddDomainEvent(IDomainEvent eventItem)
         {
-            domainEvents = domainEvents ?? new List<INotification>();
+            domainEvents = domainEvents ?? new List<IDomainEvent>();
             domainEvents.Add(eventItem);
         }
 
-        public void RemoveDomainEvent(INotification eventItem)
+        public void RemoveDomainEvent(IDomainEvent eventItem)
         {
             if (domainEvents is null) return;
             domainEvents.Remove(eventItem);
