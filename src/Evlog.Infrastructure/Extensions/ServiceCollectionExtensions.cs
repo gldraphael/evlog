@@ -1,8 +1,6 @@
 using Evlog.Core.Abstractions.Repositories;
-using Evlog.Core.Entities.EventAggregate.Commands;
 using Evlog.Core.Entities.EventAggregate.Queries;
 using Evlog.Core.Services;
-using Evlog.Infrastructure.Commands;
 using Evlog.Infrastructure.Data;
 using Evlog.Infrastructure.Data.Configuration;
 using Evlog.Infrastructure.Data.Queries;
@@ -50,13 +48,6 @@ namespace Evlog.Infrastructure.Extensions
             services.AddTransient<IPastEventsQuery, PastEventsQuery>();
             services.AddTransient<IUpcomingEventsQuery, UpcomingEventsQuery>();
             services.AddTransient<IEventQuery, EventQuery>();
-
-            return services;
-        }
-
-        public static IServiceCollection AddEvlogCommands(this IServiceCollection services)
-        {
-            services.AddTransient<IRegisterUserCommand, RegisterUserCommand>();
 
             return services;
         }

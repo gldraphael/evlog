@@ -1,6 +1,4 @@
-using Evlog.Core.Abstractions;
 using System;
-using System.Collections.Generic;
 
 namespace Evlog.Core.SharedKernel
 {
@@ -16,20 +14,6 @@ namespace Evlog.Core.SharedKernel
             protected set => id = value;
         }
         public bool IsTransient => Id is default(int);
-
-        private List<IDomainEvent>? domainEvents;
-        public List<IDomainEvent>? DomainEvents => domainEvents;
-        public void AddDomainEvent(IDomainEvent eventItem)
-        {
-            domainEvents = domainEvents ?? new List<IDomainEvent>();
-            domainEvents.Add(eventItem);
-        }
-
-        public void RemoveDomainEvent(IDomainEvent eventItem)
-        {
-            if (domainEvents is null) return;
-            domainEvents.Remove(eventItem);
-        }
 
         public override bool Equals(object? obj)
         {

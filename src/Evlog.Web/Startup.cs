@@ -1,4 +1,6 @@
+using Evlog.Core.Abstractions;
 using Evlog.Infrastructure.Extensions;
+using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -18,10 +20,10 @@ namespace Evlog.Web
         
         public virtual void ConfigureServices(IServiceCollection services)
         {
+            services.AddMediatR(typeof(IDomainEvent));
             services.AddEvlogDb(Configuration)
                     .AddEvlogRepositories()
                     .AddEvlogQueries()
-                    .AddEvlogCommands()
                     .AddEmailService(Configuration);
 
             services.AddRouting(options => options.LowercaseUrls = true)
