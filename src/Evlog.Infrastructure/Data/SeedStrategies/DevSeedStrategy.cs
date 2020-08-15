@@ -1,5 +1,7 @@
 using Evlog.Core.Abstractions.Repositories;
 using Evlog.Core.Entities.EventAggregate;
+using Evlog.Infrastructure.Data.DataModels;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using System;
@@ -10,13 +12,25 @@ namespace Evlog.Infrastructure.Data.SeedStrategies
     // Seed data taken from: https://azure.microsoft.com/en-in/community/events/
     class DevSeedStrategy : ISeedStrategy
     {
+
+        const string DEFAULT_USER = "admin@example.com";
+        const string DEFAULT_PASS = "theadmin'spassword";
+
+
         private readonly AppDbContext db;
+        private readonly UserManager<EvlogWebUserDM> userManager;
         private readonly ILogger<DevSeedStrategy> logger;
         private readonly IEventPostRepository events;
 
-        public DevSeedStrategy(AppDbContext db, ILogger<DevSeedStrategy> logger, IEventPostRepository events)
+        public DevSeedStrategy(
+            AppDbContext db,
+            UserManager<EvlogWebUserDM> userManager,
+            RoleManager<IdentityRole<int>> roleManager,
+            ILogger<DevSeedStrategy> logger,
+            IEventPostRepository events)
         {
             this.db = db;
+            this.userManager = userManager;
             this.logger = logger;
             this.events = events;
         }
@@ -28,6 +42,16 @@ namespace Evlog.Infrastructure.Data.SeedStrategies
             {
                 logger.LogInformation("Not seeding the DB because it has data in the events table.");
                 return;
+            }
+
+            if(!await userManager.Users.AnyAsync())
+            {
+                await userManager.CreateAsync(
+                    new EvlogWebUserDM
+                    {
+                        UserName = DEFAULT_USER,
+                        EmailConfirmed = true
+                    }, DEFAULT_PASS);
             }
 
             var seedEvents = new[]
