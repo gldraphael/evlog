@@ -6,4 +6,10 @@ namespace Evlog.Core.Abstractions
     {
 
     }
+
+    interface IAsyncCommandHandler<T> : IRequestHandler<T>
+        where T : ICommand
+    {
+
+    }
 }
