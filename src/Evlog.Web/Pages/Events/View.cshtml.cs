@@ -38,7 +38,7 @@ namespace Evlog.Web.Pages.Events
                 Post = await eventQuery.QueryAsync(slug);
                 if(Post != null)
                 {
-                    await mediatr.Send(new RegisterForEvent(Post.Id, RegisterVM.Email));
+                    await mediatr.Send(new EventRegistrationRequested(Post.Id, RegisterVM.Email));
                 }
             }
 
