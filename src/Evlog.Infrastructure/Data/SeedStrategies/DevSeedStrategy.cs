@@ -25,7 +25,6 @@ namespace Evlog.Infrastructure.Data.SeedStrategies
         public DevSeedStrategy(
             AppDbContext db,
             UserManager<EvlogWebUserDM> userManager,
-            RoleManager<IdentityRole<int>> roleManager,
             ILogger<DevSeedStrategy> logger,
             IEventPostRepository events)
         {

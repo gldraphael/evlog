@@ -1,13 +1,13 @@
-﻿using MediatR;
+using MediatR;
 
 namespace Evlog.Core.Abstractions
 {
-    interface ICommand : IRequest
+    public interface ICommand : IRequest
     {
 
     }
 
-    interface IAsyncCommandHandler<T> : IRequestHandler<T>
+    public interface ICommandHandler<T> : IRequestHandler<T>
         where T : ICommand
     {
 
