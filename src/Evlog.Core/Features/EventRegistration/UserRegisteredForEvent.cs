@@ -39,7 +39,8 @@ namespace Evlog.Core.Features.EventRegistration
             var user = await users.GetByEmailAsync(message.UserEmail);
             if(user is null)
             {
-                user = user ?? await users.AddAsync(new EvlogUser(email: message.UserEmail, isConfirmed: false));
+                user = new EvlogUser(email: message.UserEmail, isConfirmed: false);
+                await users.AddAsync(user);
             }
             else if(await identityService.IsCurrentUserLoggedIn()) // TODO: Also check if a user "profile" exists
             {
