@@ -1,5 +1,7 @@
 using Evlog.Core.Abstractions;
+using Evlog.Core.Services;
 using Evlog.Infrastructure.Extensions;
+using Evlog.Web.Areas.Identity;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -25,6 +27,7 @@ namespace Evlog.Web
                     .AddEvlogRepositories()
                     .AddEvlogQueries()
                     .AddEmailService(Configuration);
+            services.AddScoped<IIdentityService, IdentityService>();
 
             services.AddRouting(options => options.LowercaseUrls = true)
                 .AddRazorPages(o =>

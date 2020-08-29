@@ -54,7 +54,7 @@ namespace Evlog.Core.Features.PasswordlessLogin
             {
                 await users.MarkEmailAsConfirmed(user.Id);
             }
-            await identityService.Login(user.Id);
+            await identityService.Login(email: command.Email);
             return new LoginResult(didSucceed: true, isProfileCreationPending: user.Profile is null);
         }
     }
