@@ -17,7 +17,7 @@ namespace Evlog.Web.Areas.Identity
 
         [AllowAnonymous]
         [HttpGet("/identity/magiclink")]
-        public async Task<IActionResult> Login([FromQuery] string email, [FromQuery] string token, [FromQuery] string to)
+        public async Task<IActionResult> Login([FromQuery] string email, [FromQuery] string token, [FromQuery] string? to)
         {
             var result = await mediator.Send(new LogIn(email, token));
             if(result?.Succeeded is true)
@@ -26,7 +26,7 @@ namespace Evlog.Web.Areas.Identity
                 {
                     return RedirectToAction(); // redirct to the profile creation page
                 }
-                return Redirect(to);
+                return Redirect(to ?? "/");
             }
             return Unauthorized(); // show a nice page!
         }
