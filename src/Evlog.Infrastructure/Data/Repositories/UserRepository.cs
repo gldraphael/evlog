@@ -22,7 +22,8 @@ namespace Evlog.Infrastructure.Data.Repositories
                 UserName = evlogUser.Email,
                 Email = evlogUser.Email,
                 LockoutEnabled = true,
-                EmailConfirmed = evlogUser.IsConfirmed
+                EmailConfirmed = evlogUser.IsConfirmed,
+                FullName = evlogUser.Profile?.FullName
             };
             await users.CreateAsync(dao);
         }
@@ -46,13 +47,11 @@ namespace Evlog.Infrastructure.Data.Repositories
             await users.UpdateAsync(dao);
         }
 
-        public Task UpdateAsync(EvlogUser user)
+        public async Task UpdateAsync(EvlogUser user)
         {
-            //var dao = await users.FindByIdAsync($"{user.Id}");
-            //// dao.Profile = user.Profile;
-            //await users.UpdateAsync(dao);
-
-            return Task.CompletedTask;
+            var dao = await users.FindByIdAsync($"{user.Id}");
+            dao.FullName = user.Profile?.FullName;
+            await users.UpdateAsync(dao);
         }
 
         static EvlogUser FromDao(EvlogWebUserDM dao) =>
