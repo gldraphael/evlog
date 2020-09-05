@@ -34,6 +34,7 @@ namespace Evlog.Web
                 {
                     o.Conventions.AuthorizeAreaFolder("Evlog", "/");
                 });
+            services.AddMvc(); // maybe we dont need the full mvc...
         }
 
         
@@ -56,6 +57,7 @@ namespace Evlog.Web
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapRazorPages();
+                endpoints.MapControllers();
             });
         }
     }

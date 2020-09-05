@@ -1,6 +1,7 @@
 using Evlog.Core.Abstractions;
 using Evlog.Core.Abstractions.Repositories;
 using Evlog.Core.Entities.UserAggregate;
+using Evlog.Core.Exceptions;
 using MediatR;
 using System.Threading;
 using System.Threading.Tasks;
@@ -32,7 +33,7 @@ namespace Evlog.Core.Features.ProfileCreation
         {
             // TODO: validate profile
 
-            var user = await users.GetByIdAsync(command.UserId);
+            var user = await users.GetByIdAsync(command.UserId) ?? throw new UserNotFoundException(command.UserId);
             user.Profile = command.Profile;
             await users.UpdateAsync(user);
 

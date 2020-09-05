@@ -37,6 +37,7 @@ namespace Evlog.Infrastructure.Extensions
         {
             // Add EventPost queries
             services.AddTransient<IEventPostRepository, EventPostRepository>();
+            services.AddScoped<IUserRepository, UserRepository>();
 
             return services;
         }

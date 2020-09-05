@@ -11,7 +11,7 @@ namespace Evlog.Core.SharedKernel
         public virtual int Id
         {
             get => id;
-            protected set => id = value;
+            set => id = value;
         }
         public bool IsTransient => Id is default(int);
 

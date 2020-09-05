@@ -24,7 +24,7 @@ namespace Evlog.Web.Areas.Identity
             {
                 if(result.IsProfileCreationPending)
                 {
-                    return RedirectToAction(); // redirct to the profile creation page
+                    return RedirectToPage("/Profile/Create");
                 }
                 return Redirect(to ?? "/");
             }
