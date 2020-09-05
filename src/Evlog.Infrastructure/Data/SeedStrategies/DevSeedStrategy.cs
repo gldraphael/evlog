@@ -49,6 +49,7 @@ namespace Evlog.Infrastructure.Data.SeedStrategies
                     new EvlogWebUserDM
                     {
                         UserName = DEFAULT_USER,
+                        Email = DEFAULT_USER,
                         EmailConfirmed = true
                     }, DEFAULT_PASS);
             }

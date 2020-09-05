@@ -17,14 +17,10 @@ namespace Evlog.Web.Areas.Identity
             this.userManager = userManager;
         }
 
-        public Task<string> GetLoginLink(int userId, int? eventPostId)
-        {
-            throw new NotImplementedException();
-        }
+        public Task<string> GetLoginToken(int userId) => Task.FromResult("heya"); // TODO: implement this for real
 
         public Task<bool> IsCurrentUserLoggedIn() // TODO: implement this, or get rid of it
         {
-            // throw new NotImplementedException();
             return Task.FromResult(false);
         }
 

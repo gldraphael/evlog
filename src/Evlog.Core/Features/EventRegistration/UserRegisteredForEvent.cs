@@ -20,7 +20,7 @@ namespace Evlog.Core.Features.EventRegistration
             UserEmail = userEmail;
         }
     }
-
+    // TODO SIMPLIFY THIS
     public sealed class UserRegisteredForEventHandler : IDomainEventHandler<UserRegisteredForEvent>
     {
         private readonly IUserRepository users;
@@ -49,7 +49,7 @@ namespace Evlog.Core.Features.EventRegistration
                 return;
             }
 
-            await mediator.Publish(new InitiateLogin(userId: user.Id, eventPostId: message.EventPostId));
+            await mediator.Send(new InitiateLogin(email: message.UserEmail, eventPostId: message.EventPostId));
         }
     }
 }

@@ -25,7 +25,7 @@ namespace Evlog.Infrastructure.Data.Repositories
                 EmailConfirmed = evlogUser.IsConfirmed,
                 FullName = evlogUser.Profile?.FullName
             };
-            await users.CreateAsync(dao);
+            await users.CreateAsync(dao); // TOOD: check the result
         }
 
         public async Task<EvlogUser?> GetByEmailAsync(string userEmail)
@@ -43,6 +43,7 @@ namespace Evlog.Infrastructure.Data.Repositories
         public async Task MarkEmailAsConfirmed(int userId)
         {
             var dao = await users.FindByIdAsync($"{userId}");
+            if (dao is null) return;
             dao.EmailConfirmed = true;
             await users.UpdateAsync(dao);
         }
@@ -54,8 +55,15 @@ namespace Evlog.Infrastructure.Data.Repositories
             await users.UpdateAsync(dao);
         }
 
-        static EvlogUser FromDao(EvlogWebUserDM dao) =>
-            new EvlogUser(dao.Email, isConfirmed: dao.EmailConfirmed);
-
+        static EvlogUser? FromDao(EvlogWebUserDM dao)
+        {
+            if (dao is null) return null;
+            var profile = dao.FullName is null ? null : new UserProfile(dao.FullName);
+            return new EvlogUser(dao.Email, isConfirmed: dao.EmailConfirmed)
+            {
+                Id = dao.Id,
+                Profile = profile
+            };
+        }
     }
 }
