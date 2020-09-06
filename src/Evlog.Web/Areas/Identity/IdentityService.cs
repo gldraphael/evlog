@@ -1,7 +1,7 @@
 using Evlog.Core.Services;
 using Evlog.Infrastructure.Data.DataModels;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
-using System;
 using System.Threading.Tasks;
 
 namespace Evlog.Web.Areas.Identity
@@ -10,19 +10,21 @@ namespace Evlog.Web.Areas.Identity
     {
         private readonly SignInManager<EvlogWebUserDM> signInManager;
         private readonly UserManager<EvlogWebUserDM> userManager;
+        private readonly IHttpContextAccessor httpContext;
 
-        public IdentityService(SignInManager<EvlogWebUserDM> signInManager, UserManager<EvlogWebUserDM> userManager)
+        public IdentityService(
+            SignInManager<EvlogWebUserDM> signInManager,
+            UserManager<EvlogWebUserDM> userManager,
+            IHttpContextAccessor httpContext)
         {
             this.signInManager = signInManager;
             this.userManager = userManager;
+            this.httpContext = httpContext;
         }
 
         public Task<string> GetLoginToken(int userId) => Task.FromResult("heya"); // TODO: implement this for real
 
-        public Task<bool> IsCurrentUserLoggedIn() // TODO: implement this, or get rid of it
-        {
-            return Task.FromResult(false);
-        }
+        public bool IsCurrentUserLoggedIn() => httpContext.HttpContext.User.Identity.IsAuthenticated;
 
         public async Task Login(string email)
         {
