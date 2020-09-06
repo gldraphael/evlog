@@ -20,6 +20,7 @@ namespace Evlog.Core.Features.EventRegistration
             UserEmail = userEmail;
         }
     }
+
     // TODO SIMPLIFY THIS
     public sealed class UserRegisteredForEventHandler : IDomainEventHandler<UserRegisteredForEvent>
     {
@@ -42,7 +43,7 @@ namespace Evlog.Core.Features.EventRegistration
                 user = new EvlogUser(email: message.UserEmail, isConfirmed: false);
                 await users.AddAsync(user);
             }
-            else if(await identityService.IsCurrentUserLoggedIn()) // TODO: Also check if a user "profile" exists
+            else if(identityService.IsCurrentUserLoggedIn()) // TODO: Also check if a user "profile" exists
             {
                 // TODO: Persist the registration
                 await mediator.Publish(new EventRegistrationConfirmed(message.EventPostId, user.Id, user.Email));

@@ -6,6 +6,6 @@ namespace Evlog.Core.Services
     {
         Task<string> GetLoginToken(int userId);
         Task Login(string email);
-        Task<bool> IsCurrentUserLoggedIn(); // not sure if this is a good idea...
+        bool IsCurrentUserLoggedIn(); // not sure if this is a good idea...
     }
 }

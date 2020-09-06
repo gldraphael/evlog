@@ -11,7 +11,7 @@ namespace Evlog.Core.Exceptions
 
         }
 
-        public UserNotFoundException(string email) : base(message: $"A user with email {email} was not found.")
+        public UserNotFoundException(string? email) : base(message: $"A user with email {email} was not found.")
         {
 
         }
