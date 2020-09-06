@@ -4,3 +4,12 @@
 }
 
 <p>The create profile page goes here.</p>
+
+<p>Signed in: @User.Identity.IsAuthenticated</p>
+
+<form method="post">
+  Full Name
+  <input asp-for="VM.FullName" />
+
+  <input type="submit" />
+</form>

@@ -10,12 +10,12 @@ namespace Evlog.Core.Features.ProfileCreation
 {
     public sealed class CreateProfile : ICommand
     {
-        public int UserId { get; set; }
+        public string Email { get; set; }
         public UserProfile Profile { get; }
 
-        public CreateProfile(int userId, UserProfile profile)
+        public CreateProfile(string email, UserProfile profile)
         {
-            UserId = userId;
+            Email = email;
             Profile = profile;
         }
     }
@@ -33,7 +33,7 @@ namespace Evlog.Core.Features.ProfileCreation
         {
             // TODO: validate profile
 
-            var user = await users.GetByIdAsync(command.UserId) ?? throw new UserNotFoundException(command.UserId);
+            var user = await users.GetByEmailAsync(command.Email) ?? throw new UserNotFoundException(command.Email);
             user.Profile = command.Profile;
             await users.UpdateAsync(user);
 
