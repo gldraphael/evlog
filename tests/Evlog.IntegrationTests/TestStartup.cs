@@ -23,7 +23,7 @@ namespace Evlog.IntegrationTests
             var connectionString = config.GetConnectionString("MySql").Replace("evlogitestdb", databaseName);
             services.AddDbContext<AppDbContext>(options =>
             {
-                options.UseMySql(connectionString);
+                options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString));
                 options.EnableSensitiveDataLogging();
             });
 
