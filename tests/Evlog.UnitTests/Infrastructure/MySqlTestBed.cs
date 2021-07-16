@@ -13,7 +13,7 @@ namespace Evlog.UnitTests.Infrastructure
         {
             var connectionString = GetConnectionStringForRandomDatabase();
             var options = new DbContextOptionsBuilder<AppDbContext>()
-                .UseMySql(connectionString)
+                .UseMySql(connectionString, ServerVersion.AutoDetect(connectionString))
                 .Options;
 
             // The ApplicationDbContext

@@ -24,7 +24,7 @@ namespace Evlog.Infrastructure.Extensions
 
             services.AddDbContext<AppDbContext>(o =>
             {
-                o.UseMySql(mysqlConfig.ConnectionString, opts =>
+                o.UseMySql(mysqlConfig.ConnectionString, ServerVersion.AutoDetect(mysqlConfig.ConnectionString), opts =>
                 {
                     opts.MigrationsAssembly(typeof(AppDbContext).Assembly.FullName);
                 });

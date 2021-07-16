@@ -5,9 +5,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Markdig" Version="0.20.0" />
-    <PackageReference Include="MediatR" Version="8.1.0" />
-    <PackageReference Include="Slugify.Core" Version="2.3.0" />
+    <PackageReference Include="Markdig" Version="0.25.0" />
+    <PackageReference Include="MediatR" Version="9.0.0" />
+    <PackageReference Include="Slugify.Core" Version="3.0.0" />
   </ItemGroup>
 
 </Project>
