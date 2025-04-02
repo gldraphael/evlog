@@ -15,10 +15,10 @@ pool:
 steps:
 
 - task: UseDotNet@2
-  displayName: 'Use .NET SDK 5.0.302'
+  displayName: 'Use .NET SDK 9.0.202'
   inputs:
     packageType: sdk
-    version: 5.0.302
+    version: 9.0.202
     installationPath: $(Agent.ToolsDirectory)/dotnet
 
 - script: |
