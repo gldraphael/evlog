@@ -1,0 +1,16 @@
+<Solution>
+  <Configurations>
+    <Platform Name="Any CPU" />
+    <Platform Name="x64" />
+    <Platform Name="x86" />
+  </Configurations>
+  <Folder Name="/src/">
+    <Project Path="src/Evlog.Core/Evlog.Core.csproj" />
+    <Project Path="src/Evlog.Infrastructure/Evlog.Infrastructure.csproj" />
+    <Project Path="src/Evlog.Web/Evlog.Web.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/Evlog.IntegrationTests/Evlog.IntegrationTests.csproj" />
+    <Project Path="tests/Evlog.UnitTests/Evlog.UnitTests.csproj" />
+  </Folder>
+</Solution>

@@ -1,6 +1,9 @@
 # Evlog
 > ⚡️A self-hosted platform for publishing events.
 
+> [!IMPORTANT]  
+> This project is not in a usable state right now. I'm still in the process of reviving this project.
+
 [![Travis (.org)](https://img.shields.io/travis/gldraphael/evlog/dev.svg?logo=travis&style=flat-square)](https://travis-ci.org/gldraphael/evlog)
 ![Azure DevOps tests](https://img.shields.io/azure-devops/tests/gldraphael/evlog/2/dev.svg?style=flat-square&logo=azure-pipelines)
 
@@ -9,7 +12,7 @@
 <!-- ## Quickstart
 
 1. Install Docker (Docker for Mac/Windows or Docker Toolbox or Docker CE).
-1. Run the container:
+2. Run the container:
 
     ```bash
     docker pull gldraphael/evlog

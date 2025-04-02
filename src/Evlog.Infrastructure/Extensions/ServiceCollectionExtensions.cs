@@ -20,7 +20,7 @@ namespace Evlog.Infrastructure.Extensions
     {
         public static IServiceCollection AddEvlogDb(this IServiceCollection services, IConfiguration config)
         {
-            var mysqlConfig = config.GetSection("MySql").Get<MySqlConfig>();
+            var mysqlConfig = config.GetRequiredSection("MySql").Get<MySqlConfig>()!;
 
             services.AddDbContext<AppDbContext>(o =>
             {

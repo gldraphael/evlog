@@ -1,0 +1,21 @@
+services:
+
+  evlog:
+    image: gldraphael/evlog
+    restart: on-failure
+    build:
+      context: .
+      dockerfile: Dockerfile
+    depends_on:
+      - db
+    environment:
+      # - ASPNETCORE_ENVIRONMENT=Development
+      - MySql__ConnectionString=Server=db;Port=3306;Database=evlogdb;User=root;Password=${MYSQL_ROOT_PASSWORD};
+    ports:
+      - "8080:5000"
+
+  db:
+    image: mysql:8.0.21
+    restart: unless-stopped
+    environment:
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}

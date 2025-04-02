@@ -1,5 +1,5 @@
-#tool "xunit.runner.console&version=2.2.0"
-#addin "Cake.Docker&version=0.10.0"
+#tool "xunit.runner.console&version=2.9.3"
+#addin "Cake.Docker&version=1.3.0"
 
 //////////////////////////////////////////////////////////////////////
 // ARGUMENTS
@@ -12,7 +12,7 @@ var configuration = Argument("configuration", "Release");
 // GLOBALS
 //////////////////////////////////////////////////////////////////////
 
-const string sln = "./evlog.sln";
+const string sln = "./evlog.slnx";
 readonly string testDbContainerName = $"evlogtesdb-{Guid.NewGuid()}";
 
 //////////////////////////////////////////////////////////////////////

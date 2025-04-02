@@ -19,10 +19,13 @@ namespace Evlog.Web
             Configuration = configuration;
         }
 
-        
+
         public virtual void ConfigureServices(IServiceCollection services)
         {
-            services.AddMediatR(typeof(IDomainEvent));
+            services.AddMediatR(c =>
+            {
+                c.RegisterServicesFromAssembly(typeof(IDomainEvent).Assembly);
+            });
             services.AddEvlogDb(Configuration)
                     .AddEvlogRepositories()
                     .AddEvlogQueries()
@@ -37,7 +40,7 @@ namespace Evlog.Web
             services.AddMvc(); // maybe we dont need the full mvc...
         }
 
-        
+
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
@@ -49,7 +52,6 @@ namespace Evlog.Web
                 app.UseExceptionHandler("/Error");
             }
 
-            app.UseHttpsRedirection();
             app.UseStaticFiles();
 
             app.UseRouting();

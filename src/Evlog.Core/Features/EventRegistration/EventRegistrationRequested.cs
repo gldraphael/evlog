@@ -32,7 +32,7 @@ namespace Evlog.Core.Features.EventRegistration
             this.mediator = mediator;
         }
 
-        public async Task<Unit> Handle(EventRegistrationRequested command, CancellationToken cancellationToken)
+        public async Task Handle(EventRegistrationRequested command, CancellationToken cancellationToken)
         {
             if(false) // TODO: validate email address
                       // Is this even required? Users can't register without an account...
@@ -58,7 +58,6 @@ namespace Evlog.Core.Features.EventRegistration
 
 
             await mediator.Publish(new UserRegisteredForEvent(eventPostId: command.EventPostId, userEmail: command.Email));
-            return Unit.Value;
         }
     }
 }
