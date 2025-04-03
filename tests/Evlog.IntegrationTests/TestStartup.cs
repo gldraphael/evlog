@@ -20,7 +20,7 @@ namespace Evlog.IntegrationTests
         public override void ConfigureServices(IServiceCollection services)
         {
             var databaseName = $"evlog-itests-{Guid.NewGuid()}";
-            var connectionString = config.GetConnectionString("MySql").Replace("evlogitestdb", databaseName);
+            var connectionString = config.GetConnectionString("MySql").Replace("Database=evlog;", $"Database={databaseName};");
             services.AddDbContext<AppDbContext>(options =>
             {
                 options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString));

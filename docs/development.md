@@ -19,11 +19,7 @@
 (Adjust the local port and container name as needed.)
 
 ```bash
-docker run \
-    -p 3307:3306 \
-    --name evlogdbserver \
-    -e MYSQL_ROOT_PASSWORD=Pa5sw0rd \
-    -d mysql:8.0.21
+docker run -p 3307:3306 --name evlogdbserver -e MYSQL_ROOT_PASSWORD=Pa5sw0rd -d mysql:8.4.4
 ```
 
 The newly created `evlogdbserver` container should be running, and accessible on the host at port `3307`. You may verify it using `docker ps`. You can start and stop this as needed using:

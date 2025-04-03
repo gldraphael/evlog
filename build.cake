@@ -22,8 +22,8 @@ readonly string testDbContainerName = $"evlogtesdb-{Guid.NewGuid()}";
 Task("build")
     .Does(() =>
 {
-    DotNetCoreBuild(sln,
-        new DotNetCoreBuildSettings
+    DotNetBuild(sln,
+        new DotNetBuildSettings
         {
             Configuration = configuration
         }
@@ -40,7 +40,7 @@ Task("startdb")
             Detach = true,
             Rm = true
         },
-        image: "mysql:8.0.16",
+        image: "mysql:8.4.4",
         command: null, args: null);
     await System.Threading.Tasks.Task.Delay(10_000); // wait for 10 seconds
 });
@@ -59,20 +59,22 @@ Task("xunit")
     var projects = GetFiles("./tests/**/*.csproj");
     foreach(var project in projects)
     {
-        DotNetCoreTest(
+        DotNetTest(
             project.FullPath,
-            new DotNetCoreTestSettings()
+            new DotNetTestSettings()
             {
                 Configuration = configuration,
                 NoRestore = true,
                 NoBuild = true,
+                EnvironmentVariables = new Dictionary<string,string>(){
+                    ["MySql__ConnectionString"] = $"Server=localhost;Port=3307;Database=evlog;User=root;Password=Pa5sw0rd;"
+                },
                 ResultsDirectory = project.GetDirectory(),
                 ArgumentCustomization = args => args.Append("--logger:trx;LogFileName=test_result.xml")
             }
         );
     }
-    RunTarget("stopdb");
-});
+}).Finally(() => RunTarget("stopdb"));
 
 Task("docker-build")
     .Does(() =>
